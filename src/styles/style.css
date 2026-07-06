@@ -1,0 +1,2305 @@
+@import "reset.css";
+#wrap {
+  width: 100vw;
+  max-width: 800px;
+  margin: 0 auto;
+}
+#wrap .stampplusImg {
+  height: 6.5vh;
+}
+#wrap .myImg {
+  height: 6vh;
+}
+#wrap #header {
+  width: 100%;
+  color: #2a2f4f;
+}
+#wrap #header .wrap {
+  width: 100%;
+}
+#wrap #header .wrap .header-gap {
+  width: 100%;
+}
+#wrap #header .wrap .header-gap .header-wrap {
+  width: 100%;
+  display: flex;
+  padding: 3.75%;
+  border-bottom: 2px solid #2a2f4f;
+}
+#wrap #header .wrap .header-gap .header-wrap .pre {
+  width: 25%;
+  display: flex;
+  margin: 0 auto 0 0;
+}
+#wrap #header .wrap .header-gap .header-wrap .pre .pre-gap {
+  width: 100%;
+}
+#wrap #header .wrap .header-gap .header-wrap .pre .pre-gap .pre-wrap {
+  display: flex;
+  justify-content: flex-start;
+}
+#wrap #header .wrap .header-gap .header-wrap .pre .pre-gap .pre-wrap p a {
+  color: #2a2f4f;
+  font-size: 18px;
+  font-weight: 600;
+}
+#wrap #header .wrap .header-gap .header-wrap .title {
+  width: 50%;
+  margin: 0 auto;
+}
+#wrap #header .wrap .header-gap .header-wrap .title .title-gap {
+  width: 100%;
+}
+#wrap #header .wrap .header-gap .header-wrap .title .title-gap .title-wrap {
+  width: 100%;
+}
+#wrap #header .wrap .header-gap .header-wrap .title .title-gap .title-wrap p {
+  padding: 0 20%;
+}
+#wrap #header .wrap .header-gap .header-wrap .title .title-gap .title-wrap p .logo {
+  width: 100%;
+}
+#wrap #header .wrap .header-gap .header-wrap .my {
+  width: 25%;
+  display: flex;
+  padding: 2px 0 0 0;
+  margin: 0 0 0 auto;
+}
+#wrap #header .wrap .header-gap .header-wrap .my .my-gap {
+  width: 100%;
+  margin: 0 0 0 auto;
+}
+#wrap #header .wrap .header-gap .header-wrap .my .my-gap .my-wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+#wrap #header .wrap .header-gap .header-wrap .my .my-gap .my-wrap p a {
+  color: #2a2f4f;
+  font-size: 18px;
+  font-weight: 600;
+}
+#wrap #header .wrap .header-gap .header-wrap .my .my-gap .my-wrap .user-menu .my {
+  float: left;
+  margin-right: 13px;
+}
+#wrap #header .wrap .header-gap .header-wrap .my .my-gap .my-wrap .user-menu .plus {
+  float: left;
+}
+#wrap #footer {
+  position: relative;
+}
+#wrap #footer .wrap {
+  width: 70%;
+  margin: 0 auto;
+}
+#wrap #footer .wrap .footer-gap {
+  padding: 50px 0;
+}
+#wrap #footer .wrap .footer-gap .footer-wrap {
+  width: 100%;
+}
+#wrap #footer .wrap .footer-gap .footer-wrap p {
+  text-align: center;
+}
+#wrap .menu {
+  width: 90%;
+  margin: 0 auto;
+  padding: 3%;
+}
+#wrap .menu .admin-gap {
+  width: 100%;
+  overflow: hidden;
+}
+#wrap .menu .admin-gap .playlist {
+  width: 25%;
+  padding: 1%;
+  float: left;
+  text-align: center;
+}
+#wrap .menu .admin-gap .userlist {
+  width: 25%;
+  padding: 1%;
+  float: left;
+  text-align: center;
+}
+#wrap .menu .admin-gap .adminlist {
+  width: 25%;
+  padding: 1%;
+  float: left;
+  text-align: center;
+}
+#wrap .menu .admin-gap .noticelist {
+  width: 25%;
+  padding: 1%;
+  float: left;
+  text-align: center;
+}
+#wrap .menu .admin-gap .on {
+  font-weight: 600;
+}
+#wrap .menu .info-gap {
+  width: 100%;
+  margin-top: 3%;
+  overflow: hidden;
+}
+#wrap .menu .info-gap .admin-info {
+  float: right;
+}
+#wrap #playlist {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #playlist .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #playlist .wrap .playlist-gap {
+  width: 90%;
+  padding: 3% 3%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#wrap #playlist .wrap .playlist-gap .play-wrap {
+  width: 100%;
+  padding: 1% 1% 0% 1%;
+  float: left;
+  border-bottom: 1px dotted #333333;
+}
+#wrap #playlist .wrap .playlist-gap .play-wrap .play-gap .play {
+  width: 80%;
+  padding: 1%;
+  float: left;
+}
+#wrap #playlist .wrap .playlist-gap .play-wrap .play-gap .play .playName {
+  width: 40%;
+  padding: 1%;
+  float: left;
+}
+#wrap #playlist .wrap .playlist-gap .play-wrap .play-gap .play .playName .stampImg {
+  height: 3.4vh;
+  margin-bottom: 1%;
+}
+#wrap #playlist .wrap .playlist-gap .play-wrap .play-gap .play .playDate {
+  width: 50%;
+  padding: 1%;
+  float: left;
+}
+#wrap #playlist .wrap .playlist-gap .play-wrap .play-gap .double-btn {
+  width: 20%;
+  padding: 1%;
+  float: left;
+}
+#wrap #playlist .wrap .playlist-gap .play-wrap .play-gap .double-btn .btn-gap {
+  width: 100%;
+  padding: 1%;
+  float: left;
+}
+#wrap #playlist .wrap .playlist-gap .play-wrap .play-gap .double-btn .d-btn {
+  width: 90%;
+  height: 120%;
+  font-size: 10px;
+  color: #dddddd;
+  background-color: #917FB3;
+  margin: 0 auto;
+  padding: 1%;
+  border-radius: 5px;
+}
+#wrap #playlist .wrap .playlist-gap .pagination {
+  float: left;
+  width: 100%;
+  text-align: center;
+}
+#wrap #playlist .wrap .playlist-gap .pagination .wrap {
+  width: 100%;
+  margin-top: 5%;
+}
+#wrap #playlist .wrap .playlist-gap .pagination .wrap .page {
+  display: inline-block;
+  text-align: center;
+  float: none;
+}
+#wrap #playlist .wrap .playlist-gap .pagination .wrap .page li {
+  width: 10px;
+  text-align: center;
+  float: left;
+  padding: 4% 3% 3% 3%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+#wrap #playlist .wrap .playlist-gap .pagination .wrap .page .current {
+  background-color: #917FB3;
+  color: #fff;
+  font-weight: 500;
+}
+#wrap #playlist .wrap .playlist-gap .search-wrap {
+  float: left;
+  width: 100%;
+  text-align: center;
+  padding: 1%;
+}
+#wrap #playlist .wrap .playlist-gap .search-wrap .search-select {
+  margin-right: 1%;
+}
+#wrap #playlist .wrap .playlist-gap .search-wrap .search-select option {
+  background-color: #2a2f4f;
+  color: #FDF4F5;
+}
+#wrap #playlist .wrap .playlist-gap .search-wrap button {
+  margin-left: 1%;
+  width: 45px;
+  height: 20px;
+  border-radius: 5%;
+  background-color: #2a2f4f;
+  color: #FDF4F5;
+}
+#wrap #playlist .wrap .playlist-gap .btn {
+  float: left;
+  width: 100%;
+  text-align: center;
+  margin-top: 5%;
+}
+#wrap #playlist .wrap .playlist-gap .btn button {
+  width: 80px;
+  height: 30px;
+  border-radius: 5%;
+  background-color: #2a2f4f;
+}
+#wrap #playlist .wrap .playlist-gap .btn button a {
+  color: #FDF4F5;
+}
+#wrap #addplaylist {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #addplaylist .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #addplaylist .wrap .addplaylist-gap {
+  width: 80%;
+  padding: 3% 3%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox {
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 20px auto;
+  position: relative;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox .inputbox label {
+  display: inline-block;
+  position: absolute;
+  top: -5px;
+  left: 14px;
+  padding: 10px;
+  background: white;
+  font-size: 14px;
+  color: #888;
+  font-weight: bold;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox .inputbox input {
+  width: 100%;
+  border: 1px solid #dddddd !important;
+  font-size: 1rem;
+  line-height: 1.45;
+  letter-spacing: -0.04rem;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 12px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox input[type=text] {
+  width: 100%;
+  height: 25px;
+  border: none;
+  border-bottom: 1px solid black;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox input:focus {
+  outline: none;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox input#playCast {
+  width: 100%;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox label[for=playStamp] {
+  padding-right: 10px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox input[type=radio] {
+  vertical-align: middle;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 50%;
+  width: 1.25em;
+  height: 1.25em;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox input[type=radio]:checked {
+  border: 0.4em solid #917FB3;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox input[type=radio]:hover {
+  cursor: pointer;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox span {
+  vertical-align: middle;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.genre {
+  width: 50%;
+  float: left;
+  padding: 7px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.name {
+  width: 50%;
+  float: left;
+  padding: 7px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start {
+  width: 50%;
+  float: left;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start .example-custom-input {
+  background-color: white;
+  border-radius: 3px;
+  color: #333333;
+  cursor: pointer;
+  width: 155px;
+  height: 30px;
+  padding: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  padding-left: 12px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start .react-datepicker__calendar-icon {
+  margin-top: 3.5px;
+  position: absolute;
+  padding: 0.4rem;
+  height: 2.2em;
+  width: 2.2em;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start .react-datepicker {
+  font-size: 0.8rem !important;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start .react-datepicker__month-container .react-datepicker__input-container {
+  display: none;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start .react-datepicker__month-container .react-datepicker__header {
+  background-color: white;
+  border: none;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start .react-datepicker__month-container .month-day {
+  font-size: 1.2em;
+  margin: auto;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start .react-datepicker__month-container .custom-day {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start .react-datepicker__month-container .gray-day {
+  color: #aba8b9;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start .react-datepicker__month-container .selected-day {
+  color: white;
+  background: #2E1C8B;
+  border-radius: 50%;
+  font-weight: 700;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start .react-datepicker__month-container .btn_month.btn_month-prev {
+  margin-right: auto;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start .react-datepicker__month-container .btn_month.btn_month-next {
+  margin-left: auto;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start .react-datepicker__triangle {
+  display: none !important;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.start .react-datepicker-popper {
+  transform: translate3d(3px, 48px, 0px) !important;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end {
+  width: 50%;
+  float: left;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end .example-custom-input {
+  background-color: white;
+  border-radius: 3px;
+  color: #333333;
+  cursor: pointer;
+  width: 155px;
+  height: 30px;
+  padding: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  padding-left: 12px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end .react-datepicker__calendar-icon {
+  margin-top: 3.5px;
+  position: absolute;
+  padding: 0.4rem;
+  height: 2.2em;
+  width: 2.2em;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end .react-datepicker {
+  font-size: 0.8rem !important;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end .react-datepicker__month-container .react-datepicker__input-container {
+  display: none;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end .react-datepicker__month-container .react-datepicker__header {
+  background-color: white;
+  border: none;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end .react-datepicker__month-container .month-day {
+  font-size: 1.2em;
+  margin: auto;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end .react-datepicker__month-container .custom-day {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end .react-datepicker__month-container .gray-day {
+  color: #aba8b9;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end .react-datepicker__month-container .selected-day {
+  color: white;
+  background: #2E1C8B;
+  border-radius: 50%;
+  font-weight: 700;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end .react-datepicker__month-container .btn_month.btn_month-prev {
+  margin-right: auto;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end .react-datepicker__month-container .btn_month.btn_month-next {
+  margin-left: auto;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end .react-datepicker__triangle {
+  display: none !important;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.end .react-datepicker-popper {
+  transform: translate3d(3px, 48px, 0px) !important;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.cast {
+  width: 100%;
+  float: left;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.playurl {
+  width: 100%;
+  float: left;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.stamp {
+  width: 100%;
+  float: left;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.firstStamp {
+  width: 50%;
+  float: left;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .inputbox.firstDouble {
+  width: 50%;
+  float: left;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp {
+  width: 100%;
+  overflow: hidden;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap {
+  width: 90%;
+  float: left;
+  margin-bottom: 6%;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.benefitnum {
+  width: 20%;
+  float: left;
+  padding: 3px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.benefitnum input[id=benefitNum] {
+  width: 100%;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.benefit {
+  width: 40%;
+  float: left;
+  padding: 3px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.benefit input[id=benefit] {
+  width: 100%;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.memo {
+  width: 40%;
+  float: left;
+  padding: 3px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.memo input[id=memo] {
+  width: 100%;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.url {
+  width: 100%;
+  float: left;
+  padding: 3px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.url input[id=url] {
+  width: 100%;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.getstartdate {
+  width: 25%;
+  float: left;
+  padding: 3px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.getstartdate input[id=getStartDate] {
+  width: 100%;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.getenddate {
+  width: 25%;
+  float: left;
+  padding: 3px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.getenddate input[id=getEndDate] {
+  width: 100%;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.usestartdate {
+  width: 25%;
+  float: left;
+  padding: 3px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.usestartdate input[id=useStartDate] {
+  width: 100%;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.useenddate {
+  width: 25%;
+  float: left;
+  padding: 3px;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stampbox-wrap .inputstampbox.useenddate input[id=useEndDate] {
+  width: 100%;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stamp-btn {
+  width: 10%;
+  float: left;
+  height: 100%;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .addStamp .stamp-btn .s-btn {
+  width: 15px;
+  height: 15px;
+  margin-top: 60px;
+  margin-left: 40%;
+  vertical-align: center;
+  background-color: #917FB3;
+  color: #fff;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .btn {
+  float: left;
+  width: 100%;
+  text-align: center;
+  margin-top: 8%;
+}
+#wrap #addplaylist .wrap .addplaylist-gap .btn button {
+  width: 80px;
+  height: 30px;
+  border-radius: 3%;
+  background-color: #917FB3;
+  margin-right: 3%;
+}
+#wrap #playdetail {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #playdetail .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #playdetail .wrap .playdetail-gap {
+  width: 80%;
+  padding: 3% 3%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox {
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 20px auto;
+  position: relative;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox .inputbox label {
+  display: inline-block;
+  position: absolute;
+  top: -5px;
+  left: 14px;
+  padding: 10px;
+  background: white;
+  font-size: 14px;
+  color: #888;
+  font-weight: bold;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox .inputbox input {
+  width: 100%;
+  border: 1px solid #dddddd !important;
+  font-size: 1rem;
+  line-height: 1.45;
+  letter-spacing: -0.04rem;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 12px;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox input[type=text] {
+  width: 180px;
+  height: 25px;
+  border: none;
+  border-bottom: 1px solid black;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox input:focus {
+  outline: none;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox input#playCast {
+  width: 100%;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox input#playUrl {
+  width: 100%;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox label[for=playStamp] {
+  padding-right: 10px;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox input[type=radio] {
+  vertical-align: middle;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 50%;
+  width: 1.25em;
+  height: 1.25em;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox input[type=radio]:checked {
+  border: 0.4em solid #917FB3;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox input[type=radio]:hover {
+  cursor: pointer;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox span {
+  vertical-align: middle;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.genre {
+  width: 50%;
+  float: left;
+  padding: 7px;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.name {
+  width: 50%;
+  float: left;
+  padding: 7px;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start {
+  width: 50%;
+  float: left;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start .example-custom-input {
+  background-color: white;
+  border-radius: 3px;
+  color: #333333;
+  cursor: pointer;
+  width: 155px;
+  height: 30px;
+  padding: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  padding-left: 12px;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start .react-datepicker__calendar-icon {
+  margin-top: 3.5px;
+  position: absolute;
+  padding: 0.4rem;
+  height: 2.2em;
+  width: 2.2em;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start .react-datepicker {
+  font-size: 0.8rem !important;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start .react-datepicker__month-container .react-datepicker__input-container {
+  display: none;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start .react-datepicker__month-container .react-datepicker__header {
+  background-color: white;
+  border: none;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start .react-datepicker__month-container .month-day {
+  font-size: 1.2em;
+  margin: auto;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start .react-datepicker__month-container .custom-day {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start .react-datepicker__month-container .gray-day {
+  color: #aba8b9;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start .react-datepicker__month-container .selected-day {
+  color: white;
+  background: #2E1C8B;
+  border-radius: 50%;
+  font-weight: 700;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start .react-datepicker__month-container .btn_month.btn_month-prev {
+  margin-right: auto;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start .react-datepicker__month-container .btn_month.btn_month-next {
+  margin-left: auto;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start .react-datepicker__triangle {
+  display: none !important;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.start .react-datepicker-popper {
+  transform: translate3d(3px, 48px, 0px) !important;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end {
+  width: 50%;
+  float: left;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end .example-custom-input {
+  background-color: white;
+  border-radius: 3px;
+  color: #333333;
+  cursor: pointer;
+  width: 155px;
+  height: 30px;
+  padding: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  padding-left: 12px;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end .react-datepicker__calendar-icon {
+  margin-top: 3.5px;
+  position: absolute;
+  padding: 0.4rem;
+  height: 2.2em;
+  width: 2.2em;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end .react-datepicker {
+  font-size: 0.8rem !important;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end .react-datepicker__month-container .react-datepicker__input-container {
+  display: none;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end .react-datepicker__month-container .react-datepicker__header {
+  background-color: white;
+  border: none;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end .react-datepicker__month-container .month-day {
+  font-size: 1.2em;
+  margin: auto;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end .react-datepicker__month-container .custom-day {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end .react-datepicker__month-container .gray-day {
+  color: #aba8b9;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end .react-datepicker__month-container .selected-day {
+  color: white;
+  background: #2E1C8B;
+  border-radius: 50%;
+  font-weight: 700;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end .react-datepicker__month-container .btn_month.btn_month-prev {
+  margin-right: auto;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end .react-datepicker__month-container .btn_month.btn_month-next {
+  margin-left: auto;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end .react-datepicker__triangle {
+  display: none !important;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.end .react-datepicker-popper {
+  transform: translate3d(3px, 48px, 0px) !important;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.cast {
+  width: 100%;
+  float: left;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.playurl {
+  width: 100%;
+  float: left;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.stamp {
+  width: 100%;
+  float: left;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.firstStamp {
+  width: 50%;
+  float: left;
+}
+#wrap #playdetail .wrap .playdetail-gap .inputbox.firstDouble {
+  width: 50%;
+  float: left;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp {
+  width: 100%;
+  overflow: hidden;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap {
+  width: 90%;
+  float: left;
+  margin-bottom: 6%;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.benefitnum {
+  width: 20%;
+  float: left;
+  padding: 3px;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.benefitnum input[id=benefitNum] {
+  width: 100%;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.benefit {
+  width: 40%;
+  float: left;
+  padding: 3px;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.benefit input[id=benefit] {
+  width: 100%;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.memo {
+  width: 40%;
+  float: left;
+  padding: 3px;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.memo input[id=memo] {
+  width: 100%;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.url {
+  width: 100%;
+  float: left;
+  padding: 3px;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.url input[id=url] {
+  width: 100%;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.getstartdate {
+  width: 25%;
+  float: left;
+  padding: 3px;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.getstartdate input[id=getStartDate] {
+  width: 100%;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.getenddate {
+  width: 25%;
+  float: left;
+  padding: 3px;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.getenddate input[id=getEndDate] {
+  width: 100%;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.usestartdate {
+  width: 25%;
+  float: left;
+  padding: 3px;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.usestartdate input[id=useStartDate] {
+  width: 100%;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.useenddate {
+  width: 25%;
+  float: left;
+  padding: 3px;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stampbox-wrap .inputstampbox.useenddate input[id=useEndDate] {
+  width: 100%;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stamp-btn {
+  width: 10%;
+  float: left;
+  height: 100%;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stamp-btn .e-btn {
+  width: 100%;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stamp-btn .e-btn.edit {
+  margin-top: 60px;
+  width: 50%;
+  float: left;
+  color: #917FB3;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stamp-btn .e-btn.del {
+  margin-top: 60px;
+  width: 50%;
+  float: left;
+  color: #917FB3;
+}
+#wrap #playdetail .wrap .playdetail-gap .addStamp .stamp-btn .s-btn {
+  width: 15px;
+  height: 15px;
+  margin-top: 60px;
+  margin-left: 40%;
+  vertical-align: center;
+  background-color: #917FB3;
+  color: #fff;
+}
+#wrap #playdetail .wrap .playdetail-gap .btn {
+  float: left;
+  width: 100%;
+  text-align: center;
+  margin-top: 8%;
+}
+#wrap #playdetail .wrap .playdetail-gap .btn button {
+  width: 80px;
+  height: 30px;
+  border-radius: 3%;
+  background-color: #917FB3;
+  margin-right: 3%;
+}
+#wrap #doubleAdd {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #doubleAdd .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap {
+  width: 80%;
+  margin: 0 auto;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap {
+  margin-top: 5%;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .play-title {
+  text-align: center;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doubleList {
+  margin-top: 3%;
+  text-align: center;
+  overflow: hidden;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doubleList .cancleDouble {
+  margin: 0 auto;
+  width: 25%;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doubleList .cancleDouble .double-date {
+  float: left;
+  width: 80%;
+  margin-bottom: 2%;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doubleList .cancleDouble .double-btn {
+  width: 20%;
+  float: left;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap {
+  margin-top: 3%;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp {
+  text-align: center;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .stampType {
+  margin-bottom: 2%;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp {
+  margin: 0 auto;
+  width: 50%;
+  overflow: hidden;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start {
+  float: left;
+  width: 50%;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start .example-custom-input {
+  background-color: white;
+  border-radius: 3px;
+  color: #333333;
+  cursor: pointer;
+  width: 155px;
+  height: 30px;
+  padding: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  padding-left: 12px;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start .react-datepicker__calendar-icon {
+  margin-top: 3.5px;
+  position: absolute;
+  padding: 0.4rem;
+  height: 2.2em;
+  width: 2.2em;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start .react-datepicker {
+  font-size: 0.8rem !important;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start .react-datepicker__month-container .react-datepicker__input-container {
+  display: none;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start .react-datepicker__month-container .react-datepicker__header {
+  background-color: white;
+  border: none;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start .react-datepicker__month-container .month-day {
+  font-size: 1.2em;
+  margin: auto;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start .react-datepicker__month-container .custom-day {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start .react-datepicker__month-container .gray-day {
+  color: #aba8b9;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start .react-datepicker__month-container .selected-day {
+  color: white;
+  background: #2E1C8B;
+  border-radius: 50%;
+  font-weight: 700;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start .react-datepicker__month-container .btn_month.btn_month-prev {
+  margin-right: auto;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start .react-datepicker__month-container .btn_month.btn_month-next {
+  margin-left: auto;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start .react-datepicker__triangle {
+  display: none !important;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.start .react-datepicker-popper {
+  transform: translate3d(3px, 48px, 0px) !important;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end {
+  float: left;
+  width: 50%;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end .example-custom-input {
+  background-color: white;
+  border-radius: 3px;
+  color: #333333;
+  cursor: pointer;
+  width: 155px;
+  height: 30px;
+  padding: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  padding-left: 12px;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end .react-datepicker__calendar-icon {
+  margin-top: 3.5px;
+  position: absolute;
+  padding: 0.4rem;
+  height: 2.2em;
+  width: 2.2em;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end .react-datepicker {
+  font-size: 0.8rem !important;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end .react-datepicker__month-container .react-datepicker__input-container {
+  display: none;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end .react-datepicker__month-container .react-datepicker__header {
+  background-color: white;
+  border: none;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end .react-datepicker__month-container .month-day {
+  font-size: 1.2em;
+  margin: auto;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end .react-datepicker__month-container .custom-day {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end .react-datepicker__month-container .gray-day {
+  color: #aba8b9;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end .react-datepicker__month-container .selected-day {
+  color: white;
+  background: #2E1C8B;
+  border-radius: 50%;
+  font-weight: 700;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end .react-datepicker__month-container .btn_month.btn_month-prev {
+  margin-right: auto;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end .react-datepicker__month-container .btn_month.btn_month-next {
+  margin-left: auto;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end .react-datepicker__triangle {
+  display: none !important;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .periodStamp .inputbox.end .react-datepicker-popper {
+  transform: translate3d(3px, 48px, 0px) !important;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp {
+  margin: 0 auto;
+  width: 50%;
+  overflow: hidden;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date {
+  float: left;
+  width: 50%;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date .example-custom-input {
+  background-color: white;
+  border-radius: 3px;
+  color: #333333;
+  cursor: pointer;
+  width: 155px;
+  height: 30px;
+  padding: 3px;
+  margin-top: 5px;
+  border: 1px solid black;
+  padding-left: 12px;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date .react-datepicker__calendar-icon {
+  margin-top: 3.5px;
+  position: absolute;
+  padding: 0.4rem;
+  height: 2.2em;
+  width: 2.2em;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date .react-datepicker {
+  font-size: 0.8rem !important;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date .react-datepicker__month-container .react-datepicker__input-container {
+  display: none;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date .react-datepicker__month-container .react-datepicker__header {
+  background-color: white;
+  border: none;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date .react-datepicker__month-container .month-day {
+  font-size: 1.2em;
+  margin: auto;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date .react-datepicker__month-container .custom-day {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date .react-datepicker__month-container .gray-day {
+  color: #aba8b9;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date .react-datepicker__month-container .selected-day {
+  color: white;
+  background: #2E1C8B;
+  border-radius: 50%;
+  font-weight: 700;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date .react-datepicker__month-container .btn_month.btn_month-prev {
+  margin-right: auto;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date .react-datepicker__month-container .btn_month.btn_month-next {
+  margin-left: auto;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date .react-datepicker__triangle {
+  display: none !important;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.date .react-datepicker-popper {
+  transform: translateX(-30% -10%);
+  padding-top: 0px !important;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.time {
+  float: left;
+  width: 40%;
+  margin-bottom: 2%;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.time .example-custom-input {
+  background-color: white;
+  border-radius: 3px;
+  color: #333333;
+  cursor: pointer;
+  width: 88px;
+  height: 30px;
+  padding: 3px;
+  margin-top: 5px;
+  border: 1px solid black;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.time .react-datepicker {
+  font-size: 0.8rem !important;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.time .react-datepicker__time-container .react-datepicker__input-container {
+  display: none;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.time .react-datepicker__time-container .react-datepicker__header {
+  background-color: white !important;
+  border-bottom: none;
+  display: none;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.time .react-datepicker__time-container .month-day {
+  font-size: 1.8em;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.time .react-datepicker__time-container .custom-day {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.time .react-datepicker__time-container .gray-day {
+  color: #aba8b9;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.time .react-datepicker__time-container .selected-day {
+  color: white;
+  background: #2E1C8B;
+  border-radius: 50%;
+  font-weight: 700;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.time .react-datepicker__time-container .react-datepicker__time-list-item {
+  height: 20px !important;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.time .react-datepicker__triangle {
+  display: none !important;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .inputbox.time .react-datepicker-popper {
+  transform: translateX(-30%);
+  padding-top: 0px !important;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .stamp-btn {
+  width: 10%;
+  float: left;
+  height: 100%;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .turnStamp .addDoubleTurn .addDoubleStamp .stamp-btn .s-btn {
+  width: 15px;
+  height: 15px;
+  margin-top: 28px;
+  margin-left: 5%;
+  vertical-align: center;
+  background-color: #917FB3;
+  color: #fff;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .save-btn {
+  width: 100%;
+  text-align: center;
+  margin-top: 2%;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .doublestamp-gap .doublestamp-wrap .doublestamp .save-btn button {
+  width: 50px;
+  height: 24px;
+  border-radius: 3px;
+  background-color: #917FB3;
+  margin-right: 3%;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .btn {
+  width: 100%;
+  text-align: center;
+  margin-top: 8%;
+}
+#wrap #doubleAdd .wrap .doubleAdd-gap .doubleAdd-wrap .btn button {
+  width: 80px;
+  height: 30px;
+  border-radius: 3%;
+  background-color: #917FB3;
+  margin-right: 3%;
+}
+#wrap #login {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #login .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #login .wrap .login-gap {
+  width: 80%;
+  margin: 0 auto;
+}
+#wrap #login .wrap .login-gap .login-wrap {
+  margin-top: 5%;
+}
+#wrap #login .wrap .login-gap .login-wrap .login-title {
+  text-align: center;
+  margin-bottom: 5%;
+}
+#wrap #login .wrap .login-gap .login-wrap .login-box {
+  margin: 0 auto;
+  width: 60%;
+  margin-top: 1%;
+  text-align: center;
+}
+#wrap #login .wrap .login-gap .login-wrap .login-box .login-id {
+  margin: 3%;
+  margin-bottom: 5%;
+}
+#wrap #login .wrap .login-gap .login-wrap .login-box .login-id .id {
+  text-align: left;
+  margin-bottom: 2%;
+}
+#wrap #login .wrap .login-gap .login-wrap .login-box .login-pw {
+  margin: 3%;
+  margin-bottom: 1%;
+}
+#wrap #login .wrap .login-gap .login-wrap .login-box .login-pw .pw {
+  text-align: left;
+  margin-bottom: 2%;
+}
+#wrap #login .wrap .login-gap .login-wrap .login-box input[type=text] {
+  width: 100%;
+  border-radius: 16px;
+  padding: 5px 10px;
+}
+#wrap #login .wrap .login-gap .login-wrap .login-box input[type=password] {
+  width: 100%;
+  border-radius: 16px;
+  padding: 5px 10px;
+}
+#wrap #login .wrap .login-gap .login-wrap .login-box .login-op {
+  margin: 3% 5% 5% 5%;
+}
+#wrap #login .wrap .login-gap .login-wrap .login-box .login-op .save-id {
+  float: left;
+}
+#wrap #login .wrap .login-gap .login-wrap .login-box .login-op .join-btn {
+  text-align: right;
+}
+#wrap #login .wrap .login-gap .login-wrap .login-box .btn {
+  margin: 3%;
+  margin-bottom: 5%;
+}
+#wrap #login .wrap .login-gap .login-wrap .login-box .btn .login-btn {
+  display: block;
+  background-color: #2a2f4f;
+  color: #FDF4F5;
+  width: 100%;
+  height: 30px;
+  line-height: 1.6;
+  border-radius: 16px;
+  padding: 5px 10px;
+  margin-top: 5%;
+}
+#wrap #join {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #join .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #join .wrap .join-gap {
+  width: 80%;
+  margin: 0 auto;
+}
+#wrap #join .wrap .join-gap .join-wrap {
+  margin-top: 5%;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-title {
+  text-align: center;
+  margin-bottom: 5%;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box {
+  margin: 0 auto;
+  width: 60%;
+  margin-top: 1%;
+  text-align: center;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box .join-id {
+  margin: 3%;
+  margin-bottom: 5%;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box .join-id .id {
+  text-align: left;
+  margin-bottom: 2%;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box .join-pw {
+  margin: 3%;
+  margin-bottom: 5%;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box .join-pw .pw {
+  text-align: left;
+  margin-bottom: 2%;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box .join-pw-ch {
+  margin: 3%;
+  margin-bottom: 5%;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box .join-pw-ch .pw-ch {
+  text-align: left;
+  margin-bottom: 2%;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box .join-email {
+  margin: 3%;
+  margin-bottom: 5%;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box .join-email .email {
+  text-align: left;
+  margin-bottom: 2%;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box input[type=text] {
+  width: 100%;
+  border-radius: 16px;
+  padding: 5px 10px;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box input[type=password] {
+  width: 100%;
+  border-radius: 16px;
+  padding: 5px 10px;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box input[type=email] {
+  width: 100%;
+  border-radius: 16px;
+  padding: 5px 10px;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box .btn {
+  margin: 3%;
+  margin-bottom: 5%;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box .btn .login-btn {
+  display: block;
+  background-color: #2a2f4f;
+  color: #FDF4F5;
+  width: 100%;
+  height: 30px;
+  line-height: 1.6;
+  border-radius: 16px;
+  padding: 5px 10px;
+  margin-top: 5%;
+}
+#wrap #join .wrap .join-gap .join-wrap .join-box .btn :disabled {
+  background-color: #888;
+}
+#wrap #adminlist {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #adminlist .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #adminlist .wrap .adminlist-gap {
+  width: 90%;
+  padding: 3% 3%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#wrap #adminlist .wrap .adminlist-gap .admin-wrap {
+  width: 100%;
+  padding: 1% 1% 0% 1%;
+  float: left;
+  border-bottom: 1px dotted #333333;
+}
+#wrap #adminlist .wrap .adminlist-gap .admin-wrap .admin-gap .admin {
+  width: 100%;
+  padding: 1%;
+  float: left;
+}
+#wrap #adminlist .wrap .adminlist-gap .admin-wrap .admin-gap .admin .adminId {
+  width: 30%;
+  padding: 1%;
+  float: left;
+}
+#wrap #adminlist .wrap .adminlist-gap .admin-wrap .admin-gap .admin .adminMail {
+  width: 45%;
+  padding: 1%;
+  float: left;
+}
+#wrap #adminlist .wrap .adminlist-gap .admin-wrap .admin-gap .admin .adminLevel {
+  width: 5%;
+  padding: 1%;
+  float: left;
+}
+#wrap #adminlist .wrap .adminlist-gap .admin-wrap .admin-gap .admin .superAdmin {
+  width: 20%;
+  padding: 1%;
+  float: left;
+}
+#wrap #adminlist .wrap .adminlist-gap .admin-wrap .admin-gap .admin .superAdmin .btn-gap {
+  width: 100%;
+  padding: 1%;
+  float: left;
+}
+#wrap #adminlist .wrap .adminlist-gap .admin-wrap .admin-gap .admin .superAdmin .btn-gap .changeLevel {
+  width: 35px;
+  height: 120%;
+  float: left;
+  font-size: 10px;
+  color: #dddddd;
+  background-color: #2a2f4f;
+  margin: 0 auto;
+  padding: 1%;
+  border-radius: 5px;
+  margin-right: 3px;
+}
+#wrap #adminlist .wrap .adminlist-gap .admin-wrap .admin-gap .admin .superAdmin .btn-gap .delAdmin {
+  width: 35px;
+  height: 120%;
+  float: left;
+  font-size: 10px;
+  color: #dddddd;
+  background-color: #888;
+  margin: 0 auto;
+  padding: 1%;
+  border-radius: 5px;
+  margin-right: 3px;
+}
+#wrap #adminlist .wrap .adminlist-gap .pagination {
+  float: left;
+  width: 100%;
+  text-align: center;
+}
+#wrap #adminlist .wrap .adminlist-gap .pagination .wrap {
+  width: 100%;
+  margin-top: 5%;
+}
+#wrap #adminlist .wrap .adminlist-gap .pagination .wrap .page {
+  display: inline-block;
+  text-align: center;
+  float: none;
+}
+#wrap #adminlist .wrap .adminlist-gap .pagination .wrap .page li {
+  width: 10px;
+  text-align: center;
+  float: left;
+  padding: 4% 3% 3% 3%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+#wrap #adminlist .wrap .adminlist-gap .pagination .wrap .page .current {
+  background-color: #917FB3;
+  color: #fff;
+  font-weight: 500;
+}
+#wrap #admininfo {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #admininfo .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #admininfo .wrap .admininfo-gap {
+  width: 80%;
+  margin: 0 auto;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap {
+  margin-top: 5%;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-title {
+  text-align: center;
+  margin-bottom: 5%;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box {
+  margin: 0 auto;
+  width: 60%;
+  margin-top: 1%;
+  text-align: center;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box .admininfo-id {
+  margin: 3%;
+  margin-bottom: 5%;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box .admininfo-id .id {
+  text-align: left;
+  margin-bottom: 2%;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box .admininfo-pw {
+  margin: 3%;
+  margin-bottom: 5%;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box .admininfo-pw .pw {
+  text-align: left;
+  margin-bottom: 2%;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box .admininfo-pw-ch {
+  margin: 3%;
+  margin-bottom: 5%;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box .admininfo-pw-ch .pw-ch {
+  text-align: left;
+  margin-bottom: 2%;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box .admininfo-email {
+  margin: 3%;
+  margin-bottom: 5%;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box .admininfo-email .email {
+  text-align: left;
+  margin-bottom: 2%;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box input[type=text] {
+  width: 100%;
+  border-radius: 16px;
+  padding: 5px 10px;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box input[type=password] {
+  width: 100%;
+  border-radius: 16px;
+  padding: 5px 10px;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box input[type=email] {
+  width: 100%;
+  border-radius: 16px;
+  padding: 5px 10px;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box .btn {
+  margin: 3%;
+  margin-bottom: 5%;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box .btn .ch-btn {
+  display: block;
+  background-color: #2a2f4f;
+  color: #FDF4F5;
+  width: 100%;
+  height: 30px;
+  line-height: 1.6;
+  border-radius: 16px;
+  padding: 5px 10px;
+  margin-top: 5%;
+}
+#wrap #admininfo .wrap .admininfo-gap .admininfo-wrap .admininfo-box .btn :disabled {
+  background-color: #888;
+}
+#wrap #home {
+  width: 100%;
+}
+#wrap #home .wrap {
+  width: 100%;
+}
+#wrap #home .wrap .search-gap {
+  width: 100%;
+  padding: 10%;
+}
+#wrap #home .wrap .search-gap .search-bar {
+  width: 100%;
+}
+#wrap #home .wrap .search-gap .search-bar .search-btn {
+  font-weight: 700;
+  width: 18px;
+}
+#wrap #home .wrap .login-gap {
+  width: 80%;
+  margin: 0 auto;
+}
+#wrap #searchList {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #searchList .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #searchList .wrap .searchlist-gap {
+  width: 80%;
+  margin: 0 auto;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap {
+  margin-top: 5%;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .search-result {
+  text-align: center;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .search-result span {
+  color: #917FB3;
+  font-weight: 600;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .list {
+  margin-top: 5%;
+  border: 3px solid #917FB3;
+  border-radius: 16px;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .list .play {
+  padding: 3%;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .list .play .playName {
+  margin-bottom: 1%;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .list .play .playName .title {
+  color: #2a2f4f;
+  font-size: 20px;
+  font-weight: 600;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .list .play .playName .stampImg {
+  height: 4vh;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .list .play .playDate {
+  margin-bottom: 1%;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .list .stamp {
+  padding: 0% 3% 3% 3%;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .list .stamp .stamplist .benefitlist {
+  margin-bottom: 1%;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .list .stamp .stamplist .benefitlist .benefitNum {
+  float: left;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .list .stamp .stamplist .benefitlist .benefitNum span {
+  color: #2a2f4f;
+  font-weight: 600;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .list .stamp .stamplist .benefitlist .searchPlayStamp {
+  margin-left: 40px;
+}
+#wrap #searchList .wrap .searchlist-gap .list-wrap .list .stamp .stamplist .benefitlist .searchPlayStamp .benefit {
+  font-weight: 530;
+}
+#wrap #searchPlay {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #searchPlay .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #searchPlay .wrap .searchplay-gap {
+  width: 80%;
+  margin: 0 auto;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail {
+  margin-top: 5%;
+  border: 3px solid #917FB3;
+  border-radius: 16px;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .play {
+  padding: 3%;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .play .playName {
+  margin-bottom: 1%;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .play .playName .title {
+  color: #2a2f4f;
+  font-size: 20px;
+  font-weight: 600;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .play .playName .linkImg {
+  height: 3vh;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .play .playName .stampImg {
+  height: 4vh;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .play .playDate {
+  margin-bottom: 1%;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .stamp {
+  padding: 0% 3% 3% 3%;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .stamp .benefitlist {
+  margin-bottom: 1%;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .stamp .benefitlist .benefitNum {
+  float: left;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .stamp .benefitlist .benefitNum span {
+  color: #2a2f4f;
+  font-weight: 600;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .stamp .benefitlist .searchPlayStamp {
+  margin-left: 40px;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .stamp .benefitlist .searchPlayStamp .benefit {
+  margin-bottom: 1%;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .stamp .benefitlist .searchPlayStamp .benefit .benefitName {
+  color: #917FB3;
+  font-weight: 600;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .stamp .benefitlist .searchPlayStamp .benefit .benefitName .linkImg {
+  height: 3vh;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .stamp .benefitlist .searchPlayStamp .useDate {
+  margin-bottom: 1%;
+}
+#wrap #searchPlay .wrap .searchplay-gap .playdetail .stamp .benefitlist .searchPlayStamp .memo {
+  font-size: 11px;
+  color: #888;
+}
+#wrap #myStampAdd {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #myStampAdd .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 5%;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap {
+  padding: 2%;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .myStampAdd-title {
+  text-align: center;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox {
+  margin-bottom: 4%;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox input[id=stampMemo] {
+  width: 100%;
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid black;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date {
+  width: 100%;
+  float: left;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date {
+  width: 50%;
+  float: left;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date .example-custom-input {
+  background-color: white;
+  border-radius: 3px;
+  color: #333333;
+  cursor: pointer;
+  width: 155px;
+  height: 30px;
+  padding: 3px;
+  margin-top: 5px;
+  border: 1px solid black;
+  padding-left: 12px;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date .react-datepicker__calendar-icon {
+  margin-top: 3.5px;
+  position: absolute;
+  padding: 0.4rem;
+  height: 2.2em;
+  width: 2.2em;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date .react-datepicker {
+  font-size: 0.8rem !important;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date .react-datepicker__month-container .react-datepicker__input-container {
+  display: none;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date .react-datepicker__month-container .react-datepicker__header {
+  background-color: white;
+  border: none;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date .react-datepicker__month-container .month-day {
+  font-size: 1.2em;
+  margin: auto;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date .react-datepicker__month-container .custom-day {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date .react-datepicker__month-container .gray-day {
+  color: #aba8b9;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date .react-datepicker__month-container .selected-day {
+  color: white;
+  background: #2E1C8B;
+  border-radius: 50%;
+  font-weight: 700;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date .react-datepicker__month-container .btn_month.btn_month-prev {
+  margin-right: auto;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date .react-datepicker__month-container .btn_month.btn_month-next {
+  margin-left: auto;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date .react-datepicker__triangle {
+  display: none !important;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .date .react-datepicker-popper {
+  transform: translateX(-30% -10%);
+  padding-top: 0px !important;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .time {
+  width: 50%;
+  float: left;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .time .example-custom-input {
+  background-color: white;
+  border-radius: 3px;
+  color: #333333;
+  cursor: pointer;
+  width: 88px;
+  height: 30px;
+  padding: 3px;
+  margin-top: 5px;
+  border: 1px solid black;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .time .react-datepicker {
+  font-size: 0.8rem !important;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .time .react-datepicker__time-container .react-datepicker__input-container {
+  display: none;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .time .react-datepicker__time-container .react-datepicker__header {
+  background-color: white !important;
+  border-bottom: none;
+  display: none;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .time .react-datepicker__time-container .month-day {
+  font-size: 1.8em;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .time .react-datepicker__time-container .custom-day {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .time .react-datepicker__time-container .gray-day {
+  color: #aba8b9;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .time .react-datepicker__time-container .selected-day {
+  color: white;
+  background: #2E1C8B;
+  border-radius: 50%;
+  font-weight: 700;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .time .react-datepicker__time-container .react-datepicker__time-list-item {
+  height: 20px !important;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .time .react-datepicker__triangle {
+  display: none !important;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .time .react-datepicker-popper {
+  transform: translateX(-30%);
+  padding-top: 0px !important;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.date .doubleCheck {
+  margin-top: 12%;
+  color: #917FB3;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.stamp {
+  float: left;
+  width: 100%;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.stamp select {
+  border-radius: 3px;
+  width: 30%;
+  height: 30px;
+  -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.stamp select::-ms-expand {
+  display: none;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.stamp select option:disabled {
+  width: 100%;
+  height: 30px;
+  color: #888;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .inputbox.stamp select option:focus {
+  background-color: #917FB3;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .btn {
+  float: left;
+  width: 100%;
+  text-align: center;
+  margin-top: 5%;
+}
+#wrap #myStampAdd .wrap .myStampAdd-gap .myStampAdd-wrap .btn button {
+  width: 80px;
+  height: 30px;
+  border-radius: 3%;
+  background-color: #917FB3;
+  margin-right: 3%;
+}
+#wrap #myStamp {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #myStamp .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #myStamp .wrap .myStamp-gap {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 5%;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myInfo {
+  margin-bottom: 5%;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myInfo .my {
+  margin-bottom: 2%;
+  overflow: hidden;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myInfo .my .profile-box {
+  width: 100px;
+  height: 100px;
+  border-radius: 70%;
+  overflow: hidden;
+  float: left;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myInfo .my .profile-box .profile {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myInfo .my .nick {
+  margin-top: 20%;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myInfo .my .nick span {
+  color: #917FB3;
+  font-weight: 600;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myInfo .state {
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #FDF4F5;
+  background-color: #FDF4F5;
+  border-radius: 10px;
+  padding: 3%;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myInfo .state .now {
+  width: 33%;
+  float: left;
+  text-align: center;
+  border-right: 2px solid #917FB3;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myInfo .state .end {
+  width: 33%;
+  float: left;
+  text-align: center;
+  border-right: 2px solid #917FB3;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myInfo .state .total {
+  width: 33%;
+  float: left;
+  text-align: center;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myInfo .state .num {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2a2f4f;
+  margin-top: 5%;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myStampList .myStamp {
+  border: 2px solid #917FB3;
+  border-radius: 10px;
+  padding: 3%;
+  margin-bottom: 3%;
+  box-shadow: 6px 8px 8px -3px gray;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myStampList .myStamp .playName {
+  margin-bottom: 1%;
+  color: #2a2f4f;
+  font-size: 16px;
+  font-weight: 600;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myStampList .myStamp .stamp {
+  margin-bottom: 1%;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myStampList .myStamp .stamp .mymax {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2a2f4f;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myStampList .myStamp .stamp .max {
+  color: #917FB3;
+}
+#wrap #myStamp .wrap .myStamp-gap .myStamp-wrap .myStampList .myStamp .warning {
+  float: right;
+  margin: -25px auto;
+}
+#wrap #stampDetail {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #stampDetail .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #stampDetail .wrap .stampDetail-gap {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 5%;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail {
+  margin-bottom: 3%;
+  margin-top: 5%;
+  border: 3px solid #917FB3;
+  border-radius: 16px;
+  box-shadow: 6px 8px 8px -3px gray;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .play {
+  padding: 3%;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .play .playName {
+  margin-bottom: 1%;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .play .playName .title {
+  color: #2a2f4f;
+  font-size: 20px;
+  font-weight: 600;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .play .playName .linkImg {
+  height: 3vh;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .play .playName .stampImg {
+  height: 4vh;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .play .playDate {
+  margin-bottom: 1%;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist {
+  padding: 0% 3% 3% 3%;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail {
+  margin-bottom: 1%;
+  overflow: hidden;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .stampNum {
+  float: left;
+  width: 1%;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .stampNum .num {
+  color: #2a2f4f;
+  font-weight: 600;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .stampNum .max {
+  color: #E5BEEC;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .stampDate {
+  margin-left: 4%;
+  color: #917FB3;
+  font-weight: 600;
+  float: left;
+  width: 50%;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .stampDate span {
+  border-radius: 3px;
+  padding: 1px;
+  background-color: #917FB3;
+  font-size: 12px;
+  color: #2a2f4f;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .small-btn {
+  float: right;
+  margin-right: 5%;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .small-btn .edit-btn {
+  text-align: right;
+  float: left;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .small-btn .div-btn {
+  float: left;
+  text-align: right;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .small-btn .del-btn {
+  float: left;
+  text-align: right;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .benefitdetail {
+  clear: both;
+  margin-left: 26px;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .benefitdetail .benefit {
+  margin-bottom: 1%;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .benefitdetail .benefit .getBenefit {
+  margin-bottom: 1%;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .benefitdetail .benefit .getBenefit .benefitName {
+  color: #2a2f4f;
+  font-weight: 600;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .benefitdetail .benefit .getBenefit .benefitName .linkImg {
+  height: 3vh;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .benefitdetail .benefit .getBenefit .useDate {
+  margin-bottom: 1%;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .benefitdetail .benefit .memo {
+  font-size: 11px;
+  color: #888;
+}
+#wrap #stampDetail .wrap .stampDetail-gap .stampDetail-wrap .playdetail .stamplist .stampdetail .stampMemo {
+  clear: both;
+  margin-left: 26px;
+  margin-right: 5%;
+  padding: 1%;
+  background-color: #dfd5f1;
+  font-size: 12px;
+}
+#wrap #myHome {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 20%;
+}
+#wrap #myHome .wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #myHome .wrap .myHome-gap {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 5%;
+}
+#wrap #myHome .wrap .myHome-gap .myHome-wrap .my {
+  margin-bottom: 2%;
+  overflow: hidden;
+}
+#wrap #myHome .wrap .myHome-gap .myHome-wrap .my .profile-box {
+  width: 100px;
+  height: 100px;
+  border-radius: 70%;
+  overflow: hidden;
+  float: left;
+}
+#wrap #myHome .wrap .myHome-gap .myHome-wrap .my .profile-box .profile {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#wrap #myHome .wrap .myHome-gap .myHome-wrap .my .nick {
+  margin-top: 20%;
+}
+#wrap #myHome .wrap .myHome-gap .myHome-wrap .my .nick span {
+  color: #917FB3;
+  font-weight: 600;
+}
+#wrap #myHome .wrap .myHome-gap .myHome-wrap .info-btn {
+  overflow: hidden;
+  margin: auto;
+}
+#wrap #myHome .wrap .myHome-gap .myHome-wrap .info-btn .out-btn {
+  float: left;
+  width: 80px;
+  background-color: #917FB3;
+  padding: 1%;
+  text-align: center;
+  margin-right: 3%;
+}
+#wrap #myHome .wrap .myHome-gap .myHome-wrap .info-btn .del-btn {
+  float: left;
+  width: 80px;
+  background-color: #917FB3;
+  padding: 1%;
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */

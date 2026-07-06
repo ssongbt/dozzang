@@ -1,0 +1,2534 @@
+@charset "utf-8";
+@import "reset.css";
+
+$mainColor :#2a2f4f;
+#wrap {
+    width: 100vw;
+    max-width: 800px;
+    margin: 0 auto;
+
+    .stampplusImg{
+        height: 6.5vh;
+
+    }
+    .myImg{
+        height: 6vh;
+
+    }
+    #header {
+        width:100%;
+        // background-color: #E5BEEC;
+        color: $mainColor;
+        
+        .wrap{
+            width: 100%;
+            .header-gap{
+                width:100%;
+                .header-wrap{
+                    width: 100%;
+                    display: flex;
+                    padding: 3.75%;
+                    border-bottom:2px solid $mainColor;
+                    .pre{
+                        width:25%;
+                        display:flex;
+                        margin: 0 auto 0 0;
+                        .pre-gap{
+                            width: 100%;
+                            .pre-wrap{
+                                display:flex;
+                                justify-content: flex-start;
+                                p {
+                                    // padding:5px;
+                                    // border:2px solid $mainColor;
+                                    // border-radius:5px;
+                                    a {
+                                        color:$mainColor;
+                                        font-size:18px;
+                                        font-weight:600;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .title {
+                        width:50%;
+                        margin:0 auto;
+                        .title-gap {
+                            width:100%;
+                            .title-wrap {
+                                width:100%;
+                                p {
+                                    padding:0 20%;
+                                    .logo{
+                                        width:100%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .my{
+                        width:25%;
+                        display:flex;
+                        padding:2px 0 0 0;
+                        margin: 0 0 0 auto;
+                        .my-gap{
+                            width: 100%;
+                            margin:0 0 0 auto;
+                            .my-wrap{
+                                display:flex;
+                                justify-content: flex-end;
+                                p {
+                                    // padding:5px;
+                                    // border:2px solid $mainColor;
+                                    // border-radius:5px;
+                                    
+                                    a {
+                                        color:$mainColor;
+                                        font-size:18px;
+                                        font-weight:600;
+                                    }
+                                }
+                                .user-menu{
+                                    .my{
+                                        float: left;
+                                        margin-right: 13px;
+                                    }
+                                    .plus{
+                                        float: left;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+               
+            }
+        }
+    }
+
+    #footer {
+        position : relative;
+        .wrap {
+            width:70%;
+            margin:0 auto;
+            .footer-gap {
+                padding:50px 0;
+                .footer-wrap {
+                    width:100%;
+                    p{
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+
+// 어드민페이지
+    .menu{
+        width: 90%;
+        margin: 0 auto;
+        padding:3%;
+        .admin-gap{
+            width: 100%;
+            overflow: hidden;
+            .playlist{
+                width: 25%;
+                padding: 1%;
+                float: left;
+                text-align: center;
+            }
+            .userlist{
+                width: 25%;
+                padding: 1%;
+                float: left;
+                text-align: center;
+            }
+            .adminlist{
+                width: 25%;
+                padding: 1%;
+                float: left;
+                text-align: center;
+            }
+            .noticelist{
+                width: 25%;
+                padding: 1%;
+                float: left;
+                text-align: center;
+            }
+            .on{
+                font-weight: 600;
+            }
+        }
+        .info-gap{
+            width: 100%;
+            margin-top: 3%;
+            overflow: hidden;
+            .admin-info{
+                float: right;
+            }
+        }
+        
+
+    }
+
+    #playlist {
+        width:100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap{
+            width: 100%;
+            margin: 0 auto;
+            .playlist-gap{
+                width: 90%;
+                padding:3% 3%;
+                margin : 0 auto;
+                overflow: hidden;
+                .play-wrap{
+                    width: 100%;
+                    padding: 1% 1% 0% 1%;
+                    float: left;
+                    border-bottom: 1px dotted #333333;
+                    .play-gap{
+                        .play{
+                            .playName{
+                                width: 40%;
+                                padding: 1%;
+                                float: left;
+                                .stampImg{
+                                    height: 3.4vh;
+                                    margin-bottom : 1%;
+                                }  
+                            }
+                            
+                            .playDate{
+                                width: 50%;
+                                padding: 1%;
+                                float: left;
+                            }
+                            width: 80%;
+                            padding: 1%;
+                            float: left;
+                        }
+                        .double-btn{
+                            width: 20%;
+                            padding: 1%;
+                            float: left;
+                            .btn-gap{
+                                width: 100%;
+                                padding: 1%;
+                                float: left;
+                            }
+                            .d-btn{
+                                width: 90%;
+                                height: 120%;
+                                // float:right;
+                                font-size: 10px;
+                                color: #dddddd;
+                                background-color: #917FB3;
+                                margin: 0 auto;
+                                padding: 1%;
+                                border-radius: 5px;
+                            }
+                        }
+                    }
+                }
+
+                .pagination{
+                    float:left;
+                    width: 100%;     
+                    text-align: center; 
+                    .wrap{
+                        width: 100%;
+                        margin-top: 5%;
+                        .page{
+                            display: inline-block;
+                            text-align: center; 
+                            float: none;
+                            li{
+                                width: 10px;
+                                text-align: center;
+                                float: left;
+                                padding: 4% 3% 3% 3%;
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+
+                            }
+                            .current{
+                                background-color:#917FB3;
+                                color: #fff;
+                                font-weight: 500;
+                            }
+
+                        }
+                    }
+                }
+                .search-wrap{
+                    float:left;
+                    width: 100%;     
+                    text-align: center;
+                    padding: 1%;
+                    .search-select{
+                        margin-right: 1%;
+                    }
+                    .search-select option{
+                        background-color: #2a2f4f;
+                        color: #FDF4F5;
+                    }
+                    button{
+                        margin-left: 1%;
+                        width: 45px;
+                        height: 20px;
+                        border-radius: 5%;
+                        background-color: #2a2f4f;
+                        color: #FDF4F5;
+                    }
+                }
+
+                .btn{
+                    float: left;
+                    width: 100%;
+                    text-align: center;
+                    margin-top: 5%;
+                    button {
+                        width: 80px;
+                        height: 30px;
+                        border-radius: 5%;
+                        background-color: #2a2f4f;
+                        // display :inline-block;
+                        a{
+                            color: #FDF4F5;
+                        }
+                    }
+                }
+
+            }
+        }
+       
+
+    }
+
+    #addplaylist {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap {
+            width: 100%;
+            margin: 0 auto;
+            .addplaylist-gap {
+                width: 80%;
+                padding:3% 3%;
+                margin : 0 auto;
+                overflow: hidden;
+                .inputbox{
+                    padding: 5px;
+                    width: 100%; 
+                    box-sizing: border-box;
+                    margin: 20px auto;
+                    position: relative;
+
+                    .inputbox label{
+                        display: inline-block;
+                        position: absolute;
+                        top: -5px;
+                        left: 14px;
+                        padding: 10px;
+                        background: white;
+                        font-size: 14px;
+                        color: #888;
+                        font-weight: bold;
+
+                    }
+                    .inputbox input{
+                        width: 100%;
+                        border: 1px solid #dddddd !important;
+                        font-size: 1rem;
+                        line-height: 1.45;
+                        letter-spacing: -0.04rem;
+                        border-radius: 8px;
+                        padding: 16px;
+                        margin-top: 12px;
+                    }
+                    input[type="text"]{
+                        width: 100%;
+                        height: 25px;
+                        border:none;
+                        border-bottom: 1px solid black;
+                    }
+                    input:focus{
+                        outline: none;
+                    }
+                    input#playCast{
+                        width: 100%;
+                    }
+                    label[for="playStamp"]{
+                        padding-right: 10px;
+                    }
+
+                    input[type="radio"]{
+                        vertical-align: middle;
+                        appearance: none;
+                        border: max(2px, 0.1em) solid gray;
+                        border-radius: 50%;
+                        width: 1.25em;
+                        height: 1.25em;
+                    }
+                    input[type="radio"]:checked {
+                        border: 0.4em solid #917FB3;
+                    }
+                      
+                    input[type="radio"]:hover {
+                        cursor: pointer;
+                    }
+
+                    span {
+                        vertical-align: middle;
+                    }
+                    
+                }
+
+                .inputbox.genre{
+                    width: 50%;
+                    float: left;
+                    padding: 7px;
+                }
+
+                .inputbox.name{
+                    width: 50%;
+                    float: left;
+                    padding: 7px;
+                }
+
+                .inputbox.start{
+                    width: 50%;
+                    float:left;
+                    .example-custom-input{
+                        background-color: white;
+                        border-radius: 3px;
+                        color: #333333;
+                        cursor: pointer;
+                        width: 155px;
+                        height: 30px;
+                        padding: 3px;
+                        margin-top:5px;
+                        margin-bottom: 5px;
+                        border: 1px solid black;
+                        padding-left :12px;
+                    }
+                    .react-datepicker__calendar-icon{
+                        margin-top: 3.5px;
+                        position: absolute;
+                        padding: 0.4rem;
+                        height: 2.2em;
+                        width: 2.2em;
+                    }
+                    .react-datepicker{
+                        font-size: 0.8rem !important;
+                    }
+                    .react-datepicker__month-container{
+                        .react-datepicker__input-container {
+                            display: none;
+                        }
+                        .react-datepicker__header{
+                            background-color: white;
+                            border: none;
+                        }
+                        .month-day{
+                            font-size: 1.2em;
+                            margin: auto;
+                        }
+                        .custom-day {
+                            width: 28px;
+                            height: 28px;
+                            // line-height: 1.5;
+                            text-align: center;
+                        }
+                        .gray-day {
+                            color: #aba8b9;
+                        }
+                        .selected-day {
+                            color:white;
+                            background: #2E1C8B;
+                            border-radius: 50%;
+                            font-weight: 700;
+                        }
+                        .btn_month.btn_month-prev{
+                            margin-right: auto;
+                        }
+                        .btn_month.btn_month-next{
+                            margin-left: auto;
+                        }
+                
+                        
+                    }
+                    .react-datepicker__triangle{
+                        display: none !important;
+                    }
+                
+                    .react-datepicker-popper{
+                        transform: translate3d(3px, 48px, 0px) !important;
+                    }
+                    
+                }
+
+                .inputbox.end{
+                    width: 50%;
+                    float:left;
+                    .example-custom-input{
+                        background-color: white;
+                        border-radius: 3px;
+                        color: #333333;
+                        cursor: pointer;
+                        width: 155px;
+                        height: 30px;
+                        padding: 3px;
+                        margin-top:5px;
+                        margin-bottom: 5px;
+                        border: 1px solid black;
+                        padding-left :12px;
+                    }
+                    .react-datepicker__calendar-icon{
+                        margin-top: 3.5px;
+                        position: absolute;
+                        padding: 0.4rem;
+                        height: 2.2em;
+                        width: 2.2em;
+                    }
+                    .react-datepicker{
+                        font-size: 0.8rem !important;
+                    }
+                    .react-datepicker__month-container{
+                        .react-datepicker__input-container {
+                            display: none;
+                        }
+                        .react-datepicker__header{
+                            background-color: white;
+                            border: none;
+                        }
+                        .month-day{
+                            font-size: 1.2em;
+                            margin: auto;
+                        }
+                        .custom-day {
+                            width: 28px;
+                            height: 28px;
+                            // line-height: 1.5;
+                            text-align: center;
+                        }
+                        .gray-day {
+                            color: #aba8b9;
+                        }
+                        .selected-day {
+                            color:white;
+                            background: #2E1C8B;
+                            border-radius: 50%;
+                            font-weight: 700;
+                        }
+                        .btn_month.btn_month-prev{
+                            margin-right: auto;
+                        }
+                        .btn_month.btn_month-next{
+                            margin-left: auto;
+                        }
+                
+                        
+                    }
+                    .react-datepicker__triangle{
+                        display: none !important;
+                    }
+                
+                    .react-datepicker-popper{
+                        transform: translate3d(3px, 48px, 0px) !important;
+                    }
+                }
+
+                .inputbox.cast{
+                    width: 100%;
+                    float: left;
+                }
+
+                .inputbox.playurl{
+                    width: 100%;
+                    float: left;
+                }
+
+                .inputbox.stamp{
+                    width: 100%;
+                    float: left;
+                }
+
+                .inputbox.firstStamp{
+                    width: 50%;
+                    float: left;
+                }
+                .inputbox.firstDouble{
+                    width: 50%;
+                    float: left;
+                }
+
+
+                .addStamp{
+                    width: 100%;
+                    overflow: hidden;
+                    .stampbox-wrap {
+                        width: 90%;
+                        float: left;
+                        margin-bottom: 6%;
+                        .inputstampbox.benefitnum{
+                            width: 20%;
+                            float: left;
+                            padding:3px;
+
+                            input[id="benefitNum"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.benefit{
+                            width: 40%;
+                            float: left;
+                            padding:3px;
+                            input[id="benefit"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.memo{
+                            width: 40%;
+                            float: left;
+                            padding:3px;
+                            input[id="memo"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.url{
+                            width: 100%;
+                            float: left;
+                            padding:3px;
+                            input[id="url"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.getstartdate{
+                            width: 25%;
+                            float: left;
+                            padding:3px;
+                            input[id="getStartDate"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.getenddate{
+                            width: 25%;
+                            float: left;
+                            padding:3px;
+                            input[id="getEndDate"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.usestartdate{
+                            width: 25%;
+                            float: left;
+                            padding:3px;
+                            input[id="useStartDate"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.useenddate{
+                            width: 25%;
+                            float: left;
+                            padding:3px;
+                            input[id="useEndDate"]{
+                                width: 100%;
+                            }
+                        } 
+                    }
+                    .stamp-btn{
+                        width: 10%;
+                        float: left;
+                        height: 100%;
+                        .s-btn{
+                            width: 15px;
+                            height: 15px;
+                            margin-top:60px;
+                            margin-left: 40%;
+                            vertical-align: center;
+                            background-color: #917FB3;
+                            color: #fff;
+                        }
+                    } 
+                }
+
+                .btn{
+                    float: left;
+                    width: 100%;
+                    text-align: center;
+                    margin-top: 8%;
+                    button {
+                        width: 80px;
+                        height: 30px;
+                        border-radius: 3%;
+                        background-color: #917FB3;
+                        margin-right: 3%;
+                        // display :inline-block;
+                    }
+                }
+                
+            }
+        }
+    }
+
+    #playdetail {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap {
+            width: 100%;
+            margin: 0 auto;
+            .playdetail-gap {
+                width: 80%;
+                padding:3% 3%;
+                margin : 0 auto;
+                overflow: hidden;
+                .inputbox{
+                    padding: 5px;
+                    width: 100%; 
+                    box-sizing: border-box;
+                    margin: 20px auto;
+                    position: relative;
+
+                    .inputbox label{
+                        display: inline-block;
+                        position: absolute;
+                        top: -5px;
+                        left: 14px;
+                        padding: 10px;
+                        background: white;
+                        font-size: 14px;
+                        color: #888;
+                        font-weight: bold;
+
+                    }
+                    .inputbox input{
+                        width: 100%;
+                        border: 1px solid #dddddd !important;
+                        font-size: 1rem;
+                        line-height: 1.45;
+                        letter-spacing: -0.04rem;
+                        border-radius: 8px;
+                        padding: 16px;
+                        margin-top: 12px;
+                    }
+                    input[type="text"]{
+                        width: 180px;
+                        height: 25px;
+                        border:none;
+                        border-bottom: 1px solid black;
+                    }
+                    input:focus{
+                        outline: none;
+                    }
+                    input#playCast{
+                        width: 100%;
+                    }
+                    input#playUrl{
+                        width: 100%;
+                    }
+                    label[for="playStamp"]{
+                        padding-right: 10px;
+                    }
+
+                    input[type="radio"]{
+                        vertical-align: middle;
+                        appearance: none;
+                        border: max(2px, 0.1em) solid gray;
+                        border-radius: 50%;
+                        width: 1.25em;
+                        height: 1.25em;
+                    }
+                    input[type="radio"]:checked {
+                        border: 0.4em solid #917FB3;
+                    }
+                      
+                    input[type="radio"]:hover {
+                        cursor: pointer;
+                    }
+
+                    span {
+                        vertical-align: middle;
+                    }
+                    
+                }
+
+                .inputbox.genre{
+                    width: 50%;
+                    float: left;
+                    padding: 7px;
+                }
+
+                .inputbox.name{
+                    width: 50%;
+                    float: left;
+                    padding: 7px;
+                }
+
+                .inputbox.start{
+                    width: 50%;
+                    float:left;
+                    .example-custom-input{
+                        background-color: white;
+                        border-radius: 3px;
+                        color: #333333;
+                        cursor: pointer;
+                        width: 155px;
+                        height: 30px;
+                        padding: 3px;
+                        margin-top:5px;
+                        margin-bottom: 5px;
+                        border: 1px solid black;
+                        padding-left :12px;
+                    }
+                    .react-datepicker__calendar-icon{
+                        margin-top: 3.5px;
+                        position: absolute;
+                        padding: 0.4rem;
+                        height: 2.2em;
+                        width: 2.2em;
+                    }
+                    .react-datepicker{
+                        font-size: 0.8rem !important;
+                    }
+                    .react-datepicker__month-container{
+                        .react-datepicker__input-container {
+                            display: none;
+                        }
+                        .react-datepicker__header{
+                            background-color: white;
+                            border: none;
+                        }
+                        .month-day{
+                            font-size: 1.2em;
+                            margin: auto;
+                        }
+                        .custom-day {
+                            width: 28px;
+                            height: 28px;
+                            // line-height: 1.5;
+                            text-align: center;
+                        }
+                        .gray-day {
+                            color: #aba8b9;
+                        }
+                        .selected-day {
+                            color:white;
+                            background: #2E1C8B;
+                            border-radius: 50%;
+                            font-weight: 700;
+                        }
+                        .btn_month.btn_month-prev{
+                            margin-right: auto;
+                        }
+                        .btn_month.btn_month-next{
+                            margin-left: auto;
+                        }
+                
+                        
+                    }
+                    .react-datepicker__triangle{
+                        display: none !important;
+                    }
+                
+                    .react-datepicker-popper{
+                        transform: translate3d(3px, 48px, 0px) !important;
+                    }
+                }
+
+                .inputbox.end{
+                    width: 50%;
+                    float:left;
+                    .example-custom-input{
+                        background-color: white;
+                        border-radius: 3px;
+                        color: #333333;
+                        cursor: pointer;
+                        width: 155px;
+                        height: 30px;
+                        padding: 3px;
+                        margin-top:5px;
+                        margin-bottom: 5px;
+                        border: 1px solid black;
+                        padding-left :12px;
+                    }
+                    .react-datepicker__calendar-icon{
+                        margin-top: 3.5px;
+                        position: absolute;
+                        padding: 0.4rem;
+                        height: 2.2em;
+                        width: 2.2em;
+                    }
+                    .react-datepicker{
+                        font-size: 0.8rem !important;
+                    }
+                    .react-datepicker__month-container{
+                        .react-datepicker__input-container {
+                            display: none;
+                        }
+                        .react-datepicker__header{
+                            background-color: white;
+                            border: none;
+                        }
+                        .month-day{
+                            font-size: 1.2em;
+                            margin: auto;
+                        }
+                        .custom-day {
+                            width: 28px;
+                            height: 28px;
+                            // line-height: 1.5;
+                            text-align: center;
+                        }
+                        .gray-day {
+                            color: #aba8b9;
+                        }
+                        .selected-day {
+                            color:white;
+                            background: #2E1C8B;
+                            border-radius: 50%;
+                            font-weight: 700;
+                        }
+                        .btn_month.btn_month-prev{
+                            margin-right: auto;
+                        }
+                        .btn_month.btn_month-next{
+                            margin-left: auto;
+                        }
+                
+                        
+                    }
+                    .react-datepicker__triangle{
+                        display: none !important;
+                    }
+                
+                    .react-datepicker-popper{
+                        transform: translate3d(3px, 48px, 0px) !important;
+                    }
+                }
+
+                .inputbox.cast{
+                    width: 100%;
+                    float: left;
+                }
+
+                .inputbox.playurl{
+                    width: 100%;
+                    float: left;
+                }
+
+                .inputbox.stamp{
+                    width: 100%;
+                    float: left;
+                }
+
+                .inputbox.firstStamp{
+                    width: 50%;
+                    float: left;
+                }
+                .inputbox.firstDouble{
+                    width: 50%;
+                    float: left;
+                }
+
+
+                .addStamp{
+                    width: 100%;
+                    overflow: hidden;
+                    .stampbox-wrap {
+                        width: 90%;
+                        float: left;
+                        margin-bottom: 6%;
+                        .inputstampbox.benefitnum{
+                            width: 20%;
+                            float: left;
+                            padding:3px;
+
+                            input[id="benefitNum"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.benefit{
+                            width: 40%;
+                            float: left;
+                            padding:3px;
+                            input[id="benefit"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.memo{
+                            width: 40%;
+                            float: left;
+                            padding:3px;
+                            input[id="memo"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.url{
+                            width: 100%;
+                            float: left;
+                            padding:3px;
+                            input[id="url"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.getstartdate{
+                            width: 25%;
+                            float: left;
+                            padding:3px;
+                            input[id="getStartDate"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.getenddate{
+                            width: 25%;
+                            float: left;
+                            padding:3px;
+                            input[id="getEndDate"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.usestartdate{
+                            width: 25%;
+                            float: left;
+                            padding:3px;
+                            input[id="useStartDate"]{
+                                width: 100%;
+                            }
+                        }
+                        .inputstampbox.useenddate{
+                            width: 25%;
+                            float: left;
+                            padding:3px;
+                            input[id="useEndDate"]{
+                                width: 100%;
+                            }
+                        } 
+                    }
+                    .stamp-btn{
+                        width: 10%;
+                        float: left;
+                        height: 100%;
+                        .e-btn{
+                            width: 100%;
+                            // margin-left: 20%;
+                            // vertical-align: center;
+                        }
+                        .e-btn.edit{
+                            margin-top: 60px;
+                            width: 50%;
+                            float: left;
+                            color: #917FB3;
+                        }
+                        .e-btn.del{
+                            margin-top: 60px;
+                            width: 50%;
+                            float: left;
+                            color: #917FB3;
+                        }
+                        .s-btn{
+                            width: 15px;
+                            height: 15px;
+                            margin-top:60px;
+                            margin-left: 40%;
+                            vertical-align: center;
+                            background-color: #917FB3;
+                            color: #fff;
+                        }
+                    } 
+                }
+
+                .btn{
+                    float: left;
+                    width: 100%;
+                    text-align: center;
+                    margin-top: 8%;
+                    button {
+                        width: 80px;
+                        height: 30px;
+                        border-radius: 3%;
+                        background-color: #917FB3;
+                        margin-right: 3%;
+                        // display :inline-block;
+                    }
+                }
+                
+            }
+        }
+    }
+
+    #doubleAdd {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap{
+            width: 100%;
+            margin: 0 auto;
+            .doubleAdd-gap{
+                width: 80%;
+                margin: 0 auto;
+                .doubleAdd-wrap{
+                    margin-top: 5%;
+                    .play-title{
+                        text-align: center;
+                    }
+                    .doubleList{
+                        margin-top: 3%;
+                        text-align: center;
+                        overflow: hidden;
+                        .cancleDouble{
+                            margin: 0 auto;
+                            width: 25%;
+                            .double-date{
+                                float: left;
+                                width: 80%;
+                                margin-bottom: 2%;
+                            }
+                            .double-btn{
+                                width: 20%;
+                                float: left;
+                            }
+                        }
+                    }
+                    .doublestamp-gap{
+                        // float: left;
+                        margin-top: 3%;
+                        // margin: 0 auto;
+                        .doublestamp-wrap{
+                            .doublestamp{
+                                text-align: center;
+                                
+                                .stampType{
+                                    margin-bottom: 2%;
+                                }
+                                .periodStamp{
+                                    margin: 0 auto;
+                                    width: 50%;
+                                    overflow: hidden;
+                                    .inputbox.start{
+                                        float: left;
+                                        width: 50%;
+                                        .example-custom-input{
+                                            background-color: white;
+                                            border-radius: 3px;
+                                            color: #333333;
+                                            cursor: pointer;
+                                            width: 155px;
+                                            height: 30px;
+                                            padding: 3px;
+                                            margin-top:5px;
+                                            margin-bottom: 5px;
+                                            border: 1px solid black;
+                                            padding-left :12px;
+                                        }
+                                        .react-datepicker__calendar-icon{
+                                            margin-top: 3.5px;
+                                            position: absolute;
+                                            padding: 0.4rem;
+                                            height: 2.2em;
+                                            width: 2.2em;
+                                        }
+                                        .react-datepicker{
+                                            font-size: 0.8rem !important;
+                                        }
+                                        .react-datepicker__month-container{
+                                            .react-datepicker__input-container {
+                                                display: none;
+                                            }
+                                            .react-datepicker__header{
+                                                background-color: white;
+                                                border: none;
+                                            }
+                                            .month-day{
+                                                font-size: 1.2em;
+                                                margin: auto;
+                                            }
+                                            .custom-day {
+                                                width: 28px;
+                                                height: 28px;
+                                                // line-height: 1.5;
+                                                text-align: center;
+                                            }
+                                            .gray-day {
+                                                color: #aba8b9;
+                                            }
+                                            .selected-day {
+                                                color:white;
+                                                background: #2E1C8B;
+                                                border-radius: 50%;
+                                                font-weight: 700;
+                                            }
+                                            .btn_month.btn_month-prev{
+                                                margin-right: auto;
+                                            }
+                                            .btn_month.btn_month-next{
+                                                margin-left: auto;
+                                            }
+                                    
+                                            
+                                        }
+                                        .react-datepicker__triangle{
+                                            display: none !important;
+                                        }
+                                    
+                                        .react-datepicker-popper{
+                                            transform: translate3d(3px, 48px, 0px) !important;
+                                        }
+                                    }
+                                    .inputbox.end{
+                                        float: left;
+                                        width: 50%;
+                                        .example-custom-input{
+                                            background-color: white;
+                                            border-radius: 3px;
+                                            color: #333333;
+                                            cursor: pointer;
+                                            width: 155px;
+                                            height: 30px;
+                                            padding: 3px;
+                                            margin-top:5px;
+                                            margin-bottom: 5px;
+                                            border: 1px solid black;
+                                            padding-left :12px;
+                                        }
+                                        .react-datepicker__calendar-icon{
+                                            margin-top: 3.5px;
+                                            position: absolute;
+                                            padding: 0.4rem;
+                                            height: 2.2em;
+                                            width: 2.2em;
+                                        }
+                                        .react-datepicker{
+                                            font-size: 0.8rem !important;
+                                        }
+                                        .react-datepicker__month-container{
+                                            .react-datepicker__input-container {
+                                                display: none;
+                                            }
+                                            .react-datepicker__header{
+                                                background-color: white;
+                                                border: none;
+                                            }
+                                            .month-day{
+                                                font-size: 1.2em;
+                                                margin: auto;
+                                            }
+                                            .custom-day {
+                                                width: 28px;
+                                                height: 28px;
+                                                // line-height: 1.5;
+                                                text-align: center;
+                                            }
+                                            .gray-day {
+                                                color: #aba8b9;
+                                            }
+                                            .selected-day {
+                                                color:white;
+                                                background: #2E1C8B;
+                                                border-radius: 50%;
+                                                font-weight: 700;
+                                            }
+                                            .btn_month.btn_month-prev{
+                                                margin-right: auto;
+                                            }
+                                            .btn_month.btn_month-next{
+                                                margin-left: auto;
+                                            }
+                                    
+                                            
+                                        }
+                                        .react-datepicker__triangle{
+                                            display: none !important;
+                                        }
+                                    
+                                        .react-datepicker-popper{
+                                            transform: translate3d(3px, 48px, 0px) !important;
+                                        }
+                                    }
+                                }
+                                .turnStamp{
+                                    margin: 0 auto;
+                                    width: 50%;
+                                    overflow: hidden;
+                                    .addDoubleTurn{
+                                        .addDoubleStamp{
+                                            // margin-bottom: 3%;
+                                            .inputbox.date{
+                                                float: left;
+                                                width: 50%;
+                                                .example-custom-input{
+                                                    background-color: white;
+                                                    border-radius: 3px;
+                                                    color: #333333;
+                                                    cursor: pointer;
+                                                    width: 155px;
+                                                    height: 30px;
+                                                    padding: 3px;
+                                                    margin-top:5px;
+                                                    // margin-bottom: 5px;
+                                                    border: 1px solid black;
+                                                    padding-left :12px;
+                                                }
+                                                .react-datepicker__calendar-icon{
+                                                    margin-top: 3.5px;
+                                                    position: absolute;
+                                                    padding: 0.4rem;
+                                                    height: 2.2em;
+                                                    width: 2.2em;
+                                                }
+                                                .react-datepicker{
+                                                    font-size: 0.8rem !important;
+                                                }
+                                                .react-datepicker__month-container{
+                                                    .react-datepicker__input-container {
+                                                        display: none;
+                                                    }
+                                                    .react-datepicker__header{
+                                                        background-color: white;
+                                                        border: none;
+                                                    }
+                                                    .month-day{
+                                                        font-size: 1.2em;
+                                                        margin: auto;
+                                                    }
+                                                    .custom-day {
+                                                        width: 28px;
+                                                        height: 28px;
+                                                        // line-height: 1.5;
+                                                        text-align: center;
+                                                    }
+                                                    .gray-day {
+                                                        color: #aba8b9;
+                                                    }
+                                                    .selected-day {
+                                                        color:white;
+                                                        background: #2E1C8B;
+                                                        border-radius: 50%;
+                                                        font-weight: 700;
+                                                    }
+                                                    .btn_month.btn_month-prev{
+                                                        margin-right: auto;
+                                                    }
+                                                    .btn_month.btn_month-next{
+                                                        margin-left: auto;
+                                                    }
+                                            
+                                                    
+                                                }
+                                                .react-datepicker__triangle{
+                                                    display: none !important;
+                                                }
+                                            
+                                                .react-datepicker-popper{
+                                                    // transform: translate3d(60px, 263px, 0px) !important;
+                                                    transform: translateX(-30% -10%);
+                                                    padding-top: 0px !important;
+                                                }
+                                            }
+                                            .inputbox.time{
+                                                float: left;
+                                                width: 40%;
+                                                margin-bottom: 2%;
+                                                .example-custom-input{
+                                                    background-color: white;
+                                                    border-radius: 3px;
+                                                    color: #333333;
+                                                    cursor: pointer;
+                                                    width: 88px;
+                                                    height: 30px;
+                                                    padding: 3px;
+                                                    margin-top:5px;
+                                                    // margin-bottom: 5px;
+                                                    border: 1px solid black;
+                                                }
+                                                .react-datepicker{
+                                                    font-size: 0.8rem !important;
+                                                }
+                                                .react-datepicker__time-container {
+                                                    .react-datepicker__input-container {
+                                                        display: none;
+                                                    }
+                                                    .react-datepicker__header{
+                                                        background-color: white !important;
+                                                        border-bottom: none;
+                                                        display: none;
+                                                    }
+                                                    .month-day{
+                                                        font-size: 1.8em;
+                                                    }
+                                                    .custom-day {
+                                                        width: 28px;
+                                                        height: 28px;
+                                                        // line-height: 1.5;
+                                                        text-align: center;
+                                                    }
+                                                    .gray-day {
+                                                        color: #aba8b9;
+                                                    }
+                                                    .selected-day {
+                                                        color:white;
+                                                        background: #2E1C8B;
+                                                        border-radius: 50%;
+                                                        font-weight: 700;
+                                                    }
+                                                    .react-datepicker__time-list-item {
+                                                        height: 20px !important;
+                                                    }
+                        
+                                                }
+                                                .react-datepicker__triangle{
+                                                    display: none !important;
+                                                }
+                                            
+                                                .react-datepicker-popper{
+                                                    // transform: translate3d(10%, 30%) !important;
+                                                    transform: translateX(-30%);
+                                                    padding-top: 0px !important;
+                                                }
+                                            }
+                                            .stamp-btn{
+                                                width: 10%;
+                                                float: left;
+                                                height: 100%;
+                                                .s-btn{
+                                                    width: 15px;
+                                                    height: 15px;
+                                                    margin-top:28px;
+                                                    margin-left: 5%;
+                                                    vertical-align: center;
+                                                    background-color: #917FB3;
+                                                    color: #fff;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .save-btn{
+                                    width: 100%;
+                                    text-align: center;
+                                    margin-top: 2%;
+                                    button {
+                                        width: 50px;
+                                        height: 24px;
+                                        border-radius: 3px;
+                                        background-color: #917FB3;
+                                        margin-right: 3%;
+                                        // display :inline-block;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .btn{
+                        width: 100%;
+                        text-align: center;
+                        margin-top: 8%;
+                        button {
+                            width: 80px;
+                            height: 30px;
+                            border-radius: 3%;
+                            background-color: #917FB3;
+                            margin-right: 3%;
+                            // display :inline-block;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    #login{
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap{
+            width: 100%;
+            margin: 0 auto;
+            .login-gap{
+                width: 80%;
+                margin: 0 auto;
+                .login-wrap{
+                    margin-top: 5%;
+                    .login-title{
+                        text-align: center;
+                        margin-bottom: 5%;
+                    }
+                    .login-box{
+                        margin:0 auto;
+                        width: 60%;
+                        margin-top: 1%;
+                        text-align: center;
+                        .login-id{
+                            margin: 3%;
+                            margin-bottom: 5%;
+                            .id{
+                                text-align: left;
+                                margin-bottom: 2%;
+                            }
+                        }
+                        .login-pw{
+                            margin: 3%;
+                            margin-bottom: 1%;
+                            .pw{
+                                text-align: left;
+                                margin-bottom: 2%;
+                            }
+                        }
+                        input[type="text"]{
+                            width: 100%;
+                            border-radius: 16px;
+                            padding: 5px 10px;
+                        }
+                        input[type="password"]{
+                            width: 100%;
+                            border-radius: 16px;
+                            padding: 5px 10px;
+                        }
+                        .login-op{
+                            margin: 3% 5% 5% 5%;
+                            .save-id{
+                                float: left;
+                            }
+                            .join-btn{
+                                text-align: right;
+                            }
+                        }
+                        .btn{
+                            margin: 3%;
+                            margin-bottom: 5%;
+                            .login-btn{
+                                display:block;
+                                background-color: #2a2f4f;
+                                color: #FDF4F5;
+                                width: 100%;
+                                height: 30px;
+                                line-height: 1.6;
+                                border-radius: 16px;
+                                padding: 5px 10px;
+                                margin-top: 5%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    #join{
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap{
+            width: 100%;
+            margin: 0 auto;
+            .join-gap{
+                width: 80%;
+                margin: 0 auto;
+                .join-wrap{
+                    margin-top: 5%;
+                    .join-title{
+                        text-align: center;
+                        margin-bottom: 5%;
+                    }
+                    .join-box{
+                        margin:0 auto;
+                        width: 60%;
+                        margin-top: 1%;
+                        text-align: center;
+                        .join-id{
+                            margin: 3%;
+                            margin-bottom: 5%;
+                            .id{
+                                text-align: left;
+                                margin-bottom: 2%;
+                            }
+                        }
+                        .join-pw{
+                            margin: 3%;
+                            margin-bottom: 5%;
+                            .pw{
+                                text-align: left;
+                                margin-bottom: 2%;
+                            }
+                        }
+                        .join-pw-ch{
+                            margin: 3%;
+                            margin-bottom: 5%;
+                            .pw-ch{
+                                text-align: left;
+                                margin-bottom: 2%;
+                            }
+                        }
+                        .join-email{
+                            margin: 3%;
+                            margin-bottom: 5%;
+                            .email{
+                                text-align: left;
+                                margin-bottom: 2%;
+                            }
+                        }
+                        input[type="text"]{
+                            width: 100%;
+                            border-radius: 16px;
+                            padding: 5px 10px;
+                        }
+                        input[type="password"]{
+                            width: 100%;
+                            border-radius: 16px;
+                            padding: 5px 10px;
+                        }
+                        input[type="email"]{
+                            width: 100%;
+                            border-radius: 16px;
+                            padding: 5px 10px;
+                        }
+                        .btn{
+                            margin: 3%;
+                            margin-bottom: 5%;
+                            .login-btn{
+                                display:block;
+                                background-color: #2a2f4f;
+                                color: #FDF4F5;
+                                width: 100%;
+                                height: 30px;
+                                line-height: 1.6;
+                                border-radius: 16px;
+                                padding: 5px 10px;
+                                margin-top: 5%;
+                            }
+                            :disabled{
+                                background-color: #888;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    #adminlist {
+        width:100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap{
+            width: 100%;
+            margin: 0 auto;
+            .adminlist-gap{
+                width: 90%;
+                padding:3% 3%;
+                margin : 0 auto;
+                overflow: hidden;
+                .admin-wrap{
+                    width: 100%;
+                    padding: 1% 1% 0% 1%;
+                    float: left;
+                    border-bottom: 1px dotted #333333;
+                    .admin-gap{
+                        .admin{
+                            width: 100%;
+                            padding: 1%;
+                            float: left;
+                            .adminId{
+                                width: 30%;
+                                padding: 1%;
+                                float: left;
+                            }
+                            .adminMail{
+                                width: 45%;
+                                padding: 1%;
+                                float: left;
+                            }
+                            .adminLevel{
+                                width: 5%;
+                                padding: 1%;
+                                float: left;
+                            }
+                            .superAdmin{
+                                width: 20%;
+                                padding: 1%;
+                                float: left;
+                                .btn-gap{
+                                    width: 100%;
+                                    padding: 1%;
+                                    float: left;
+                                    .changeLevel{
+                                        width: 35px;
+                                        height: 120%;
+                                        float: left;
+                                        font-size: 10px;
+                                        color: #dddddd;
+                                        background-color: #2a2f4f;
+                                        margin: 0 auto;
+                                        padding: 1%;
+                                        border-radius: 5px;
+                                        margin-right: 3px;
+                                    }
+                                    .delAdmin{
+                                        width: 35px;
+                                        height: 120%;
+                                        float: left;
+                                        font-size: 10px;
+                                        color: #dddddd;
+                                        background-color: #888;
+                                        margin: 0 auto;
+                                        padding: 1%;
+                                        border-radius: 5px;
+                                        margin-right: 3px;
+                                    }
+                                }
+                                
+                            }
+                        }
+                        
+                    }
+                }
+
+                .pagination{
+                    float:left;
+                    width: 100%;     
+                    text-align: center; 
+                    .wrap{
+                        width: 100%;
+                        margin-top: 5%;
+                        .page{
+                            display: inline-block;
+                            text-align: center; 
+                            float: none;
+                            li{
+                                width: 10px;
+                                text-align: center;
+                                float: left;
+                                padding: 4% 3% 3% 3%;
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+
+                            }
+                            .current{
+                                background-color:#917FB3;
+                                color: #fff;
+                                font-weight: 500;
+                            }
+
+                        }
+                    }
+                }
+
+            }
+        }
+       
+
+    }
+
+    #admininfo {
+        width:100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap{
+            width: 100%;
+            margin: 0 auto;
+            .admininfo-gap{
+                width: 80%;
+                margin: 0 auto;
+                .admininfo-wrap{
+                    margin-top: 5%;
+                    .admininfo-title{
+                        text-align: center;
+                        margin-bottom: 5%;
+                    }
+                    .admininfo-box{
+                        margin:0 auto;
+                        width: 60%;
+                        margin-top: 1%;
+                        text-align: center;
+                        .admininfo-id{
+                            margin: 3%;
+                            margin-bottom: 5%;
+                            .id{
+                                text-align: left;
+                                margin-bottom: 2%;
+                            }
+                        }
+                        .admininfo-pw{
+                            margin: 3%;
+                            margin-bottom: 5%;
+                            .pw{
+                                text-align: left;
+                                margin-bottom: 2%;
+                            }
+                        }
+                        .admininfo-pw-ch{
+                            margin: 3%;
+                            margin-bottom: 5%;
+                            .pw-ch{
+                                text-align: left;
+                                margin-bottom: 2%;
+                            }
+                        }
+                        .admininfo-email{
+                            margin: 3%;
+                            margin-bottom: 5%;
+                            .email{
+                                text-align: left;
+                                margin-bottom: 2%;
+                            }
+                        }
+                        input[type="text"]{
+                            width: 100%;
+                            border-radius: 16px;
+                            padding: 5px 10px;
+                        }
+                        input[type="password"]{
+                            width: 100%;
+                            border-radius: 16px;
+                            padding: 5px 10px;
+                        }
+                        input[type="email"]{
+                            width: 100%;
+                            border-radius: 16px;
+                            padding: 5px 10px;
+                        }
+                        .btn{
+                            margin: 3%;
+                            margin-bottom: 5%;
+                            .ch-btn{
+                                display:block;
+                                background-color: #2a2f4f;
+                                color: #FDF4F5;
+                                width: 100%;
+                                height: 30px;
+                                line-height: 1.6;
+                                border-radius: 16px;
+                                padding: 5px 10px;
+                                margin-top: 5%;
+                            }
+                            :disabled{
+                                background-color: #888;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+
+
+// 서비스 페이지
+
+    #home {
+        width: 100%;
+        .wrap{
+            width: 100%;
+            .search-gap{
+                width:100%;
+                padding:10%;
+                .search-bar{
+                    width:100%;
+                    .search-btn{
+                        font-weight:700;
+                        width: 18px;
+                    }
+                }
+            }
+            .login-gap{
+                width: 80%;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    #searchList {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap{
+            width: 100%;
+            margin:0 auto;
+            .searchlist-gap{
+                width: 80%;
+                margin : 0 auto;
+                .list-wrap {
+                    margin-top: 5%;
+                    .search-result{
+                        text-align: center;
+                        span{
+                            color: #917FB3;
+                            font-weight: 600;
+                        }
+                    }
+                    .list{
+                        margin-top: 5%;
+                        border:3px solid #917FB3;
+                        border-radius: 16px;
+                        // background-color: #FDE2F3;
+                        .play{
+                            padding:3%;
+                            .playName{
+                                margin-bottom: 1%;
+                                .title{
+                                    color:$mainColor;
+                                    font-size: 20px;
+                                    font-weight: 600;
+                                }
+                                .stampImg{
+                                    height: 4vh;
+                                }
+                            }
+                            .playDate{
+                                margin-bottom: 1%;
+                            }
+                        }
+                        .stamp{
+                            padding: 0% 3% 3% 3%;
+                            .stamplist{
+                                .benefitlist{
+                                    margin-bottom: 1%;
+                                    .benefitNum{
+                                        float: left;
+                                        span{
+                                            color:$mainColor;
+                                            font-weight: 600;
+                                        }
+                                    }
+                                    .searchPlayStamp{
+                                        margin-left: 40px;
+                                        .benefit{
+                                            font-weight: 530;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+
+    }
+
+    #searchPlay{
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap{
+            width: 100%;
+            margin:0 auto;
+            .searchplay-gap{
+                width: 80%;
+                margin : 0 auto;
+                .playdetail{
+                        margin-top: 5%;
+                        border:3px solid #917FB3;
+                        border-radius: 16px;
+                        .play{
+                            padding:3%;
+                            .playName{
+                                .title{
+                                    color: $mainColor;
+                                    font-size: 20px;
+                                    font-weight: 600;
+                                }
+                                margin-bottom: 1%;
+                                .linkImg{
+                                    height: 3vh;
+                                }
+                                .stampImg{
+                                    height: 4vh;
+                                }
+                            }
+                            .playDate{
+                                margin-bottom: 1%;
+                            }
+                        }
+                        .stamp{
+                            padding: 0% 3% 3% 3%;
+                            .benefitlist{
+                                margin-bottom: 1%;
+                                .benefitNum{
+                                    float: left;
+                                    span{
+                                        color:$mainColor;
+                                        font-weight: 600;
+                                    }
+                                }
+                                .searchPlayStamp{
+                                    margin-left: 40px;
+                                    .benefit{
+                                        margin-bottom: 1%;
+                                        .benefitName{
+                                            color: #917FB3;
+                                            font-weight: 600;
+                                            .linkImg{
+                                                height: 3vh;
+                                            }
+                                        }
+                                    }
+                                    .useDate{
+                                        margin-bottom: 1%;
+                                    }
+                                    .memo{
+                                        font-size: 11px;
+                                        color:#888;
+                                    }
+                                }
+                            }
+                        
+                        }
+                    
+                }
+            }
+        }
+    }
+
+    #myStampAdd{
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap{
+            width: 100%;
+            margin:0 auto;
+            .myStampAdd-gap{
+                width: 80%;
+                margin : 0 auto;
+                margin-top: 5%;
+                .myStampAdd-wrap{
+                    padding: 2%;
+                    .myStampAdd-title{
+                        text-align: center;
+                    }
+                    label{
+                        font-weight: 600;
+                        margin-bottom: 4px;
+                        display:inline-block;
+                    }
+                    .inputbox{
+                        margin-bottom: 4%;
+                        
+                        input[id="stampMemo"]{
+                            width: 100%;
+                            height: 30px;
+                            border:none;
+                            border-bottom: 1px solid black;
+                        }
+                    }
+                    .inputbox.date{
+                        width: 100%;
+                        float: left;
+                        .date{
+                            width: 50%;
+                            float: left;
+                            .example-custom-input{
+                                background-color: white;
+                                border-radius: 3px;
+                                color: #333333;
+                                cursor: pointer;
+                                width: 155px;
+                                height: 30px;
+                                padding: 3px;
+                                margin-top:5px;
+                                // margin-bottom: 5px;
+                                border: 1px solid black;
+                                padding-left :12px;
+                            }
+                            .react-datepicker__calendar-icon{
+                                margin-top: 3.5px;
+                                position: absolute;
+                                padding: 0.4rem;
+                                height: 2.2em;
+                                width: 2.2em;
+                            }
+                            .react-datepicker{
+                                font-size: 0.8rem !important;
+                            }
+                            .react-datepicker__month-container{
+                                .react-datepicker__input-container {
+                                    display: none;
+                                }
+                                .react-datepicker__header{
+                                    background-color: white;
+                                    border: none;
+                                }
+                                .month-day{
+                                    font-size: 1.2em;
+                                    margin: auto;
+                                }
+                                .custom-day {
+                                    width: 28px;
+                                    height: 28px;
+                                    // line-height: 1.5;
+                                    text-align: center;
+                                }
+                                .gray-day {
+                                    color: #aba8b9;
+                                }
+                                .selected-day {
+                                    color:white;
+                                    background: #2E1C8B;
+                                    border-radius: 50%;
+                                    font-weight: 700;
+                                }
+                                .btn_month.btn_month-prev{
+                                    margin-right: auto;
+                                }
+                                .btn_month.btn_month-next{
+                                    margin-left: auto;
+                                }
+                        
+                                
+                            }
+                            .react-datepicker__triangle{
+                                display: none !important;
+                            }
+                        
+                            .react-datepicker-popper{
+                                // transform: translate3d(60px, 263px, 0px) !important;
+                                transform: translateX(-30% -10%);
+                                padding-top: 0px !important;
+                            }
+
+                        }
+                        .time{
+                            width: 50%;
+                            float: left;
+                            .example-custom-input{
+                                background-color: white;
+                                border-radius: 3px;
+                                color: #333333;
+                                cursor: pointer;
+                                width: 88px;
+                                height: 30px;
+                                padding: 3px;
+                                margin-top:5px;
+                                // margin-bottom: 5px;
+                                border: 1px solid black;
+                            }
+                            .react-datepicker{
+                                font-size: 0.8rem !important;
+                            }
+                            .react-datepicker__time-container {
+                                .react-datepicker__input-container {
+                                    display: none;
+                                }
+                                .react-datepicker__header{
+                                    background-color: white !important;
+                                    border-bottom: none;
+                                    display: none;
+                                }
+                                .month-day{
+                                    font-size: 1.8em;
+                                }
+                                .custom-day {
+                                    width: 28px;
+                                    height: 28px;
+                                    // line-height: 1.5;
+                                    text-align: center;
+                                }
+                                .gray-day {
+                                    color: #aba8b9;
+                                }
+                                .selected-day {
+                                    color:white;
+                                    background: #2E1C8B;
+                                    border-radius: 50%;
+                                    font-weight: 700;
+                                }
+                                .react-datepicker__time-list-item {
+                                    height: 20px !important;
+                                }
+    
+                            }
+                            .react-datepicker__triangle{
+                                display: none !important;
+                            }
+                        
+                            .react-datepicker-popper{
+                                // transform: translate3d(10%, 30%) !important;
+                                transform: translateX(-30%);
+                                padding-top: 0px !important;
+                            }
+                        }
+                        .doubleCheck {
+                            margin-top: 12%;
+                            color: #917FB3;
+                        }
+                    }
+                    .inputbox.stamp{
+                        float: left;
+                        width: 100%;
+                        select{
+                            border-radius: 3px;
+                            width: 30%;
+                            height:30px;
+                            -o-appearance: none;
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            appearance: none;
+                        }
+                        select::-ms-expand { 
+                            display: none;
+                        }
+                        
+                        select option:disabled{
+                            width: 100%;
+                            height:30px;
+                            // background-color: black;
+                            color: #888;
+                        }
+
+                        select option:focus{
+                            background-color: #917FB3;
+                        }
+                    }
+                    
+
+
+                    .btn{
+                        float: left;
+                        width: 100%;
+                        text-align: center;
+                        margin-top: 5%;
+                        button {
+                            width: 80px;
+                            height: 30px;
+                            border-radius: 3%;
+                            background-color: #917FB3;
+                            // display :inline-block;
+                            margin-right: 3%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #myStamp{
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap{
+            width: 100%;
+            margin:0 auto;
+            .myStamp-gap{
+                width: 80%;
+                margin : 0 auto;
+                margin-top: 5%;
+                .myStamp-wrap{
+                    .myInfo{
+                        margin-bottom: 5%;
+                        .my{
+                            margin-bottom: 2%;
+                            overflow: hidden;
+                                .profile-box{
+                                    width: 100px;
+                                    height: 100px; 
+                                    border-radius: 70%;
+                                    overflow: hidden;
+                                    float: left;
+                                    .profile{
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: cover;
+                                    }
+                                }
+                                .nick{
+                                    // margin-left: 32%;
+                                    margin-top: 20%;
+                                    // vertical-align: sub;
+                                    span{
+                                        color: #917FB3;
+                                        font-weight: 600;
+                                    }
+                                }
+                        }
+                        .state{
+                            margin: 0 auto;
+                            width: 100%;
+                            overflow: hidden;
+                            border: 1px solid #FDF4F5;
+                            background-color: #FDF4F5;
+                            border-radius: 10px;
+                            padding: 3%;
+                            .now{
+                                width: 33%;
+                                float: left;
+                                text-align: center;
+                                // margin-right: 10%;
+                                border-right: 2px solid #917FB3;
+                            }
+                            .end{
+                                width: 33%;
+                                float:left;
+                                text-align: center;
+                                border-right: 2px solid #917FB3;
+                                // margin-right: 10%;
+                            }
+                            .total{
+                                width: 33%;
+                                float:left;
+                                text-align: center;
+                            }
+                            .num{
+                                font-size: 20px;
+                                font-weight: 600;
+                                color: $mainColor;
+                                margin-top: 5%;
+                            }
+                        }
+
+                    }
+                    .myStampList{
+                        .myStamp{
+                            border: 2px solid #917FB3;
+                            border-radius: 10px;
+                            padding: 3%;
+                            margin-bottom: 3%;
+                            box-shadow: 6px 8px 8px -3px gray;
+                            
+                            .playName{
+                                margin-bottom: 1%;
+                                color: $mainColor;
+                                font-size: 16px;
+                                font-weight: 600;
+                            }
+                            .stamp{
+                                margin-bottom: 1%;
+                                .mymax{
+                                    font-size: 18px;
+                                    font-weight: 600;
+                                    color: $mainColor;
+                                }
+                                .max{
+                                    color: #917FB3;
+                                }
+                            }
+                            .warning{
+                                float:right;
+                                margin: -25px auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #stampDetail{
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap{
+            width: 100%;
+            margin:0 auto;
+            .stampDetail-gap{
+                width: 80%;
+                margin : 0 auto;
+                margin-top: 5%;
+                .stampDetail-wrap{
+                    .playdetail{
+                        margin-bottom: 3%;
+                        margin-top: 5%;
+                        border:3px solid #917FB3;
+                        border-radius: 16px;
+                        box-shadow: 6px 8px 8px -3px gray;
+                        .play{
+                            padding:3%;
+                            .playName{
+                                .title{
+                                    color: $mainColor;
+                                    font-size: 20px;
+                                    font-weight: 600;
+                                }
+                                margin-bottom: 1%;
+                                .linkImg{
+                                    height: 3vh;
+                                }
+                                .stampImg{
+                                    height: 4vh;
+                                }
+                            }
+                            .playDate{
+                                margin-bottom: 1%;
+                            }
+                        }
+                        .stamplist{
+                            padding: 0% 3% 3% 3%;
+                            .stampdetail{
+                                margin-bottom: 1%;
+                                overflow: hidden;
+                                .stampNum{
+                                    float: left;
+                                    width: 1%;
+                                    .num{
+                                        color:$mainColor;
+                                        font-weight: 600;
+                                    }
+                                    .max{
+                                        color: #E5BEEC;
+                                    }
+                                }
+                                .stampDate{
+                                    margin-left: 4%;
+                                    // margin-bottom: 1%;
+                                    // margin-top: 2%;
+                                    color: #917FB3;
+                                    font-weight: 600;
+                                    float: left;
+                                    width: 50%;
+                                    span{
+                                        border-radius: 3px;
+                                        padding: 1px;
+                                        background-color: #917FB3;
+                                        font-size: 12px;
+                                        color: $mainColor;
+                                    }
+                                }
+                                .small-btn{
+                                    // width: 30%;
+                                    float: right;
+                                    margin-right: 5%;
+                                    .edit-btn{
+                                        text-align: right;
+                                        float: left;
+                                    }
+                                    .div-btn{
+                                        float: left;
+                                        text-align: right;
+                                    }
+                                    .del-btn{
+                                        float: left;
+                                        text-align: right;
+                                    }
+                                }
+                                .benefitdetail{
+                                    clear: both;
+                                    margin-left: 26px;
+                                    .benefit{
+                                        margin-bottom: 1%;
+                                        .getBenefit{
+                                            margin-bottom: 1%;
+                                            .benefitName{
+                                                color: $mainColor;
+                                                font-weight: 600;
+                                                .linkImg{
+                                                    height: 3vh;
+                                                }
+                                            }
+                                            .useDate{
+                                                margin-bottom: 1%;
+                                            }
+                                        }
+
+                                        
+                                        .memo{
+                                            font-size: 11px;
+                                            color:#888;
+                                        }
+                                    }
+                                    
+                                }
+
+                                .stampMemo{
+                                    clear: both;
+                                    margin-left: 26px;
+                                    margin-right: 5%;
+                                    padding: 1%;
+                                    background-color: #dfd5f1;
+                                    font-size: 12px;
+                                }
+
+                            }
+                        
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #myHome{
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: 20%;
+        .wrap{
+            width: 100%;
+            margin:0 auto;
+            .myHome-gap{
+                width: 80%;
+                margin : 0 auto;
+                margin-top: 5%;
+                .myHome-wrap{
+                    .my{
+                        margin-bottom: 2%;
+                        overflow: hidden;
+                            .profile-box{
+                                width: 100px;
+                                height: 100px; 
+                                border-radius: 70%;
+                                overflow: hidden;
+                                float: left;
+                                .profile{
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                }
+                            }
+                            .nick{
+                                // margin-left: 32%;
+                                margin-top: 20%;
+                                // vertical-align: sub;
+                                span{
+                                    color: #917FB3;
+                                    font-weight: 600;
+                                }
+                            }
+                    }
+                    .info-btn{
+                        // margin-top: 3%;
+                        overflow: hidden;
+                        margin: auto;
+                        .out-btn{
+                            float: left;
+                            width: 80px;
+                            background-color: #917FB3;
+                            padding: 1%;
+                            text-align: center;
+                            margin-right: 3%;
+                        }
+                        .del-btn{
+                            float: left;
+                            width: 80px;
+                            background-color: #917FB3;
+                            padding: 1%;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
