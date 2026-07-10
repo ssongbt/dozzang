@@ -15,16 +15,6 @@ const Home = () => {
                         <SearchingHome />
                     </div>
                 </div>
-                <div className="login-gap">
-                    <div className="login-wrap">
-                            {/* {localStorage.getItem('userId')} */}
-                            {localStorage.getItem('logined') !== 'true' ? 
-                            <a href={KAKAO_AUTH_URL} >
-                            <img src={kakaoLogin} alt="kakao"></img>
-                            </a>
-                            : ''}
-                    </div>
-                </div>
             </div>
         </div>
         

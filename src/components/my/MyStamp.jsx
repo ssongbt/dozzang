@@ -148,19 +148,6 @@ const MyStamp = () => {
                 <div className="myStamp-gap">
                     <div className="myStamp-wrap">
                         <div className="myInfo">
-                            <div className="my">
-                                <div className="profile-box">
-                                    <img className="profile" src={userImg} alt="profile"></img>
-                                </div>
-                                <div className="nick">
-                                    <span>{userNick}</span> 님
-                                </div>
-                                <div className="info">
-                                    <Link to="/myhome">내 정보</Link>
-                                </div>
-                                
-
-                            </div>
                             <div className="state">
                                 <div className="now" onClick={()=>changeStamp('now')}>
                                     <p>현재 도장판</p>
