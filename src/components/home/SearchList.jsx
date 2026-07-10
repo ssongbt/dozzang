@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from 'react-router-dom';
 import SearchingHome from "../common/SearchingHome";
@@ -6,6 +5,7 @@ import SearchStampList from "./SearchStampList";
 import { parseISO, format } from "date-fns";
 import { Link45deg, PatchPlusFill } from "react-bootstrap-icons";
 import Stampimg from "../../assets/stamp.png";
+import { getPlayStampJoin } from "../../data/playStampJoin";
 
 const SearchList = () => {
 
@@ -32,18 +32,9 @@ const SearchList = () => {
 
 
     const searchPlayList = () => {
-        axios({
-            url:`/api/home/search/${keyword}`,
-            method:'GET'
-        })
-        .then((res)=>{
-            // console.log(res);
-            setPlayList({play:res.data.rows.rows});
-            setStampList({stamp:res.data.rows.rows});
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+        const rows = getPlayStampJoin(keyword);
+        setPlayList({play:rows});
+        setStampList({stamp:rows});
     }
 
     // console.log(playList.play);

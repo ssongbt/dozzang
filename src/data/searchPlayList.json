@@ -1,0 +1,35 @@
+[
+  {
+    "play_num": 1,
+    "play_name": "박열",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-06-10",
+    "play_end": "2026-09-06",
+    "play_cast": "손유동, 현석준, 백기범, 최수진, 허윤슬, 임예진, 박영수, 장민수, 임별",
+    "play_stamp": 1,
+    "play_url": "https://www.ticketlink.co.kr/product/63124",
+    "play_firststamp": 1
+  },
+  {
+    "play_num": 2,
+    "play_name": "푸른꽃",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-08-13",
+    "play_end": "2026-10-25",
+    "play_cast": "최은영, 조소은, 김소율, 현석준, 윤은오, 김리현, 박란주, 한재아, 최호중, 김지훈, 정연, 이지숙, 한보라, 원종환, 김대웅",
+    "play_stamp": 1,
+    "play_url": "",
+    "play_firststamp": 1
+  },
+  {
+    "play_num": 3,
+    "play_name": "햄릿",
+    "play_genre": "연극",
+    "play_start": "2026-01-15",
+    "play_end": null,
+    "play_cast": "황정민",
+    "play_stamp": 1,
+    "play_url": "https://example.com/hamlet",
+    "play_firststamp": 1
+  }
+]

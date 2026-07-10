@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { format, parseISO } from 'date-fns';
 import { Link, useParams } from 'react-router-dom';
@@ -6,6 +5,8 @@ import { Link45deg, PatchPlusFill } from "react-bootstrap-icons";
 import SearchPlayStamp from "./SearchPlayStamp";
 import Linkimg from "../../assets/free-icon-link-2089782.png";
 import Stampimg from "../../assets/stamp.png";
+import searchPlayList from "../../data/searchPlayList.json";
+import playStampList from "../../data/playStampList.json";
 
 const SearchPlay = () => {
 
@@ -35,26 +36,21 @@ const SearchPlay = () => {
     },[playnum])
 
     const getPlay = () =>{
-        axios({
-            url:`/api/home/search/play/${playnum}`,
-            method:'GET'
-        })
-        .then((res)=>{
-            console.log(res.data.play);
-            setPlayNum(res.data.play.play_num);
-            setPlayName(res.data.play.play_name);
-            setPlayGenre(res.data.play.play_genre);
-            setPlayStart(res.data.play.play_start);
-            setPlayEnd(res.data.play.play_end);
-            setPlayCast(res.data.play.play_cast);
-            setPlayStamp(res.data.play.play_stamp);
-            setPlayUrl(res.data.play.play_url);
-            setPlayFirstStamp(res.data.play.play_firststamp);
-            setStampList({stamp:res.data.stamp})
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+        const play = searchPlayList.find((p) => p.play_num === Number(playnum));
+        if(!play) return;
+
+        setPlayNum(play.play_num);
+        setPlayName(play.play_name);
+        setPlayGenre(play.play_genre);
+        setPlayStart(play.play_start);
+        setPlayEnd(play.play_end);
+        setPlayCast(play.play_cast);
+        setPlayStamp(play.play_stamp);
+        setPlayUrl(play.play_url);
+        setPlayFirstStamp(play.play_firststamp);
+
+        const stamp = playStampList.filter((s) => s.stamp_play_num === play.play_num);
+        setStampList({stamp});
     }
 
     const startDate = playStart ? format(parseISO(playStart),'yyyy-MM-dd') : "미정";

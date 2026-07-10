@@ -1,9 +1,9 @@
-import axios from "axios";
 import {useEffect, useState} from "react";
 import styled from 'styled-components';
 import { parseISO, format } from "date-fns";
 import {Search} from "react-bootstrap-icons";
 import Searchimg from "../../assets/search.png"
+import searchPlayList from "../../data/searchPlayList.json";
 
 const SearchingHome = () => {
 
@@ -28,19 +28,10 @@ const SearchingHome = () => {
             setHaveInputValue(false);
             setPlayList([])
         }else{
-            axios({
-                url:`/api/home/search`,
-                method:'POST',
-                data : {search : searchItem}
-            })
-            .then((res)=>{
-                setPlayList({play:res.data.rows.rows});
-                // console.log(res.data.rows);
-            })
-            .catch((err)=>{
-                console.log(err);
-            });
-
+            const playList = [...new Map(searchPlayList.map((play) => [play.play_num, play])).values()];
+            console.log(playList);
+            const filtered = playList.filter((play) => play.play_name.includes(searchItem));
+            setPlayList({play:filtered});
         }
     }
 

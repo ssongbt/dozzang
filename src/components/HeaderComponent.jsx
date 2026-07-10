@@ -93,7 +93,9 @@ const HeaderComponent = () => {
                 )
             }else{
                 return(
-                    <div>
+                    <div className="user-menu">
+                        <div className="my"><Link to="/myhome/stamp"><img className="myImg" src={my} alt="my"></img></Link></div> 
+                        <div className="plus"><Link to="/myhome/stamp/add"><img className="stampplusImg" src={stampplus} alt="plus"></img></Link></div>
                     </div>
                 )
             }

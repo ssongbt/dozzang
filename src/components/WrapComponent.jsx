@@ -103,7 +103,7 @@ const WrapComponent = () =>{
             <HeaderComponent />
             <Routes>
                 <Route path='/home' element={<Home/>} />
-                <Route path='/home/login/kakao' element={<Kakao/>} />
+                {/* <Route path='/home/login/kakao' element={<Kakao/>} /> */}
                 <Route path='/home/search/:keyword' element={<SearchList/>} />
                 <Route path='/home/search/play/:playnum' element={<SearchPlay />} />
                 <Route path='/admin' element={<Admin/>} />

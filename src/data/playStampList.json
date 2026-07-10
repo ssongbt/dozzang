@@ -1,0 +1,50 @@
+[
+  {
+    "stamp_num": 101,
+    "stamp_play_num": 1,
+    "stamp_benefit_num": 3,
+    "stamp_benefit": "40%할인권 2매",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": "",
+    "stamp_usestartdate": "2026-06-13",
+    "stamp_useenddate": "2026-08-30",
+    "stamp_memo": ""
+  },
+  {
+    "stamp_num": 102,
+    "stamp_play_num": 1,
+    "stamp_benefit_num": 7,
+    "stamp_benefit": "미니 스토리북 + 미니 실황 OST",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": "",
+    "stamp_usestartdate": "",
+    "stamp_useenddate": "",
+    "stamp_memo": "지급 전"
+  },
+  {
+    "stamp_num": 103,
+    "stamp_play_num": 2,
+    "stamp_benefit_num": 3,
+    "stamp_benefit": "40% & 50% 할인권 2종",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": null,
+    "stamp_usestartdate": "2026-08-19",
+    "stamp_useenddate": "2026-10-18",
+    "stamp_memo": ""
+  },
+  {
+    "stamp_num": 103,
+    "stamp_play_num": 2,
+    "stamp_benefit_num": 6,
+    "stamp_benefit": "미니 실황 OST",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": null,
+    "stamp_usestartdate": "",
+    "stamp_useenddate": null,
+    "stamp_memo": "지급 전"
+  }
+]
