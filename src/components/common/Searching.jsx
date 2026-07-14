@@ -2,6 +2,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import styled from 'styled-components';
 import { parseISO, format } from "date-fns";
+import searchPlayList from "../../data/searchPlayList.json";
 
 const Searching = (props) => {
 
@@ -27,18 +28,10 @@ const Searching = (props) => {
             setHaveInputValue(false);
             setPlayList([])
         }else{
-            axios({
-                url:`/api/home/search`,
-                method:'POST',
-                data : {search : searchItem}
-            })
-            .then((res)=>{
-                setPlayList({play:res.data.rows.rows});
-                // console.log(res.data.rows);
-            })
-            .catch((err)=>{
-                console.log(err);
-            });
+            const playList = [...new Map(searchPlayList.map((play) => [play.play_num, play])).values()];
+            console.log(playList);
+            const filtered = playList.filter((play) => play.play_name.includes(searchItem));
+            setPlayList({play:filtered});
 
         }
     }
@@ -107,22 +100,26 @@ const Searching = (props) => {
     )
 }
     
-const activeBorderRadius = '3px 3px 0 0'
-const inactiveBorderRadius = '3px 3px 3px 3px'
+const activeBorderRadius = '10px 10px 0 0'
+const inactiveBorderRadius = '10px'
 
 const InputBox = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 3px;
-  border: 1px solid black;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid ${props => (props.haveInputValue ? 'var(--color-primary)' : 'var(--color-border)')};
+  background-color: var(--color-surface);
   width : 100%;
-  height : 30px;
+  height : 32px;
   border-radius: ${props =>
     props.haveInputValue ? activeBorderRadius : inactiveBorderRadius};
+  transition: border-color 150ms ease, box-shadow 150ms ease;
   z-index: 3;
 
   &:focus-within {
-    // box-shadow: 0 10px 10px rgb(0, 0, 0, 0.3);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
   }
 `
 
@@ -134,35 +131,47 @@ const Input = styled.input`
   border: none;
   outline: none;
   font-size: 12px;
+  color: var(--color-ink);
 `
 
 const DeleteButton = styled.div`
-  margin-top:1.3%;
-  margin-right:1%;
+  margin-left: 4px;
   cursor: pointer;
+  color: var(--color-muted);
+  transition: color 150ms ease;
+
+  &:hover {
+    color: var(--color-primary);
+  }
 `
 const DropDownBox = styled.ul`
   display: block;
   margin: 0 auto;
-  padding: 8px 0;
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 6px 0;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-primary);
   border-top: none;
-  border-radius: 0 0 3px 3px;
-//   box-shadow: 0 10px 10px rgb(0, 0, 0, 0.3);
+  border-radius: 0 0 10px 10px;
+  box-shadow: var(--shadow-md);
   list-style-type: none;
   z-index: 3;
   font-size: 12px;
 `
 
 const DropDownItem = styled.li`
-  padding: 0 3px;
-  margin: 3px 0px;
+  padding: 6px 10px;
+  margin: 1px 0px;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+
+  &:hover {
+    background-color: var(--color-primary-soft);
+  }
 
   &.selected {
-    // background-color: lightgray;
-    color:#BA90C6;
-    font-weight:600
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    font-weight: 600;
   }
 `
 

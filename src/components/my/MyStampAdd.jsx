@@ -9,6 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from "date-fns/esm/locale";
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
+import searchPlayList from "../../data/searchPlayList.json";
 
 const MyStampAdd = () =>{
 

@@ -1,1067 +1,706 @@
 @charset "utf-8";
 @import "reset.css";
 
-$mainColor :#2a2f4f;
+// ================================================================
+// Design tokens
+// ================================================================
+:root {
+    --color-primary: #6C5DD3;
+    --color-primary-dark: #4E3FC4;
+    --color-primary-light: #EFEBFF;
+    --color-primary-soft: #F5F3FF;
+    --color-ink: #1F2138;
+    --color-ink-soft: #565973;
+    --color-muted: #9296AC;
+    --color-border: #E7E5F3;
+    --color-surface: #FFFFFF;
+    --color-bg: #F7F7FB;
+    --color-danger: #FF5C6C;
+    --color-success: #2FBF87;
+    --color-warning: #FFB020;
+
+    --shadow-sm: 0 1px 3px rgba(31, 33, 56, 0.06);
+    --shadow-md: 0 6px 20px rgba(31, 33, 56, 0.08);
+    --shadow-lg: 0 20px 48px rgba(31, 33, 56, 0.16);
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-pill: 999px;
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+
+    --font-sans: 'NEXON Lv1 Gothic OTF', 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    --transition: 150ms ease;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+button {
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+input, select, textarea {
+    font-family: inherit;
+    color: inherit;
+}
+
+::selection {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+}
+
+// ================================================================
+// Shared placeholders / mixins
+// ================================================================
+%card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition), transform var(--transition);
+}
+
+%card-hover {
+    &:hover {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+    }
+}
+
+%btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: none;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+    &:active { transform: scale(0.97); }
+}
+
+%btn-primary {
+    @extend %btn-base;
+    background: var(--color-primary);
+    color: #fff;
+    &:hover { background: var(--color-primary-dark); box-shadow: var(--shadow-md); }
+}
+
+%input-underline {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: 8px 2px;
+    background: transparent;
+    transition: border-color var(--transition);
+    &:focus { outline: none; border-color: var(--color-primary); }
+}
+
+%input-pill {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    padding: 10px 16px;
+    transition: border-color var(--transition), box-shadow var(--transition);
+    &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px var(--color-primary-light);
+    }
+}
+
+%floating-label-field {
+    padding: var(--space-2);
+    width: 100%;
+    box-sizing: border-box;
+    margin: var(--space-2) 0;
+    position: relative;
+
+    label {
+        display: inline-block;
+        position: absolute;
+        top: -8px;
+        left: 12px;
+        padding: 0 6px;
+        background: var(--color-surface);
+        font-size: 12px;
+        color: var(--color-muted);
+        font-weight: 600;
+    }
+
+    input {
+        width: 100%;
+        border: 1px solid var(--color-border) !important;
+        font-size: 1rem;
+        line-height: 1.45;
+        letter-spacing: -0.02rem;
+        border-radius: var(--radius-md);
+        padding: 14px 16px;
+        margin-top: 10px;
+        transition: border-color var(--transition), box-shadow var(--transition);
+        &:focus {
+            outline: none;
+            border-color: var(--color-primary) !important;
+            box-shadow: 0 0 0 3px var(--color-primary-light);
+        }
+    }
+
+    input[type="radio"] {
+        vertical-align: middle;
+        appearance: none;
+        border: max(2px, 0.1em) solid var(--color-muted);
+        border-radius: 50%;
+        width: 1.2em;
+        height: 1.2em;
+        &:checked { border: 0.4em solid var(--color-primary); }
+        &:hover { cursor: pointer; }
+    }
+
+    span { vertical-align: middle; }
+}
+
+%datepicker-trigger {
+    background: var(--color-surface);
+    border-radius: var(--radius-sm);
+    color: var(--color-ink);
+    cursor: pointer;
+    padding: 6px 12px;
+    margin: 5px 0;
+    border: 1px solid var(--color-border);
+    transition: border-color var(--transition);
+    &:hover { border-color: var(--color-primary); }
+}
+
+%datepicker-theme {
+    .example-custom-input { @extend %datepicker-trigger; }
+
+    .react-datepicker__calendar-icon {
+        margin-top: 3.5px;
+        position: absolute;
+        padding: 0.4rem;
+        height: 2.2em;
+        width: 2.2em;
+        color: var(--color-primary);
+    }
+    .react-datepicker {
+        font-size: 0.8rem !important;
+        border-color: var(--color-border) !important;
+        border-radius: var(--radius-md) !important;
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+    }
+    .react-datepicker__month-container {
+        .react-datepicker__input-container { display: none; }
+        .react-datepicker__header {
+            background-color: var(--color-surface);
+            border: none;
+        }
+        .month-day { font-size: 1.2em; margin: auto; font-weight: 600; }
+        .custom-day { width: 28px; height: 28px; text-align: center; border-radius: 50%; }
+        .gray-day { color: var(--color-muted); }
+        .selected-day {
+            color: #fff;
+            background: var(--color-primary);
+            border-radius: 50%;
+            font-weight: 700;
+        }
+        .btn_month.btn_month-prev { margin-right: auto; cursor: pointer; }
+        .btn_month.btn_month-next { margin-left: auto; cursor: pointer; }
+    }
+    .react-datepicker__triangle { display: none !important; }
+    .react-datepicker-popper { transform: translate3d(3px, 48px, 0px) !important; }
+}
+
+%datepicker-time-theme {
+    .example-custom-input { @extend %datepicker-trigger; width: 88px; }
+    .react-datepicker { font-size: 0.8rem !important; border-radius: var(--radius-md) !important; box-shadow: var(--shadow-md); }
+    .react-datepicker__time-container {
+        .react-datepicker__input-container { display: none; }
+        .react-datepicker__header { background-color: var(--color-surface) !important; border-bottom: none; display: none; }
+        .month-day { font-size: 1.8em; }
+        .custom-day { width: 28px; height: 28px; text-align: center; }
+        .gray-day { color: var(--color-muted); }
+        .selected-day { color: #fff; background: var(--color-primary); border-radius: 50%; font-weight: 700; }
+        .react-datepicker__time-list-item { height: 20px !important; }
+    }
+    .react-datepicker__triangle { display: none !important; }
+    .react-datepicker-popper { transform: translateX(-30%); padding-top: 0 !important; }
+}
+
+%pagination-dots {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: var(--space-5);
+    padding: 0;
+
+    li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        color: var(--color-ink-soft);
+        font-size: 13px;
+        cursor: pointer;
+        transition: background var(--transition), color var(--transition);
+        &:hover { background: var(--color-primary-light); }
+    }
+    .current {
+        background: var(--color-primary);
+        color: #fff;
+        font-weight: 600;
+    }
+}
+
+%play-card {
+    @extend %card;
+    @extend %card-hover;
+    margin-top: var(--space-5);
+    overflow: hidden;
+
+    .play {
+        padding: var(--space-5);
+        border-bottom: 1px solid var(--color-border);
+
+        .playName {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-2);
+            flex-wrap: wrap;
+            .title { color: var(--color-ink); font-size: 18px; font-weight: 700; }
+            .stampImg { height: 3.4vh; }
+            .linkImg { height: 2.6vh; }
+        }
+        .playDate { color: var(--color-ink-soft); font-size: 13px; }
+    }
+}
+
+%form-title {
+    text-align: center;
+    margin-bottom: var(--space-5);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+%form-box {
+    @extend %card;
+    margin: var(--space-3) auto 0;
+    width: 100%;
+    max-width: 360px;
+    padding: var(--space-5);
+    text-align: left;
+
+    input[type="text"], input[type="password"], input[type="email"] {
+        @extend %input-pill;
+        margin-top: var(--space-1);
+    }
+}
+
+%form-field-group {
+    margin: 0 0 var(--space-4);
+    .id, .pw, .email, .pw-ch {
+        display: block;
+        text-align: left;
+        margin-bottom: var(--space-1);
+        font-size: 13px;
+        color: var(--color-ink-soft);
+        font-weight: 600;
+    }
+}
+
+%form-submit-btn {
+    margin-top: var(--space-4);
+    a, button {
+        @extend %btn-primary;
+        display: flex;
+        width: 100%;
+        height: 44px;
+    }
+    :disabled { background: var(--color-muted); cursor: not-allowed; }
+}
+
+// ================================================================
+// App shell
+// ================================================================
 #wrap {
     width: 100vw;
     max-width: 800px;
     margin: 0 auto;
+    min-height: 100vh;
+    background: var(--color-surface);
+    position: relative;
 
-    .stampplusImg{
-        height: 6.5vh;
+    .stampplusImg { height: 28px; width: 28px; flex-shrink: 0; }
+    .myImg { height: 26px; width: 26px; flex-shrink: 0; }
 
-    }
-    .myImg{
-        height: 6vh;
-
-    }
+    // ---------------- header ----------------
     #header {
-        width:100%;
-        // background-color: #E5BEEC;
-        color: $mainColor;
-        
-        .wrap{
+        width: 100%;
+        color: var(--color-ink);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: saturate(180%) blur(8px);
+
+        .wrap {
             width: 100%;
-            .header-gap{
-                width:100%;
-                .header-wrap{
+            .header-gap {
+                width: 100%;
+                .header-wrap {
                     width: 100%;
                     display: flex;
-                    padding: 3.75%;
-                    border-bottom:2px solid $mainColor;
-                    .pre{
-                        width:25%;
-                        display:flex;
+                    align-items: center;
+                    padding: var(--space-4) var(--space-5);
+                    border-bottom: 1px solid var(--color-border);
+
+                    .pre {
+                        width: 25%;
+                        min-width: 0;
+                        display: flex;
                         margin: 0 auto 0 0;
-                        .pre-gap{
+                        .pre-gap {
                             width: 100%;
-                            .pre-wrap{
-                                display:flex;
+                            .pre-wrap {
+                                display: flex;
                                 justify-content: flex-start;
-                                p {
-                                    // padding:5px;
-                                    // border:2px solid $mainColor;
-                                    // border-radius:5px;
-                                    a {
-                                        color:$mainColor;
-                                        font-size:18px;
-                                        font-weight:600;
-                                    }
+                                p a {
+                                    color: var(--color-ink);
+                                    font-size: 16px;
+                                    font-weight: 700;
+                                    transition: color var(--transition);
+                                    &:hover { color: var(--color-primary); }
                                 }
                             }
                         }
                     }
+
                     .title {
-                        width:50%;
-                        margin:0 auto;
+                        width: 50%;
+                        min-width: 0;
+                        margin: 0 auto;
                         .title-gap {
-                            width:100%;
-                            .title-wrap {
-                                width:100%;
-                                p {
-                                    padding:0 20%;
-                                    .logo{
-                                        width:100%;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    .my{
-                        width:25%;
-                        display:flex;
-                        align-self: flex-end;
-                        padding:2px 0 0 0;
-                        margin: 0 0 0 auto;
-                        .my-gap{
                             width: 100%;
-                            margin:0 0 0 auto;
-                            .my-wrap{
-                                display:flex;
-                                justify-content: flex-end;
+                            .title-wrap {
+                                width: 100%;
                                 p {
-                                    // padding:5px;
-                                    // border:2px solid $mainColor;
-                                    // border-radius:5px;
-                                    
-                                    a {
-                                        color:$mainColor;
-                                        font-size:18px;
-                                        font-weight:600;
-                                    }
+                                    padding: 0 20%;
+                                    .logo { width: 100%; }
                                 }
-                                .user-menu{
-                                    .my{
-                                        float: left;
-                                        margin-right: 13px;
-                                    }
-                                    .plus{
-                                        float: left;
-                                    }
+                            }
+                        }
+                    }
+
+                    .my {
+                        width: 25%;
+                        min-width: 0;
+                        display: flex;
+                        align-items: center;
+                        margin: 0 0 0 auto;
+                        .my-gap {
+                            width: 100%;
+                            margin: 0 0 0 auto;
+                            .my-wrap {
+                                display: flex;
+                                align-items: center;
+                                justify-content: flex-end;
+                                p a {
+                                    color: var(--color-ink);
+                                    font-size: 16px;
+                                    font-weight: 700;
+                                    transition: color var(--transition);
+                                    &:hover { color: var(--color-primary); }
+                                }
+                                .user-menu {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: var(--space-3);
+                                    .my, .plus { float: none; }
                                 }
                             }
                         }
                     }
                 }
-               
             }
         }
     }
 
+    // ---------------- footer ----------------
     #footer {
-        position : relative;
+        position: relative;
         .wrap {
-            width:70%;
-            margin:0 auto;
+            width: 100%;
+            margin: 0 auto;
             .footer-gap {
-                padding:50px 0;
+                padding: var(--space-6) var(--space-4);
                 .footer-wrap {
-                    width:100%;
-                    p{
+                    width: 100%;
+                    p {
                         text-align: center;
+                        color: var(--color-muted);
+                        font-size: 12px;
                     }
                 }
             }
         }
     }
 
-// 어드민페이지
-    .menu{
-        width: 90%;
+    // ================================================================
+    // 어드민 페이지
+    // ================================================================
+    .menu {
+        width: 100%;
         margin: 0 auto;
-        padding:3%;
-        .admin-gap{
-            width: 100%;
-            overflow: hidden;
-            .playlist{
-                width: 25%;
-                padding: 1%;
-                float: left;
-                text-align: center;
-            }
-            .userlist{
-                width: 25%;
-                padding: 1%;
-                float: left;
-                text-align: center;
-            }
-            .adminlist{
-                width: 25%;
-                padding: 1%;
-                float: left;
-                text-align: center;
-            }
-            .noticelist{
-                width: 25%;
-                padding: 1%;
-                float: left;
-                text-align: center;
-            }
-            .on{
-                font-weight: 600;
-            }
-        }
-        .info-gap{
-            width: 100%;
-            margin-top: 3%;
-            overflow: hidden;
-            .admin-info{
-                float: right;
-            }
-        }
-        
+        padding: var(--space-4) var(--space-5);
+        border-bottom: 1px solid var(--color-border);
 
+        .admin-gap {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+
+            .playlist, .userlist, .adminlist, .noticelist {
+                flex: 1 1 auto;
+                padding: var(--space-2);
+                text-align: center;
+                border-radius: var(--radius-pill);
+                color: var(--color-ink-soft);
+                transition: background var(--transition), color var(--transition);
+                &:hover { background: var(--color-primary-light); }
+            }
+            .on { font-weight: 700; color: var(--color-primary); background: var(--color-primary-light); }
+        }
+
+        .info-gap {
+            width: 100%;
+            margin-top: var(--space-3);
+            display: flex;
+            justify-content: flex-end;
+            .admin-info { color: var(--color-muted); font-size: 13px; }
+        }
     }
 
     #playlist {
-        width:100%;
+        width: 100%;
         height: auto;
         min-height: 100%;
-        padding-bottom: 20%;
-        .wrap{
+        padding-bottom: var(--space-6);
+        .wrap {
             width: 100%;
             margin: 0 auto;
-            .playlist-gap{
-                width: 90%;
-                padding:3% 3%;
-                margin : 0 auto;
-                overflow: hidden;
-                .play-wrap{
-                    width: 100%;
-                    padding: 1% 1% 0% 1%;
-                    float: left;
-                    border-bottom: 1px dotted #333333;
-                    .play-gap{
-                        .play{
-                            .playName{
-                                width: 40%;
-                                padding: 1%;
-                                float: left;
-                                .stampImg{
-                                    height: 3.4vh;
-                                    margin-bottom : 1%;
-                                }  
-                            }
-                            
-                            .playDate{
-                                width: 50%;
-                                padding: 1%;
-                                float: left;
-                            }
-                            width: 80%;
-                            padding: 1%;
-                            float: left;
-                        }
-                        .double-btn{
-                            width: 20%;
-                            padding: 1%;
-                            float: left;
-                            .btn-gap{
-                                width: 100%;
-                                padding: 1%;
-                                float: left;
-                            }
-                            .d-btn{
-                                width: 90%;
-                                height: 120%;
-                                // float:right;
-                                font-size: 10px;
-                                color: #dddddd;
-                                background-color: #917FB3;
-                                margin: 0 auto;
-                                padding: 1%;
-                                border-radius: 5px;
-                            }
-                        }
-                    }
-                }
+            .playlist-gap {
+                width: 92%;
+                padding: var(--space-5) 0;
+                margin: 0 auto;
 
-                .pagination{
-                    float:left;
-                    width: 100%;     
-                    text-align: center; 
-                    .wrap{
+                .play-wrap {
+                    display: flex;
+                    align-items: center;
+                    padding: var(--space-4) var(--space-2);
+                    border-bottom: 1px dashed var(--color-border);
+
+                    .play-gap {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
                         width: 100%;
-                        margin-top: 5%;
-                        .page{
-                            display: inline-block;
-                            text-align: center; 
-                            float: none;
-                            li{
-                                width: 10px;
-                                text-align: center;
-                                float: left;
-                                padding: 4% 3% 3% 3%;
-                                width: 20px;
-                                height: 20px;
-                                border-radius: 50%;
+                        gap: var(--space-3);
+                        flex-wrap: wrap;
 
+                        .play {
+                            display: flex;
+                            align-items: center;
+                            gap: var(--space-4);
+                            flex: 1 1 auto;
+                            min-width: 0;
+
+                            .playName {
+                                display: flex;
+                                align-items: center;
+                                gap: var(--space-2);
+                                font-weight: 600;
+                                .stampImg { height: 3.4vh; }
                             }
-                            .current{
-                                background-color:#917FB3;
+                            .playDate { color: var(--color-ink-soft); font-size: 13px; }
+                        }
+
+                        .double-btn {
+                            display: flex;
+                            gap: var(--space-2);
+                            .btn-gap { display: flex; gap: var(--space-2); }
+                            .d-btn {
+                                @extend %btn-base;
+                                font-size: 11px;
+                                padding: 6px 10px;
                                 color: #fff;
-                                font-weight: 500;
+                                background: var(--color-primary);
+                                &:hover { background: var(--color-primary-dark); }
                             }
-
                         }
                     }
                 }
-                .search-wrap{
-                    float:left;
-                    width: 100%;     
-                    text-align: center;
-                    padding: 1%;
-                    .search-select{
-                        margin-right: 1%;
-                    }
-                    .search-select option{
-                        background-color: #2a2f4f;
-                        color: #FDF4F5;
-                    }
-                    button{
-                        margin-left: 1%;
-                        width: 45px;
-                        height: 20px;
-                        border-radius: 5%;
-                        background-color: #2a2f4f;
-                        color: #FDF4F5;
+
+                .pagination {
+                    width: 100%;
+                    .wrap {
+                        width: 100%;
+                        margin-top: var(--space-5);
+                        .page { @extend %pagination-dots; }
                     }
                 }
 
-                .btn{
-                    float: left;
-                    width: 100%;
-                    text-align: center;
-                    margin-top: 5%;
+                .search-wrap {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    gap: var(--space-2);
+                    padding: var(--space-4) 0;
+
+                    .search-select {
+                        @extend %input-pill;
+                        width: auto;
+                        padding: 6px 12px;
+                    }
+                    .search-select option {
+                        background-color: var(--color-ink);
+                        color: #fff;
+                    }
                     button {
-                        width: 80px;
-                        height: 30px;
-                        border-radius: 5%;
-                        background-color: #2a2f4f;
-                        // display :inline-block;
-                        a{
-                            color: #FDF4F5;
-                        }
+                        @extend %btn-primary;
+                        padding: 6px 14px;
+                        font-size: 12px;
                     }
                 }
 
-            }
-        }
-       
-
-    }
-
-    #addplaylist {
-        width: 100%;
-        height: auto;
-        min-height: 100%;
-        padding-bottom: 20%;
-        .wrap {
-            width: 100%;
-            margin: 0 auto;
-            .addplaylist-gap {
-                width: 80%;
-                padding:3% 3%;
-                margin : 0 auto;
-                overflow: hidden;
-                .inputbox{
-                    padding: 5px;
-                    width: 100%; 
-                    box-sizing: border-box;
-                    margin: 20px auto;
-                    position: relative;
-
-                    .inputbox label{
-                        display: inline-block;
-                        position: absolute;
-                        top: -5px;
-                        left: 14px;
-                        padding: 10px;
-                        background: white;
-                        font-size: 14px;
-                        color: #888;
-                        font-weight: bold;
-
-                    }
-                    .inputbox input{
-                        width: 100%;
-                        border: 1px solid #dddddd !important;
-                        font-size: 1rem;
-                        line-height: 1.45;
-                        letter-spacing: -0.04rem;
-                        border-radius: 8px;
-                        padding: 16px;
-                        margin-top: 12px;
-                    }
-                    input[type="text"]{
-                        width: 100%;
-                        height: 25px;
-                        border:none;
-                        border-bottom: 1px solid black;
-                    }
-                    input:focus{
-                        outline: none;
-                    }
-                    input#playCast{
-                        width: 100%;
-                    }
-                    label[for="playStamp"]{
-                        padding-right: 10px;
-                    }
-
-                    input[type="radio"]{
-                        vertical-align: middle;
-                        appearance: none;
-                        border: max(2px, 0.1em) solid gray;
-                        border-radius: 50%;
-                        width: 1.25em;
-                        height: 1.25em;
-                    }
-                    input[type="radio"]:checked {
-                        border: 0.4em solid #917FB3;
-                    }
-                      
-                    input[type="radio"]:hover {
-                        cursor: pointer;
-                    }
-
-                    span {
-                        vertical-align: middle;
-                    }
-                    
-                }
-
-                .inputbox.genre{
-                    width: 50%;
-                    float: left;
-                    padding: 7px;
-                }
-
-                .inputbox.name{
-                    width: 50%;
-                    float: left;
-                    padding: 7px;
-                }
-
-                .inputbox.start{
-                    width: 50%;
-                    float:left;
-                    .example-custom-input{
-                        background-color: white;
-                        border-radius: 3px;
-                        color: #333333;
-                        cursor: pointer;
-                        width: 155px;
-                        height: 30px;
-                        padding: 3px;
-                        margin-top:5px;
-                        margin-bottom: 5px;
-                        border: 1px solid black;
-                        padding-left :12px;
-                    }
-                    .react-datepicker__calendar-icon{
-                        margin-top: 3.5px;
-                        position: absolute;
-                        padding: 0.4rem;
-                        height: 2.2em;
-                        width: 2.2em;
-                    }
-                    .react-datepicker{
-                        font-size: 0.8rem !important;
-                    }
-                    .react-datepicker__month-container{
-                        .react-datepicker__input-container {
-                            display: none;
-                        }
-                        .react-datepicker__header{
-                            background-color: white;
-                            border: none;
-                        }
-                        .month-day{
-                            font-size: 1.2em;
-                            margin: auto;
-                        }
-                        .custom-day {
-                            width: 28px;
-                            height: 28px;
-                            // line-height: 1.5;
-                            text-align: center;
-                        }
-                        .gray-day {
-                            color: #aba8b9;
-                        }
-                        .selected-day {
-                            color:white;
-                            background: #2E1C8B;
-                            border-radius: 50%;
-                            font-weight: 700;
-                        }
-                        .btn_month.btn_month-prev{
-                            margin-right: auto;
-                        }
-                        .btn_month.btn_month-next{
-                            margin-left: auto;
-                        }
-                
-                        
-                    }
-                    .react-datepicker__triangle{
-                        display: none !important;
-                    }
-                
-                    .react-datepicker-popper{
-                        transform: translate3d(3px, 48px, 0px) !important;
-                    }
-                    
-                }
-
-                .inputbox.end{
-                    width: 50%;
-                    float:left;
-                    .example-custom-input{
-                        background-color: white;
-                        border-radius: 3px;
-                        color: #333333;
-                        cursor: pointer;
-                        width: 155px;
-                        height: 30px;
-                        padding: 3px;
-                        margin-top:5px;
-                        margin-bottom: 5px;
-                        border: 1px solid black;
-                        padding-left :12px;
-                    }
-                    .react-datepicker__calendar-icon{
-                        margin-top: 3.5px;
-                        position: absolute;
-                        padding: 0.4rem;
-                        height: 2.2em;
-                        width: 2.2em;
-                    }
-                    .react-datepicker{
-                        font-size: 0.8rem !important;
-                    }
-                    .react-datepicker__month-container{
-                        .react-datepicker__input-container {
-                            display: none;
-                        }
-                        .react-datepicker__header{
-                            background-color: white;
-                            border: none;
-                        }
-                        .month-day{
-                            font-size: 1.2em;
-                            margin: auto;
-                        }
-                        .custom-day {
-                            width: 28px;
-                            height: 28px;
-                            // line-height: 1.5;
-                            text-align: center;
-                        }
-                        .gray-day {
-                            color: #aba8b9;
-                        }
-                        .selected-day {
-                            color:white;
-                            background: #2E1C8B;
-                            border-radius: 50%;
-                            font-weight: 700;
-                        }
-                        .btn_month.btn_month-prev{
-                            margin-right: auto;
-                        }
-                        .btn_month.btn_month-next{
-                            margin-left: auto;
-                        }
-                
-                        
-                    }
-                    .react-datepicker__triangle{
-                        display: none !important;
-                    }
-                
-                    .react-datepicker-popper{
-                        transform: translate3d(3px, 48px, 0px) !important;
-                    }
-                }
-
-                .inputbox.cast{
-                    width: 100%;
-                    float: left;
-                }
-
-                .inputbox.playurl{
-                    width: 100%;
-                    float: left;
-                }
-
-                .inputbox.stamp{
-                    width: 100%;
-                    float: left;
-                }
-
-                .inputbox.firstStamp{
-                    width: 50%;
-                    float: left;
-                }
-                .inputbox.firstDouble{
-                    width: 50%;
-                    float: left;
-                }
-
-
-                .addStamp{
-                    width: 100%;
-                    overflow: hidden;
-                    .stampbox-wrap {
-                        width: 90%;
-                        float: left;
-                        margin-bottom: 6%;
-                        .inputstampbox.benefitnum{
-                            width: 20%;
-                            float: left;
-                            padding:3px;
-
-                            input[id="benefitNum"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.benefit{
-                            width: 40%;
-                            float: left;
-                            padding:3px;
-                            input[id="benefit"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.memo{
-                            width: 40%;
-                            float: left;
-                            padding:3px;
-                            input[id="memo"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.url{
-                            width: 100%;
-                            float: left;
-                            padding:3px;
-                            input[id="url"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.getstartdate{
-                            width: 25%;
-                            float: left;
-                            padding:3px;
-                            input[id="getStartDate"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.getenddate{
-                            width: 25%;
-                            float: left;
-                            padding:3px;
-                            input[id="getEndDate"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.usestartdate{
-                            width: 25%;
-                            float: left;
-                            padding:3px;
-                            input[id="useStartDate"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.useenddate{
-                            width: 25%;
-                            float: left;
-                            padding:3px;
-                            input[id="useEndDate"]{
-                                width: 100%;
-                            }
-                        } 
-                    }
-                    .stamp-btn{
-                        width: 10%;
-                        float: left;
-                        height: 100%;
-                        .s-btn{
-                            width: 15px;
-                            height: 15px;
-                            margin-top:60px;
-                            margin-left: 40%;
-                            vertical-align: center;
-                            background-color: #917FB3;
-                            color: #fff;
-                        }
-                    } 
-                }
-
-                .btn{
-                    float: left;
+                .btn {
                     width: 100%;
                     text-align: center;
-                    margin-top: 8%;
+                    margin-top: var(--space-5);
                     button {
-                        width: 80px;
-                        height: 30px;
-                        border-radius: 3%;
-                        background-color: #917FB3;
-                        margin-right: 3%;
-                        // display :inline-block;
+                        @extend %btn-primary;
+                        width: 100px;
+                        height: 36px;
+                        a { color: #fff; }
                     }
                 }
-                
             }
         }
     }
 
-    #playdetail {
+    #addplaylist, #playdetail {
         width: 100%;
         height: auto;
         min-height: 100%;
-        padding-bottom: 20%;
+        padding-bottom: var(--space-6);
         .wrap {
             width: 100%;
             margin: 0 auto;
-            .playdetail-gap {
-                width: 80%;
-                padding:3% 3%;
-                margin : 0 auto;
-                overflow: hidden;
-                .inputbox{
-                    padding: 5px;
-                    width: 100%; 
-                    box-sizing: border-box;
-                    margin: 20px auto;
-                    position: relative;
+        }
+    }
 
-                    .inputbox label{
-                        display: inline-block;
-                        position: absolute;
-                        top: -5px;
-                        left: 14px;
-                        padding: 10px;
-                        background: white;
-                        font-size: 14px;
-                        color: #888;
-                        font-weight: bold;
+    #addplaylist .wrap .addplaylist-gap,
+    #playdetail .wrap .playdetail-gap {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        gap: var(--space-2) var(--space-4);
+        width: 88%;
+        padding: var(--space-5) 0;
+        margin: 0 auto;
 
-                    }
-                    .inputbox input{
-                        width: 100%;
-                        border: 1px solid #dddddd !important;
-                        font-size: 1rem;
-                        line-height: 1.45;
-                        letter-spacing: -0.04rem;
-                        border-radius: 8px;
-                        padding: 16px;
-                        margin-top: 12px;
-                    }
-                    input[type="text"]{
-                        width: 180px;
-                        height: 25px;
-                        border:none;
-                        border-bottom: 1px solid black;
-                    }
-                    input:focus{
-                        outline: none;
-                    }
-                    input#playCast{
-                        width: 100%;
-                    }
-                    input#playUrl{
-                        width: 100%;
-                    }
-                    label[for="playStamp"]{
-                        padding-right: 10px;
-                    }
+        .inputbox { @extend %floating-label-field; }
 
-                    input[type="radio"]{
-                        vertical-align: middle;
-                        appearance: none;
-                        border: max(2px, 0.1em) solid gray;
-                        border-radius: 50%;
-                        width: 1.25em;
-                        height: 1.25em;
-                    }
-                    input[type="radio"]:checked {
-                        border: 0.4em solid #917FB3;
-                    }
-                      
-                    input[type="radio"]:hover {
-                        cursor: pointer;
-                    }
+        .inputbox.genre,
+        .inputbox.name,
+        .inputbox.start,
+        .inputbox.end,
+        .inputbox.firstStamp,
+        .inputbox.firstDouble { flex: 1 1 calc(50% - var(--space-4)); }
 
-                    span {
-                        vertical-align: middle;
-                    }
-                    
+        .inputbox.cast,
+        .inputbox.playurl,
+        .inputbox.stamp { flex: 1 1 100%; }
+
+        .inputbox.start, .inputbox.end { @extend %datepicker-theme; }
+
+        .addStamp {
+            flex: 1 1 100%;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+
+            .stampbox-wrap {
+                flex: 1 1 auto;
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--space-2);
+                margin-bottom: var(--space-4);
+
+                .inputstampbox {
+                    padding: 3px;
+                    input { @extend %input-pill; padding: 8px 12px; }
                 }
+                .inputstampbox.benefitnum { flex: 1 1 18%; }
+                .inputstampbox.benefit { flex: 1 1 36%; }
+                .inputstampbox.memo { flex: 1 1 36%; }
+                .inputstampbox.url { flex: 1 1 100%; }
+                .inputstampbox.getstartdate,
+                .inputstampbox.getenddate,
+                .inputstampbox.usestartdate,
+                .inputstampbox.useenddate { flex: 1 1 22%; }
+            }
 
-                .inputbox.genre{
-                    width: 50%;
-                    float: left;
-                    padding: 7px;
+            .stamp-btn {
+                display: flex;
+                align-items: center;
+                gap: var(--space-1);
+                .s-btn {
+                    @extend %btn-primary;
+                    width: 28px;
+                    height: 28px;
+                    padding: 0;
                 }
-
-                .inputbox.name{
-                    width: 50%;
-                    float: left;
-                    padding: 7px;
+                .e-btn {
+                    @extend %btn-base;
+                    background: var(--color-primary-light);
+                    color: var(--color-primary-dark);
+                    font-size: 11px;
+                    padding: 4px 10px;
                 }
+            }
+        }
 
-                .inputbox.start{
-                    width: 50%;
-                    float:left;
-                    .example-custom-input{
-                        background-color: white;
-                        border-radius: 3px;
-                        color: #333333;
-                        cursor: pointer;
-                        width: 155px;
-                        height: 30px;
-                        padding: 3px;
-                        margin-top:5px;
-                        margin-bottom: 5px;
-                        border: 1px solid black;
-                        padding-left :12px;
-                    }
-                    .react-datepicker__calendar-icon{
-                        margin-top: 3.5px;
-                        position: absolute;
-                        padding: 0.4rem;
-                        height: 2.2em;
-                        width: 2.2em;
-                    }
-                    .react-datepicker{
-                        font-size: 0.8rem !important;
-                    }
-                    .react-datepicker__month-container{
-                        .react-datepicker__input-container {
-                            display: none;
-                        }
-                        .react-datepicker__header{
-                            background-color: white;
-                            border: none;
-                        }
-                        .month-day{
-                            font-size: 1.2em;
-                            margin: auto;
-                        }
-                        .custom-day {
-                            width: 28px;
-                            height: 28px;
-                            // line-height: 1.5;
-                            text-align: center;
-                        }
-                        .gray-day {
-                            color: #aba8b9;
-                        }
-                        .selected-day {
-                            color:white;
-                            background: #2E1C8B;
-                            border-radius: 50%;
-                            font-weight: 700;
-                        }
-                        .btn_month.btn_month-prev{
-                            margin-right: auto;
-                        }
-                        .btn_month.btn_month-next{
-                            margin-left: auto;
-                        }
-                
-                        
-                    }
-                    .react-datepicker__triangle{
-                        display: none !important;
-                    }
-                
-                    .react-datepicker-popper{
-                        transform: translate3d(3px, 48px, 0px) !important;
-                    }
-                }
-
-                .inputbox.end{
-                    width: 50%;
-                    float:left;
-                    .example-custom-input{
-                        background-color: white;
-                        border-radius: 3px;
-                        color: #333333;
-                        cursor: pointer;
-                        width: 155px;
-                        height: 30px;
-                        padding: 3px;
-                        margin-top:5px;
-                        margin-bottom: 5px;
-                        border: 1px solid black;
-                        padding-left :12px;
-                    }
-                    .react-datepicker__calendar-icon{
-                        margin-top: 3.5px;
-                        position: absolute;
-                        padding: 0.4rem;
-                        height: 2.2em;
-                        width: 2.2em;
-                    }
-                    .react-datepicker{
-                        font-size: 0.8rem !important;
-                    }
-                    .react-datepicker__month-container{
-                        .react-datepicker__input-container {
-                            display: none;
-                        }
-                        .react-datepicker__header{
-                            background-color: white;
-                            border: none;
-                        }
-                        .month-day{
-                            font-size: 1.2em;
-                            margin: auto;
-                        }
-                        .custom-day {
-                            width: 28px;
-                            height: 28px;
-                            // line-height: 1.5;
-                            text-align: center;
-                        }
-                        .gray-day {
-                            color: #aba8b9;
-                        }
-                        .selected-day {
-                            color:white;
-                            background: #2E1C8B;
-                            border-radius: 50%;
-                            font-weight: 700;
-                        }
-                        .btn_month.btn_month-prev{
-                            margin-right: auto;
-                        }
-                        .btn_month.btn_month-next{
-                            margin-left: auto;
-                        }
-                
-                        
-                    }
-                    .react-datepicker__triangle{
-                        display: none !important;
-                    }
-                
-                    .react-datepicker-popper{
-                        transform: translate3d(3px, 48px, 0px) !important;
-                    }
-                }
-
-                .inputbox.cast{
-                    width: 100%;
-                    float: left;
-                }
-
-                .inputbox.playurl{
-                    width: 100%;
-                    float: left;
-                }
-
-                .inputbox.stamp{
-                    width: 100%;
-                    float: left;
-                }
-
-                .inputbox.firstStamp{
-                    width: 50%;
-                    float: left;
-                }
-                .inputbox.firstDouble{
-                    width: 50%;
-                    float: left;
-                }
-
-
-                .addStamp{
-                    width: 100%;
-                    overflow: hidden;
-                    .stampbox-wrap {
-                        width: 90%;
-                        float: left;
-                        margin-bottom: 6%;
-                        .inputstampbox.benefitnum{
-                            width: 20%;
-                            float: left;
-                            padding:3px;
-
-                            input[id="benefitNum"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.benefit{
-                            width: 40%;
-                            float: left;
-                            padding:3px;
-                            input[id="benefit"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.memo{
-                            width: 40%;
-                            float: left;
-                            padding:3px;
-                            input[id="memo"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.url{
-                            width: 100%;
-                            float: left;
-                            padding:3px;
-                            input[id="url"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.getstartdate{
-                            width: 25%;
-                            float: left;
-                            padding:3px;
-                            input[id="getStartDate"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.getenddate{
-                            width: 25%;
-                            float: left;
-                            padding:3px;
-                            input[id="getEndDate"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.usestartdate{
-                            width: 25%;
-                            float: left;
-                            padding:3px;
-                            input[id="useStartDate"]{
-                                width: 100%;
-                            }
-                        }
-                        .inputstampbox.useenddate{
-                            width: 25%;
-                            float: left;
-                            padding:3px;
-                            input[id="useEndDate"]{
-                                width: 100%;
-                            }
-                        } 
-                    }
-                    .stamp-btn{
-                        width: 10%;
-                        float: left;
-                        height: 100%;
-                        .e-btn{
-                            width: 100%;
-                            // margin-left: 20%;
-                            // vertical-align: center;
-                        }
-                        .e-btn.edit{
-                            margin-top: 60px;
-                            width: 50%;
-                            float: left;
-                            color: #917FB3;
-                        }
-                        .e-btn.del{
-                            margin-top: 60px;
-                            width: 50%;
-                            float: left;
-                            color: #917FB3;
-                        }
-                        .s-btn{
-                            width: 15px;
-                            height: 15px;
-                            margin-top:60px;
-                            margin-left: 40%;
-                            vertical-align: center;
-                            background-color: #917FB3;
-                            color: #fff;
-                        }
-                    } 
-                }
-
-                .btn{
-                    float: left;
-                    width: 100%;
-                    text-align: center;
-                    margin-top: 8%;
-                    button {
-                        width: 80px;
-                        height: 30px;
-                        border-radius: 3%;
-                        background-color: #917FB3;
-                        margin-right: 3%;
-                        // display :inline-block;
-                    }
-                }
-                
+        .btn {
+            flex: 1 1 100%;
+            text-align: center;
+            margin-top: var(--space-4);
+            button {
+                @extend %btn-primary;
+                width: 100px;
+                height: 38px;
+                margin: 0 var(--space-1);
             }
         }
     }
@@ -1070,788 +709,278 @@ $mainColor :#2a2f4f;
         width: 100%;
         height: auto;
         min-height: 100%;
-        padding-bottom: 20%;
-        .wrap{
+        padding-bottom: var(--space-6);
+        .wrap {
             width: 100%;
             margin: 0 auto;
-            .doubleAdd-gap{
-                width: 80%;
+            .doubleAdd-gap {
+                width: 88%;
                 margin: 0 auto;
-                .doubleAdd-wrap{
-                    margin-top: 5%;
-                    .play-title{
+
+                .doubleAdd-wrap {
+                    margin-top: var(--space-5);
+
+                    .play-title {
                         text-align: center;
+                        font-size: 18px;
+                        font-weight: 700;
                     }
-                    .doubleList{
-                        margin-top: 3%;
+
+                    .doubleList {
+                        margin-top: var(--space-4);
                         text-align: center;
-                        overflow: hidden;
-                        .cancleDouble{
-                            margin: 0 auto;
-                            width: 25%;
-                            .double-date{
-                                float: left;
-                                width: 80%;
-                                margin-bottom: 2%;
-                            }
-                            .double-btn{
-                                width: 20%;
-                                float: left;
+
+                        .cancleDouble {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: var(--space-2);
+                            margin: 0 auto var(--space-2);
+
+                            .double-date { color: var(--color-ink-soft); font-size: 13px; }
+                            .double-btn {
+                                @extend %btn-base;
+                                background: var(--color-primary-light);
+                                color: var(--color-primary-dark);
+                                padding: 4px 10px;
+                                font-size: 11px;
                             }
                         }
                     }
-                    .doublestamp-gap{
-                        // float: left;
-                        margin-top: 3%;
-                        // margin: 0 auto;
-                        .doublestamp-wrap{
-                            .doublestamp{
+
+                    .doublestamp-gap {
+                        margin-top: var(--space-4);
+
+                        .doublestamp-wrap {
+                            .doublestamp {
                                 text-align: center;
-                                
-                                .stampType{
-                                    margin-bottom: 2%;
-                                }
-                                .periodStamp{
+
+                                .stampType { margin-bottom: var(--space-2); font-weight: 600; }
+
+                                .periodStamp {
                                     margin: 0 auto;
-                                    width: 50%;
-                                    overflow: hidden;
-                                    .inputbox.start{
-                                        float: left;
-                                        width: 50%;
-                                        .example-custom-input{
-                                            background-color: white;
-                                            border-radius: 3px;
-                                            color: #333333;
-                                            cursor: pointer;
-                                            width: 155px;
-                                            height: 30px;
-                                            padding: 3px;
-                                            margin-top:5px;
-                                            margin-bottom: 5px;
-                                            border: 1px solid black;
-                                            padding-left :12px;
-                                        }
-                                        .react-datepicker__calendar-icon{
-                                            margin-top: 3.5px;
-                                            position: absolute;
-                                            padding: 0.4rem;
-                                            height: 2.2em;
-                                            width: 2.2em;
-                                        }
-                                        .react-datepicker{
-                                            font-size: 0.8rem !important;
-                                        }
-                                        .react-datepicker__month-container{
-                                            .react-datepicker__input-container {
-                                                display: none;
-                                            }
-                                            .react-datepicker__header{
-                                                background-color: white;
-                                                border: none;
-                                            }
-                                            .month-day{
-                                                font-size: 1.2em;
-                                                margin: auto;
-                                            }
-                                            .custom-day {
-                                                width: 28px;
-                                                height: 28px;
-                                                // line-height: 1.5;
-                                                text-align: center;
-                                            }
-                                            .gray-day {
-                                                color: #aba8b9;
-                                            }
-                                            .selected-day {
-                                                color:white;
-                                                background: #2E1C8B;
-                                                border-radius: 50%;
-                                                font-weight: 700;
-                                            }
-                                            .btn_month.btn_month-prev{
-                                                margin-right: auto;
-                                            }
-                                            .btn_month.btn_month-next{
-                                                margin-left: auto;
-                                            }
-                                    
-                                            
-                                        }
-                                        .react-datepicker__triangle{
-                                            display: none !important;
-                                        }
-                                    
-                                        .react-datepicker-popper{
-                                            transform: translate3d(3px, 48px, 0px) !important;
-                                        }
-                                    }
-                                    .inputbox.end{
-                                        float: left;
-                                        width: 50%;
-                                        .example-custom-input{
-                                            background-color: white;
-                                            border-radius: 3px;
-                                            color: #333333;
-                                            cursor: pointer;
-                                            width: 155px;
-                                            height: 30px;
-                                            padding: 3px;
-                                            margin-top:5px;
-                                            margin-bottom: 5px;
-                                            border: 1px solid black;
-                                            padding-left :12px;
-                                        }
-                                        .react-datepicker__calendar-icon{
-                                            margin-top: 3.5px;
-                                            position: absolute;
-                                            padding: 0.4rem;
-                                            height: 2.2em;
-                                            width: 2.2em;
-                                        }
-                                        .react-datepicker{
-                                            font-size: 0.8rem !important;
-                                        }
-                                        .react-datepicker__month-container{
-                                            .react-datepicker__input-container {
-                                                display: none;
-                                            }
-                                            .react-datepicker__header{
-                                                background-color: white;
-                                                border: none;
-                                            }
-                                            .month-day{
-                                                font-size: 1.2em;
-                                                margin: auto;
-                                            }
-                                            .custom-day {
-                                                width: 28px;
-                                                height: 28px;
-                                                // line-height: 1.5;
-                                                text-align: center;
-                                            }
-                                            .gray-day {
-                                                color: #aba8b9;
-                                            }
-                                            .selected-day {
-                                                color:white;
-                                                background: #2E1C8B;
-                                                border-radius: 50%;
-                                                font-weight: 700;
-                                            }
-                                            .btn_month.btn_month-prev{
-                                                margin-right: auto;
-                                            }
-                                            .btn_month.btn_month-next{
-                                                margin-left: auto;
-                                            }
-                                    
-                                            
-                                        }
-                                        .react-datepicker__triangle{
-                                            display: none !important;
-                                        }
-                                    
-                                        .react-datepicker-popper{
-                                            transform: translate3d(3px, 48px, 0px) !important;
-                                        }
+                                    width: 70%;
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    gap: var(--space-2);
+
+                                    .inputbox.start, .inputbox.end {
+                                        flex: 1 1 calc(50% - var(--space-2));
+                                        @extend %datepicker-theme;
                                     }
                                 }
-                                .turnStamp{
-                                    margin: 0 auto;
-                                    width: 50%;
-                                    overflow: hidden;
-                                    .addDoubleTurn{
-                                        .addDoubleStamp{
-                                            // margin-bottom: 3%;
-                                            .inputbox.date{
-                                                float: left;
-                                                width: 50%;
-                                                .example-custom-input{
-                                                    background-color: white;
-                                                    border-radius: 3px;
-                                                    color: #333333;
-                                                    cursor: pointer;
-                                                    width: 155px;
-                                                    height: 30px;
-                                                    padding: 3px;
-                                                    margin-top:5px;
-                                                    // margin-bottom: 5px;
-                                                    border: 1px solid black;
-                                                    padding-left :12px;
-                                                }
-                                                .react-datepicker__calendar-icon{
-                                                    margin-top: 3.5px;
-                                                    position: absolute;
-                                                    padding: 0.4rem;
-                                                    height: 2.2em;
-                                                    width: 2.2em;
-                                                }
-                                                .react-datepicker{
-                                                    font-size: 0.8rem !important;
-                                                }
-                                                .react-datepicker__month-container{
-                                                    .react-datepicker__input-container {
-                                                        display: none;
-                                                    }
-                                                    .react-datepicker__header{
-                                                        background-color: white;
-                                                        border: none;
-                                                    }
-                                                    .month-day{
-                                                        font-size: 1.2em;
-                                                        margin: auto;
-                                                    }
-                                                    .custom-day {
-                                                        width: 28px;
-                                                        height: 28px;
-                                                        // line-height: 1.5;
-                                                        text-align: center;
-                                                    }
-                                                    .gray-day {
-                                                        color: #aba8b9;
-                                                    }
-                                                    .selected-day {
-                                                        color:white;
-                                                        background: #2E1C8B;
-                                                        border-radius: 50%;
-                                                        font-weight: 700;
-                                                    }
-                                                    .btn_month.btn_month-prev{
-                                                        margin-right: auto;
-                                                    }
-                                                    .btn_month.btn_month-next{
-                                                        margin-left: auto;
-                                                    }
-                                            
-                                                    
-                                                }
-                                                .react-datepicker__triangle{
-                                                    display: none !important;
-                                                }
-                                            
-                                                .react-datepicker-popper{
-                                                    // transform: translate3d(60px, 263px, 0px) !important;
-                                                    transform: translateX(-30% -10%);
-                                                    padding-top: 0px !important;
-                                                }
+
+                                .turnStamp {
+                                    margin: var(--space-3) auto 0;
+                                    width: 90%;
+
+                                    .addDoubleTurn {
+                                        .addDoubleStamp {
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            flex-wrap: wrap;
+                                            gap: var(--space-2);
+                                            margin-bottom: var(--space-2);
+
+                                            .inputbox.date {
+                                                flex: 1 1 45%;
+                                                @extend %datepicker-theme;
+                                                .react-datepicker-popper { transform: translateX(-30%); padding-top: 0 !important; }
                                             }
-                                            .inputbox.time{
-                                                float: left;
-                                                width: 40%;
-                                                margin-bottom: 2%;
-                                                .example-custom-input{
-                                                    background-color: white;
-                                                    border-radius: 3px;
-                                                    color: #333333;
-                                                    cursor: pointer;
-                                                    width: 88px;
-                                                    height: 30px;
-                                                    padding: 3px;
-                                                    margin-top:5px;
-                                                    // margin-bottom: 5px;
-                                                    border: 1px solid black;
-                                                }
-                                                .react-datepicker{
-                                                    font-size: 0.8rem !important;
-                                                }
-                                                .react-datepicker__time-container {
-                                                    .react-datepicker__input-container {
-                                                        display: none;
-                                                    }
-                                                    .react-datepicker__header{
-                                                        background-color: white !important;
-                                                        border-bottom: none;
-                                                        display: none;
-                                                    }
-                                                    .month-day{
-                                                        font-size: 1.8em;
-                                                    }
-                                                    .custom-day {
-                                                        width: 28px;
-                                                        height: 28px;
-                                                        // line-height: 1.5;
-                                                        text-align: center;
-                                                    }
-                                                    .gray-day {
-                                                        color: #aba8b9;
-                                                    }
-                                                    .selected-day {
-                                                        color:white;
-                                                        background: #2E1C8B;
-                                                        border-radius: 50%;
-                                                        font-weight: 700;
-                                                    }
-                                                    .react-datepicker__time-list-item {
-                                                        height: 20px !important;
-                                                    }
-                        
-                                                }
-                                                .react-datepicker__triangle{
-                                                    display: none !important;
-                                                }
-                                            
-                                                .react-datepicker-popper{
-                                                    // transform: translate3d(10%, 30%) !important;
-                                                    transform: translateX(-30%);
-                                                    padding-top: 0px !important;
-                                                }
+                                            .inputbox.time {
+                                                flex: 1 1 35%;
+                                                @extend %datepicker-time-theme;
                                             }
-                                            .stamp-btn{
-                                                width: 10%;
-                                                float: left;
-                                                height: 100%;
-                                                .s-btn{
-                                                    width: 15px;
-                                                    height: 15px;
-                                                    margin-top:28px;
-                                                    margin-left: 5%;
-                                                    vertical-align: center;
-                                                    background-color: #917FB3;
-                                                    color: #fff;
+                                            .stamp-btn {
+                                                .s-btn {
+                                                    @extend %btn-primary;
+                                                    width: 26px;
+                                                    height: 26px;
+                                                    padding: 0;
                                                 }
                                             }
                                         }
                                     }
                                 }
-                                .save-btn{
-                                    width: 100%;
+
+                                .save-btn {
                                     text-align: center;
-                                    margin-top: 2%;
+                                    margin-top: var(--space-2);
                                     button {
-                                        width: 50px;
-                                        height: 24px;
-                                        border-radius: 3px;
-                                        background-color: #917FB3;
-                                        margin-right: 3%;
-                                        // display :inline-block;
+                                        @extend %btn-primary;
+                                        width: 64px;
+                                        height: 30px;
+                                        font-size: 13px;
                                     }
                                 }
                             }
                         }
                     }
-                    .btn{
-                        width: 100%;
+
+                    .btn {
                         text-align: center;
-                        margin-top: 8%;
+                        margin-top: var(--space-5);
                         button {
-                            width: 80px;
-                            height: 30px;
-                            border-radius: 3%;
-                            background-color: #917FB3;
-                            margin-right: 3%;
-                            // display :inline-block;
+                            @extend %btn-primary;
+                            width: 100px;
+                            height: 38px;
+                            margin: 0 var(--space-1);
                         }
                     }
-
                 }
             }
         }
     }
 
-    #login{
+    #login, #join, #admininfo {
         width: 100%;
         height: auto;
         min-height: 100%;
-        padding-bottom: 20%;
-        .wrap{
+        padding-bottom: var(--space-6);
+        .wrap {
             width: 100%;
             margin: 0 auto;
-            .login-gap{
-                width: 80%;
-                margin: 0 auto;
-                .login-wrap{
-                    margin-top: 5%;
-                    .login-title{
-                        text-align: center;
-                        margin-bottom: 5%;
-                    }
-                    .login-box{
-                        margin:0 auto;
-                        width: 60%;
-                        margin-top: 1%;
-                        text-align: center;
-                        .login-id{
-                            margin: 3%;
-                            margin-bottom: 5%;
-                            .id{
-                                text-align: left;
-                                margin-bottom: 2%;
-                            }
-                        }
-                        .login-pw{
-                            margin: 3%;
-                            margin-bottom: 1%;
-                            .pw{
-                                text-align: left;
-                                margin-bottom: 2%;
-                            }
-                        }
-                        input[type="text"]{
-                            width: 100%;
-                            border-radius: 16px;
-                            padding: 5px 10px;
-                        }
-                        input[type="password"]{
-                            width: 100%;
-                            border-radius: 16px;
-                            padding: 5px 10px;
-                        }
-                        .login-op{
-                            margin: 3% 5% 5% 5%;
-                            .save-id{
-                                float: left;
-                            }
-                            .join-btn{
-                                text-align: right;
-                            }
-                        }
-                        .btn{
-                            margin: 3%;
-                            margin-bottom: 5%;
-                            .login-btn{
-                                display:block;
-                                background-color: #2a2f4f;
-                                color: #FDF4F5;
-                                width: 100%;
-                                height: 30px;
-                                line-height: 1.6;
-                                border-radius: 16px;
-                                padding: 5px 10px;
-                                margin-top: 5%;
-                            }
-                        }
-                    }
-                }
-            }
         }
-
     }
 
-    #join{
-        width: 100%;
-        height: auto;
-        min-height: 100%;
-        padding-bottom: 20%;
-        .wrap{
-            width: 100%;
-            margin: 0 auto;
-            .join-gap{
-                width: 80%;
-                margin: 0 auto;
-                .join-wrap{
-                    margin-top: 5%;
-                    .join-title{
-                        text-align: center;
-                        margin-bottom: 5%;
-                    }
-                    .join-box{
-                        margin:0 auto;
-                        width: 60%;
-                        margin-top: 1%;
-                        text-align: center;
-                        .join-id{
-                            margin: 3%;
-                            margin-bottom: 5%;
-                            .id{
-                                text-align: left;
-                                margin-bottom: 2%;
-                            }
-                        }
-                        .join-pw{
-                            margin: 3%;
-                            margin-bottom: 5%;
-                            .pw{
-                                text-align: left;
-                                margin-bottom: 2%;
-                            }
-                        }
-                        .join-pw-ch{
-                            margin: 3%;
-                            margin-bottom: 5%;
-                            .pw-ch{
-                                text-align: left;
-                                margin-bottom: 2%;
-                            }
-                        }
-                        .join-email{
-                            margin: 3%;
-                            margin-bottom: 5%;
-                            .email{
-                                text-align: left;
-                                margin-bottom: 2%;
-                            }
-                        }
-                        input[type="text"]{
-                            width: 100%;
-                            border-radius: 16px;
-                            padding: 5px 10px;
-                        }
-                        input[type="password"]{
-                            width: 100%;
-                            border-radius: 16px;
-                            padding: 5px 10px;
-                        }
-                        input[type="email"]{
-                            width: 100%;
-                            border-radius: 16px;
-                            padding: 5px 10px;
-                        }
-                        .btn{
-                            margin: 3%;
-                            margin-bottom: 5%;
-                            .login-btn{
-                                display:block;
-                                background-color: #2a2f4f;
-                                color: #FDF4F5;
-                                width: 100%;
-                                height: 30px;
-                                line-height: 1.6;
-                                border-radius: 16px;
-                                padding: 5px 10px;
-                                margin-top: 5%;
-                            }
-                            :disabled{
-                                background-color: #888;
-                            }
-                        }
-                    }
+    #login .wrap .login-gap {
+        width: 88%;
+        margin: 0 auto;
+        .login-wrap {
+            margin-top: var(--space-6);
+            .login-title { @extend %form-title; }
+            .login-box {
+                @extend %form-box;
+                .login-id, .login-pw { @extend %form-field-group; }
+                .login-op {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin: var(--space-3) 0 var(--space-4);
+                    font-size: 12px;
+                    color: var(--color-ink-soft);
+                    .join-btn { color: var(--color-primary); font-weight: 600; }
                 }
+                .btn { @extend %form-submit-btn; }
             }
         }
+    }
 
+    #join .wrap .join-gap {
+        width: 88%;
+        margin: 0 auto;
+        .join-wrap {
+            margin-top: var(--space-6);
+            .join-title { @extend %form-title; }
+            .join-box {
+                @extend %form-box;
+                .join-id, .join-pw, .join-pw-ch, .join-email { @extend %form-field-group; }
+                .btn { @extend %form-submit-btn; }
+            }
+        }
+    }
+
+    #admininfo .wrap .admininfo-gap {
+        width: 88%;
+        margin: 0 auto;
+        .admininfo-wrap {
+            margin-top: var(--space-6);
+            .admininfo-title { @extend %form-title; }
+            .admininfo-box {
+                @extend %form-box;
+                .admininfo-id, .admininfo-pw, .admininfo-pw-ch, .admininfo-email { @extend %form-field-group; }
+                .btn { @extend %form-submit-btn; }
+            }
+        }
     }
 
     #adminlist {
-        width:100%;
+        width: 100%;
         height: auto;
         min-height: 100%;
-        padding-bottom: 20%;
-        .wrap{
+        padding-bottom: var(--space-6);
+        .wrap {
             width: 100%;
             margin: 0 auto;
-            .adminlist-gap{
-                width: 90%;
-                padding:3% 3%;
-                margin : 0 auto;
-                overflow: hidden;
-                .admin-wrap{
-                    width: 100%;
-                    padding: 1% 1% 0% 1%;
-                    float: left;
-                    border-bottom: 1px dotted #333333;
-                    .admin-gap{
-                        .admin{
-                            width: 100%;
-                            padding: 1%;
-                            float: left;
-                            .adminId{
-                                width: 30%;
-                                padding: 1%;
-                                float: left;
-                            }
-                            .adminMail{
-                                width: 45%;
-                                padding: 1%;
-                                float: left;
-                            }
-                            .adminLevel{
-                                width: 5%;
-                                padding: 1%;
-                                float: left;
-                            }
-                            .superAdmin{
-                                width: 20%;
-                                padding: 1%;
-                                float: left;
-                                .btn-gap{
-                                    width: 100%;
-                                    padding: 1%;
-                                    float: left;
-                                    .changeLevel{
-                                        width: 35px;
-                                        height: 120%;
-                                        float: left;
+            .adminlist-gap {
+                width: 92%;
+                padding: var(--space-5) 0;
+                margin: 0 auto;
+
+                .admin-wrap {
+                    padding: var(--space-3) var(--space-2);
+                    border-bottom: 1px dashed var(--color-border);
+
+                    .admin-gap {
+                        .admin {
+                            display: flex;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            gap: var(--space-2);
+
+                            .adminId { flex: 1 1 28%; font-weight: 600; }
+                            .adminMail { flex: 1 1 42%; color: var(--color-ink-soft); font-size: 13px; }
+                            .adminLevel { flex: 0 0 auto; color: var(--color-muted); font-size: 12px; }
+                            .superAdmin {
+                                flex: 1 1 auto;
+                                display: flex;
+                                justify-content: flex-end;
+
+                                .btn-gap {
+                                    display: flex;
+                                    gap: var(--space-1);
+
+                                    .changeLevel {
+                                        @extend %btn-base;
                                         font-size: 10px;
-                                        color: #dddddd;
-                                        background-color: #2a2f4f;
-                                        margin: 0 auto;
-                                        padding: 1%;
-                                        border-radius: 5px;
-                                        margin-right: 3px;
+                                        padding: 4px 8px;
+                                        color: #fff;
+                                        background: var(--color-primary);
+                                        &:hover { background: var(--color-primary-dark); }
                                     }
-                                    .delAdmin{
-                                        width: 35px;
-                                        height: 120%;
-                                        float: left;
+                                    .delAdmin {
+                                        @extend %btn-base;
                                         font-size: 10px;
-                                        color: #dddddd;
-                                        background-color: #888;
-                                        margin: 0 auto;
-                                        padding: 1%;
-                                        border-radius: 5px;
-                                        margin-right: 3px;
+                                        padding: 4px 8px;
+                                        color: #fff;
+                                        background: var(--color-muted);
+                                        &:hover { background: var(--color-ink-soft); }
                                     }
                                 }
-                                
                             }
                         }
-                        
                     }
                 }
 
-                .pagination{
-                    float:left;
-                    width: 100%;     
-                    text-align: center; 
-                    .wrap{
+                .pagination {
+                    width: 100%;
+                    .wrap {
                         width: 100%;
-                        margin-top: 5%;
-                        .page{
-                            display: inline-block;
-                            text-align: center; 
-                            float: none;
-                            li{
-                                width: 10px;
-                                text-align: center;
-                                float: left;
-                                padding: 4% 3% 3% 3%;
-                                width: 20px;
-                                height: 20px;
-                                border-radius: 50%;
-
-                            }
-                            .current{
-                                background-color:#917FB3;
-                                color: #fff;
-                                font-weight: 500;
-                            }
-
-                        }
-                    }
-                }
-
-            }
-        }
-       
-
-    }
-
-    #admininfo {
-        width:100%;
-        height: auto;
-        min-height: 100%;
-        padding-bottom: 20%;
-        .wrap{
-            width: 100%;
-            margin: 0 auto;
-            .admininfo-gap{
-                width: 80%;
-                margin: 0 auto;
-                .admininfo-wrap{
-                    margin-top: 5%;
-                    .admininfo-title{
-                        text-align: center;
-                        margin-bottom: 5%;
-                    }
-                    .admininfo-box{
-                        margin:0 auto;
-                        width: 60%;
-                        margin-top: 1%;
-                        text-align: center;
-                        .admininfo-id{
-                            margin: 3%;
-                            margin-bottom: 5%;
-                            .id{
-                                text-align: left;
-                                margin-bottom: 2%;
-                            }
-                        }
-                        .admininfo-pw{
-                            margin: 3%;
-                            margin-bottom: 5%;
-                            .pw{
-                                text-align: left;
-                                margin-bottom: 2%;
-                            }
-                        }
-                        .admininfo-pw-ch{
-                            margin: 3%;
-                            margin-bottom: 5%;
-                            .pw-ch{
-                                text-align: left;
-                                margin-bottom: 2%;
-                            }
-                        }
-                        .admininfo-email{
-                            margin: 3%;
-                            margin-bottom: 5%;
-                            .email{
-                                text-align: left;
-                                margin-bottom: 2%;
-                            }
-                        }
-                        input[type="text"]{
-                            width: 100%;
-                            border-radius: 16px;
-                            padding: 5px 10px;
-                        }
-                        input[type="password"]{
-                            width: 100%;
-                            border-radius: 16px;
-                            padding: 5px 10px;
-                        }
-                        input[type="email"]{
-                            width: 100%;
-                            border-radius: 16px;
-                            padding: 5px 10px;
-                        }
-                        .btn{
-                            margin: 3%;
-                            margin-bottom: 5%;
-                            .ch-btn{
-                                display:block;
-                                background-color: #2a2f4f;
-                                color: #FDF4F5;
-                                width: 100%;
-                                height: 30px;
-                                line-height: 1.6;
-                                border-radius: 16px;
-                                padding: 5px 10px;
-                                margin-top: 5%;
-                            }
-                            :disabled{
-                                background-color: #888;
-                            }
-                        }
+                        margin-top: var(--space-5);
+                        .page { @extend %pagination-dots; }
                     }
                 }
             }
         }
-        
     }
 
-
-// 서비스 페이지
-
+    // ================================================================
+    // 서비스 페이지
+    // ================================================================
     #home {
         width: 100%;
-        .wrap{
+        .wrap {
             width: 100%;
-            .search-gap{
-                width:100%;
-                padding:10%;
-                .search-bar{
-                    width:100%;
-                    .search-btn{
-                        font-weight:700;
-                        width: 18px;
-                    }
+            .search-gap {
+                width: 100%;
+                padding: var(--space-6) var(--space-5);
+                .search-bar {
+                    width: 100%;
+                    .search-btn { font-weight: 700; width: 18px; }
                 }
             }
-            .login-gap{
-                width: 80%;
-                margin: 0 auto;
-            }
+            .login-gap { width: 88%; margin: 0 auto; }
         }
     }
 
@@ -1859,363 +988,165 @@ $mainColor :#2a2f4f;
         width: 100%;
         height: auto;
         min-height: 100%;
-        padding-bottom: 20%;
-        .wrap{
+        padding-bottom: var(--space-6);
+        .wrap {
             width: 100%;
-            margin:0 auto;
-            .searchlist-gap{
-                width: 80%;
-                margin : 0 auto;
+            margin: 0 auto;
+            .searchlist-gap {
+                width: 88%;
+                margin: 0 auto;
                 .list-wrap {
-                    margin-top: 5%;
-                    .search-result{
+                    margin-top: var(--space-5);
+
+                    .search-result {
                         text-align: center;
-                        span{
-                            color: #917FB3;
-                            font-weight: 600;
-                        }
+                        color: var(--color-ink-soft);
+                        span { color: var(--color-primary); font-weight: 700; }
                     }
-                    .list{
-                        margin-top: 5%;
-                        border:3px solid #917FB3;
-                        border-radius: 16px;
-                        // background-color: #FDE2F3;
-                        .play{
-                            padding:3%;
-                            .playName{
-                                margin-bottom: 1%;
-                                .title{
-                                    color:$mainColor;
-                                    font-size: 20px;
-                                    font-weight: 600;
-                                }
-                                .stampImg{
-                                    height: 4vh;
-                                }
-                            }
-                            .playDate{
-                                margin-bottom: 1%;
-                            }
-                        }
-                        .stamp{
-                            padding: 0% 3% 3% 3%;
-                            .stamplist{
-                                .benefitlist{
-                                    margin-bottom: 1%;
-                                    .benefitNum{
-                                        float: left;
-                                        span{
-                                            color:$mainColor;
-                                            font-weight: 600;
-                                        }
-                                    }
-                                    .searchPlayStamp{
-                                        margin-left: 40px;
-                                        .benefit{
-                                            font-weight: 530;
-                                        }
+
+                    .list {
+                        @extend %play-card;
+
+                        .stamp {
+                            padding: 0 var(--space-5) var(--space-5);
+
+                            .stamplist {
+                                .benefitlist {
+                                    display: flex;
+                                    align-items: flex-start;
+                                    flex-wrap: wrap;
+                                    gap: var(--space-3);
+                                    padding: var(--space-2) 0;
+                                    border-top: 1px dashed var(--color-border);
+
+                                    .benefitNum span { color: var(--color-primary); font-weight: 700; }
+                                    .searchPlayStamp {
+                                        flex: 1;
+                                        .benefit { font-weight: 500; }
                                     }
                                 }
                             }
                         }
                     }
                 }
-                
             }
         }
-
     }
 
-    #searchPlay{
+    #searchPlay {
         width: 100%;
         height: auto;
         min-height: 100%;
-        padding-bottom: 20%;
-        .wrap{
+        padding-bottom: var(--space-6);
+        .wrap {
             width: 100%;
-            margin:0 auto;
-            .searchplay-gap{
-                width: 80%;
-                margin : 0 auto;
-                .playdetail{
-                        margin-top: 5%;
-                        border:3px solid #917FB3;
-                        border-radius: 16px;
-                        .play{
-                            padding:3%;
-                            .playName{
-                                .title{
-                                    color: $mainColor;
-                                    font-size: 20px;
-                                    font-weight: 600;
+            margin: 0 auto;
+            .searchplay-gap {
+                width: 88%;
+                margin: 0 auto;
+
+                .playdetail {
+                    @extend %play-card;
+
+                    .stamp {
+                        padding: 0 var(--space-5) var(--space-5);
+
+                        .benefitlist {
+                            display: flex;
+                            align-items: flex-start;
+                            flex-wrap: wrap;
+                            gap: var(--space-3);
+                            padding: var(--space-3) 0;
+                            border-top: 1px dashed var(--color-border);
+
+                            .benefitNum span { color: var(--color-primary); font-weight: 700; }
+
+                            .searchPlayStamp {
+                                flex: 1;
+                                .benefit {
+                                    margin-bottom: var(--space-1);
+                                    .benefitName {
+                                        color: var(--color-primary);
+                                        font-weight: 700;
+                                        display: flex;
+                                        align-items: center;
+                                        gap: var(--space-1);
+                                        .linkImg { height: 3vh; }
+                                    }
                                 }
-                                margin-bottom: 1%;
-                                .linkImg{
-                                    height: 3vh;
-                                }
-                                .stampImg{
-                                    height: 4vh;
-                                }
-                            }
-                            .playDate{
-                                margin-bottom: 1%;
+                                .useDate { color: var(--color-ink-soft); font-size: 13px; margin-bottom: var(--space-1); }
+                                .memo { font-size: 11px; color: var(--color-muted); }
                             }
                         }
-                        .stamp{
-                            padding: 0% 3% 3% 3%;
-                            .benefitlist{
-                                margin-bottom: 1%;
-                                .benefitNum{
-                                    float: left;
-                                    span{
-                                        color:$mainColor;
-                                        font-weight: 600;
-                                    }
-                                }
-                                .searchPlayStamp{
-                                    margin-left: 40px;
-                                    .benefit{
-                                        margin-bottom: 1%;
-                                        .benefitName{
-                                            color: #917FB3;
-                                            font-weight: 600;
-                                            .linkImg{
-                                                height: 3vh;
-                                            }
-                                        }
-                                    }
-                                    .useDate{
-                                        margin-bottom: 1%;
-                                    }
-                                    .memo{
-                                        font-size: 11px;
-                                        color:#888;
-                                    }
-                                }
-                            }
-                        
-                        }
-                    
+                    }
                 }
             }
         }
     }
 
-    #myStampAdd{
+    #myStampAdd {
         width: 100%;
         height: auto;
         min-height: 100%;
-        padding-bottom: 20%;
-        .wrap{
+        padding-bottom: var(--space-6);
+        .wrap {
             width: 100%;
-            margin:0 auto;
-            .myStampAdd-gap{
-                width: 80%;
-                margin : 0 auto;
-                margin-top: 5%;
-                .myStampAdd-wrap{
-                    padding: 2%;
-                    .myStampAdd-title{
-                        text-align: center;
-                    }
-                    label{
-                        font-weight: 600;
-                        margin-bottom: 4px;
-                        display:inline-block;
-                    }
-                    .inputbox{
-                        margin-bottom: 4%;
-                        
-                        input[id="stampMemo"]{
-                            width: 100%;
-                            height: 30px;
-                            border:none;
-                            border-bottom: 1px solid black;
-                        }
-                    }
-                    .inputbox.date{
-                        width: 100%;
-                        float: left;
-                        .date{
-                            width: 50%;
-                            float: left;
-                            .example-custom-input{
-                                background-color: white;
-                                border-radius: 3px;
-                                color: #333333;
-                                cursor: pointer;
-                                width: 155px;
-                                height: 30px;
-                                padding: 3px;
-                                margin-top:5px;
-                                // margin-bottom: 5px;
-                                border: 1px solid black;
-                                padding-left :12px;
-                            }
-                            .react-datepicker__calendar-icon{
-                                margin-top: 3.5px;
-                                position: absolute;
-                                padding: 0.4rem;
-                                height: 2.2em;
-                                width: 2.2em;
-                            }
-                            .react-datepicker{
-                                font-size: 0.8rem !important;
-                            }
-                            .react-datepicker__month-container{
-                                .react-datepicker__input-container {
-                                    display: none;
-                                }
-                                .react-datepicker__header{
-                                    background-color: white;
-                                    border: none;
-                                }
-                                .month-day{
-                                    font-size: 1.2em;
-                                    margin: auto;
-                                }
-                                .custom-day {
-                                    width: 28px;
-                                    height: 28px;
-                                    // line-height: 1.5;
-                                    text-align: center;
-                                }
-                                .gray-day {
-                                    color: #aba8b9;
-                                }
-                                .selected-day {
-                                    color:white;
-                                    background: #2E1C8B;
-                                    border-radius: 50%;
-                                    font-weight: 700;
-                                }
-                                .btn_month.btn_month-prev{
-                                    margin-right: auto;
-                                }
-                                .btn_month.btn_month-next{
-                                    margin-left: auto;
-                                }
-                        
-                                
-                            }
-                            .react-datepicker__triangle{
-                                display: none !important;
-                            }
-                        
-                            .react-datepicker-popper{
-                                // transform: translate3d(60px, 263px, 0px) !important;
-                                transform: translateX(-30% -10%);
-                                padding-top: 0px !important;
-                            }
+            margin: 0 auto;
+            .myStampAdd-gap {
+                width: 88%;
+                margin: var(--space-5) auto 0;
 
-                        }
-                        .time{
-                            width: 50%;
-                            float: left;
-                            .example-custom-input{
-                                background-color: white;
-                                border-radius: 3px;
-                                color: #333333;
-                                cursor: pointer;
-                                width: 88px;
-                                height: 30px;
-                                padding: 3px;
-                                margin-top:5px;
-                                // margin-bottom: 5px;
-                                border: 1px solid black;
-                            }
-                            .react-datepicker{
-                                font-size: 0.8rem !important;
-                            }
-                            .react-datepicker__time-container {
-                                .react-datepicker__input-container {
-                                    display: none;
-                                }
-                                .react-datepicker__header{
-                                    background-color: white !important;
-                                    border-bottom: none;
-                                    display: none;
-                                }
-                                .month-day{
-                                    font-size: 1.8em;
-                                }
-                                .custom-day {
-                                    width: 28px;
-                                    height: 28px;
-                                    // line-height: 1.5;
-                                    text-align: center;
-                                }
-                                .gray-day {
-                                    color: #aba8b9;
-                                }
-                                .selected-day {
-                                    color:white;
-                                    background: #2E1C8B;
-                                    border-radius: 50%;
-                                    font-weight: 700;
-                                }
-                                .react-datepicker__time-list-item {
-                                    height: 20px !important;
-                                }
-    
-                            }
-                            .react-datepicker__triangle{
-                                display: none !important;
-                            }
-                        
-                            .react-datepicker-popper{
-                                // transform: translate3d(10%, 30%) !important;
-                                transform: translateX(-30%);
-                                padding-top: 0px !important;
-                            }
-                        }
-                        .doubleCheck {
-                            margin-top: 12%;
-                            color: #917FB3;
-                        }
+                .myStampAdd-wrap {
+                    @extend %card;
+                    padding: var(--space-5);
+
+                    .myStampAdd-title { @extend %form-title; }
+
+                    label {
+                        font-weight: 700;
+                        margin-bottom: var(--space-1);
+                        display: inline-block;
+                        font-size: 13px;
+                        color: var(--color-ink-soft);
                     }
-                    .inputbox.stamp{
-                        float: left;
-                        width: 100%;
-                        select{
-                            border-radius: 3px;
-                            width: 30%;
-                            height:30px;
-                            -o-appearance: none;
-                            -webkit-appearance: none;
-                            -moz-appearance: none;
+
+                    .inputbox {
+                        margin-bottom: var(--space-4);
+                        input[id="stampMemo"] { @extend %input-underline; height: 34px; }
+                    }
+
+                    .inputbox.date {
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: flex-end;
+                        gap: var(--space-3);
+
+                        .date { flex: 1 1 45%; @extend %datepicker-theme; }
+                        .time { flex: 1 1 35%; @extend %datepicker-time-theme; }
+                        .doubleCheck { color: var(--color-primary); font-weight: 600; font-size: 13px; }
+                    }
+
+                    .inputbox.stamp {
+                        select {
+                            @extend %input-pill;
+                            width: auto;
+                            min-width: 120px;
+                            height: 36px;
                             appearance: none;
                         }
-                        select::-ms-expand { 
-                            display: none;
-                        }
-                        
-                        select option:disabled{
-                            width: 100%;
-                            height:30px;
-                            // background-color: black;
-                            color: #888;
-                        }
-
-                        select option:focus{
-                            background-color: #917FB3;
-                        }
+                        select::-ms-expand { display: none; }
+                        select option:disabled { color: var(--color-muted); }
+                        select option:focus { background-color: var(--color-primary); }
                     }
-                    
 
-
-                    .btn{
-                        float: left;
-                        width: 100%;
+                    .btn {
                         text-align: center;
-                        margin-top: 5%;
+                        margin-top: var(--space-5);
                         button {
-                            width: 80px;
-                            height: 30px;
-                            border-radius: 3%;
-                            background-color: #917FB3;
-                            // display :inline-block;
-                            margin-right: 3%;
+                            @extend %btn-primary;
+                            width: 90px;
+                            height: 38px;
+                            margin: 0 var(--space-1);
                         }
                     }
                 }
@@ -2223,245 +1154,166 @@ $mainColor :#2a2f4f;
         }
     }
 
-    #myStamp{
+    #myStamp {
         width: 100%;
         height: auto;
         min-height: 100%;
-        padding-bottom: 20%;
-        .wrap{
+        padding-bottom: var(--space-6);
+        .wrap {
             width: 100%;
-            margin:0 auto;
-            .myStamp-gap{
-                width: 80%;
-                margin : 0 auto;
-                margin-top: 5%;
-                .myStamp-wrap{
-                    .myInfo{
-                        margin-bottom: 5%;
-                        .my{
-                            margin-bottom: 2%;
-                            overflow: hidden;
-                                .profile-box{
-                                    width: 100px;
-                                    height: 100px; 
-                                    border-radius: 70%;
-                                    overflow: hidden;
-                                    float: left;
-                                    .profile{
-                                        width: 100%;
-                                        height: 100%;
-                                        object-fit: cover;
-                                    }
-                                }
-                                .nick{
-                                    // margin-left: 32%;
-                                    margin-top: 20%;
-                                    // vertical-align: sub;
-                                    span{
-                                        color: #917FB3;
-                                        font-weight: 600;
-                                    }
-                                }
-                        }
-                        .state{
-                            margin: 0 auto;
-                            width: 100%;
-                            overflow: hidden;
-                            border: 1px solid #FDF4F5;
-                            background-color: #FDF4F5;
-                            border-radius: 10px;
-                            padding: 3%;
-                            .now{
-                                width: 33%;
-                                float: left;
-                                text-align: center;
-                                // margin-right: 10%;
-                                border-right: 2px solid #917FB3;
-                            }
-                            .end{
-                                width: 33%;
-                                float:left;
-                                text-align: center;
-                                border-right: 2px solid #917FB3;
-                                // margin-right: 10%;
-                            }
-                            .total{
-                                width: 33%;
-                                float:left;
-                                text-align: center;
-                            }
-                            .num{
-                                font-size: 20px;
-                                font-weight: 600;
-                                color: $mainColor;
-                                margin-top: 5%;
-                            }
-                        }
+            margin: 0 auto;
+            .myStamp-gap {
+                width: 88%;
+                margin: var(--space-5) auto 0;
 
-                    }
-                    .myStampList{
-                        .myStamp{
-                            border: 2px solid #917FB3;
-                            border-radius: 10px;
-                            padding: 3%;
-                            margin-bottom: 3%;
-                            box-shadow: 6px 8px 8px -3px gray;
-                            
-                            .playName{
-                                margin-bottom: 1%;
-                                color: $mainColor;
-                                font-size: 16px;
-                                font-weight: 600;
-                            }
-                            .stamp{
-                                margin-bottom: 1%;
-                                .mymax{
-                                    font-size: 18px;
-                                    font-weight: 600;
-                                    color: $mainColor;
-                                }
-                                .max{
-                                    color: #917FB3;
-                                }
-                            }
-                            .warning{
-                                float:right;
-                                margin: -25px auto;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+                .myStamp-wrap {
+                    .myInfo {
+                        margin-bottom: var(--space-5);
 
-    #stampDetail{
-        width: 100%;
-        height: auto;
-        min-height: 100%;
-        padding-bottom: 20%;
-        .wrap{
-            width: 100%;
-            margin:0 auto;
-            .stampDetail-gap{
-                width: 80%;
-                margin : 0 auto;
-                margin-top: 5%;
-                .stampDetail-wrap{
-                    .playdetail{
-                        margin-bottom: 3%;
-                        margin-top: 5%;
-                        border:3px solid #917FB3;
-                        border-radius: 16px;
-                        box-shadow: 6px 8px 8px -3px gray;
-                        .play{
-                            padding:3%;
-                            .playName{
-                                .title{
-                                    color: $mainColor;
-                                    font-size: 20px;
-                                    font-weight: 600;
-                                }
-                                margin-bottom: 1%;
-                                .linkImg{
-                                    height: 3vh;
-                                }
-                                .stampImg{
-                                    height: 4vh;
-                                }
-                            }
-                            .playDate{
-                                margin-bottom: 1%;
-                            }
-                        }
-                        .stamplist{
-                            padding: 0% 3% 3% 3%;
-                            .stampdetail{
-                                margin-bottom: 1%;
+                        .my {
+                            display: flex;
+                            align-items: center;
+                            gap: var(--space-3);
+                            margin-bottom: var(--space-3);
+
+                            .profile-box {
+                                width: 72px;
+                                height: 72px;
+                                border-radius: 50%;
                                 overflow: hidden;
-                                .stampNum{
-                                    float: left;
-                                    width: 1%;
-                                    .num{
-                                        color:$mainColor;
-                                        font-weight: 600;
-                                    }
-                                    .max{
-                                        color: #E5BEEC;
-                                    }
+                                flex: none;
+                                box-shadow: var(--shadow-sm);
+                                .profile { width: 100%; height: 100%; object-fit: cover; }
+                            }
+                            .nick {
+                                font-size: 15px;
+                                span { color: var(--color-primary); font-weight: 700; }
+                            }
+                        }
+
+                        .state {
+                            @extend %card;
+                            display: flex;
+                            padding: var(--space-4);
+
+                            .now, .end, .total {
+                                flex: 1;
+                                text-align: center;
+                                border-right: 1px solid var(--color-border);
+                            }
+                            .total { border-right: none; }
+                            .num { font-size: 20px; font-weight: 700; color: var(--color-ink); margin-top: var(--space-1); }
+                        }
+                    }
+
+                    .myStampList {
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--space-3);
+
+                        .myStamp {
+                            @extend %card;
+                            @extend %card-hover;
+                            padding: var(--space-4);
+                            position: relative;
+
+                            .playName { margin-bottom: var(--space-1); color: var(--color-ink); font-size: 15px; font-weight: 700; }
+                            .stamp {
+                                margin-bottom: var(--space-1);
+                                .mymax { font-size: 17px; font-weight: 700; color: var(--color-ink); }
+                                .max { color: var(--color-primary); }
+                            }
+                            .warning { position: absolute; top: var(--space-3); right: var(--space-3); color: var(--color-warning); }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #stampDetail {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        padding-bottom: var(--space-6);
+        .wrap {
+            width: 100%;
+            margin: 0 auto;
+            .stampDetail-gap {
+                width: 88%;
+                margin: 0 auto;
+
+                .stampDetail-wrap {
+                    .playdetail {
+                        @extend %play-card;
+                        margin-bottom: var(--space-4);
+
+                        .stamplist {
+                            padding: 0 var(--space-5) var(--space-5);
+
+                            .stampdetail {
+                                display: flex;
+                                flex-wrap: wrap;
+                                align-items: center;
+                                gap: var(--space-2);
+                                padding: var(--space-3) 0;
+                                border-top: 1px dashed var(--color-border);
+
+                                .stampNum {
+                                    .num { color: var(--color-ink); font-weight: 700; }
+                                    .max { color: var(--color-muted); }
                                 }
-                                .stampDate{
-                                    margin-left: 4%;
-                                    // margin-bottom: 1%;
-                                    // margin-top: 2%;
-                                    color: #917FB3;
+                                .stampDate {
+                                    color: var(--color-primary);
                                     font-weight: 600;
-                                    float: left;
-                                    width: 50%;
-                                    span{
-                                        border-radius: 3px;
-                                        padding: 1px;
-                                        background-color: #917FB3;
-                                        font-size: 12px;
-                                        color: $mainColor;
+                                    font-size: 13px;
+                                    span {
+                                        border-radius: var(--radius-sm);
+                                        padding: 2px 6px;
+                                        background-color: var(--color-primary-light);
+                                        font-size: 11px;
+                                        color: var(--color-primary-dark);
+                                        margin-left: var(--space-1);
                                     }
                                 }
-                                .small-btn{
-                                    // width: 30%;
-                                    float: right;
-                                    margin-right: 5%;
-                                    .edit-btn{
-                                        text-align: right;
-                                        float: left;
-                                    }
-                                    .div-btn{
-                                        float: left;
-                                        text-align: right;
-                                    }
-                                    .del-btn{
-                                        float: left;
-                                        text-align: right;
-                                    }
-                                }
-                                .benefitdetail{
-                                    clear: both;
-                                    margin-left: 26px;
-                                    .benefit{
-                                        margin-bottom: 1%;
-                                        .getBenefit{
-                                            margin-bottom: 1%;
-                                            .benefitName{
-                                                color: $mainColor;
-                                                font-weight: 600;
-                                                .linkImg{
-                                                    height: 3vh;
-                                                }
-                                            }
-                                            .useDate{
-                                                margin-bottom: 1%;
-                                            }
-                                        }
-
-                                        
-                                        .memo{
-                                            font-size: 11px;
-                                            color:#888;
-                                        }
-                                    }
-                                    
+                                .small-btn {
+                                    display: flex;
+                                    gap: var(--space-2);
+                                    margin-left: auto;
+                                    .edit-btn, .div-btn, .del-btn { color: var(--color-ink-soft); font-size: 12px; }
                                 }
 
-                                .stampMemo{
-                                    clear: both;
-                                    margin-left: 26px;
-                                    margin-right: 5%;
-                                    padding: 1%;
-                                    background-color: #dfd5f1;
+                                .benefitdetail {
+                                    flex: 1 1 100%;
+                                    margin-left: var(--space-5);
+                                    .benefit {
+                                        margin-bottom: var(--space-1);
+                                        .getBenefit {
+                                            margin-bottom: var(--space-1);
+                                            .benefitName {
+                                                color: var(--color-ink);
+                                                font-weight: 700;
+                                                display: flex;
+                                                align-items: center;
+                                                gap: var(--space-1);
+                                                .linkImg { height: 3vh; }
+                                            }
+                                            .useDate { margin-bottom: var(--space-1); color: var(--color-ink-soft); font-size: 13px; }
+                                        }
+                                        .memo { font-size: 11px; color: var(--color-muted); }
+                                    }
+                                }
+
+                                .stampMemo {
+                                    flex: 1 1 100%;
+                                    margin-left: var(--space-5);
+                                    padding: var(--space-2);
+                                    background-color: var(--color-primary-soft);
+                                    border-radius: var(--radius-sm);
                                     font-size: 12px;
+                                    color: var(--color-ink-soft);
                                 }
-
                             }
-                        
                         }
                     }
                 }
@@ -2469,67 +1321,84 @@ $mainColor :#2a2f4f;
         }
     }
 
-    #myHome{
+    #myHome {
         width: 100%;
         height: auto;
         min-height: 100%;
-        padding-bottom: 20%;
-        .wrap{
+        padding-bottom: var(--space-6);
+        .wrap {
             width: 100%;
-            margin:0 auto;
-            .myHome-gap{
-                width: 80%;
-                margin : 0 auto;
-                margin-top: 5%;
-                .myHome-wrap{
-                    .my{
-                        margin-bottom: 2%;
-                        overflow: hidden;
-                            .profile-box{
-                                width: 100px;
-                                height: 100px; 
-                                border-radius: 70%;
-                                overflow: hidden;
-                                float: left;
-                                .profile{
-                                    width: 100%;
-                                    height: 100%;
-                                    object-fit: cover;
-                                }
-                            }
-                            .nick{
-                                // margin-left: 32%;
-                                margin-top: 20%;
-                                // vertical-align: sub;
-                                span{
-                                    color: #917FB3;
-                                    font-weight: 600;
-                                }
-                            }
-                    }
-                    .info-btn{
-                        // margin-top: 3%;
-                        overflow: hidden;
-                        margin: auto;
-                        .out-btn{
-                            float: left;
-                            width: 80px;
-                            background-color: #917FB3;
-                            padding: 1%;
-                            text-align: center;
-                            margin-right: 3%;
+            margin: 0 auto;
+            .myHome-gap {
+                width: 88%;
+                margin: var(--space-5) auto 0;
+
+                .myHome-wrap {
+                    .my {
+                        display: flex;
+                        align-items: center;
+                        gap: var(--space-3);
+                        margin-bottom: var(--space-4);
+
+                        .profile-box {
+                            width: 72px;
+                            height: 72px;
+                            border-radius: 50%;
+                            overflow: hidden;
+                            flex: none;
+                            box-shadow: var(--shadow-sm);
+                            .profile { width: 100%; height: 100%; object-fit: cover; }
                         }
-                        .del-btn{
-                            float: left;
-                            width: 80px;
-                            background-color: #917FB3;
-                            padding: 1%;
-                            text-align: center;
+                        .nick { font-size: 15px; span { color: var(--color-primary); font-weight: 700; } }
+                    }
+
+                    .info-btn {
+                        display: flex;
+                        gap: var(--space-2);
+
+                        .out-btn, .del-btn {
+                            @extend %btn-base;
+                            background: var(--color-primary-light);
+                            color: var(--color-primary-dark);
+                            padding: var(--space-2) var(--space-3);
+                            font-size: 13px;
                         }
                     }
                 }
             }
         }
     }
+}
 
+// ================================================================
+// Responsive
+// ================================================================
+@media (min-width: 801px) {
+    #wrap {
+        margin: var(--space-6) auto;
+        min-height: calc(100vh - var(--space-6) * 2);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --space-5: 18px;
+        --space-6: 24px;
+    }
+    #wrap #header .header-wrap { padding: var(--space-3) var(--space-4); }
+    #wrap #addplaylist .wrap .addplaylist-gap .inputbox.genre,
+    #wrap #addplaylist .wrap .addplaylist-gap .inputbox.name,
+    #wrap #addplaylist .wrap .addplaylist-gap .inputbox.start,
+    #wrap #addplaylist .wrap .addplaylist-gap .inputbox.end,
+    #wrap #playdetail .wrap .playdetail-gap .inputbox.genre,
+    #wrap #playdetail .wrap .playdetail-gap .inputbox.name,
+    #wrap #playdetail .wrap .playdetail-gap .inputbox.start,
+    #wrap #playdetail .wrap .playdetail-gap .inputbox.end {
+        flex-basis: 100%;
+    }
+    #wrap #myStamp .myInfo .state,
+    #wrap #adminlist .admin { flex-wrap: wrap; }
 }

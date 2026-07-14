@@ -117,8 +117,8 @@ const SearchingHome = () => {
     )
 }
     
-const activeBorderRadius = '16px 16px 0px 0px'
-const inactiveBorderRadius = '16px 16px 16px 16px'
+const activeBorderRadius = '20px 20px 0px 0px'
+const inactiveBorderRadius = '20px'
 
 const SearchBox = styled.div`
   width: 100%;
@@ -127,14 +127,19 @@ const SearchBox = styled.div`
 const InputBox = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 16px;
-  border: 3px solid #2a2f4f;
+  align-items: center;
+  padding: 14px 20px;
+  background-color: var(--color-surface);
+  border: 2px solid ${props => (props.haveInputValue ? 'var(--color-primary)' : 'var(--color-border)')};
   border-radius: ${props =>
     props.haveInputValue ? activeBorderRadius : inactiveBorderRadius};
+  box-shadow: var(--shadow-sm);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
   z-index: 3;
 
   &:focus-within {
-    border:3px solid #2a2f4f;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
   }
 `
 
@@ -146,32 +151,50 @@ const Input = styled.input`
   border: none;
   outline: none;
   font-size: 16px;
+  color: var(--color-ink);
+
+  &::placeholder {
+    color: var(--color-muted);
+  }
 `
 
 const DeleteButton = styled.div`
+  display: flex;
   cursor: pointer;
+  color: var(--color-muted);
+  transition: color 150ms ease;
+
+  &:hover {
+    color: var(--color-primary);
+  }
 `
 const DropDownBox = styled.ul`
   display: block;
   margin: 0 auto;
   padding: 8px 0;
-  background-color: white;
-  border: 3px solid #2a2f4f;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-primary);
   border-top: none;
-  border-radius: 0 0 16px 16px;
-//   box-shadow: 0 10px 10px rgb(0, 0, 0, 0.3);
+  border-radius: 0 0 20px 20px;
+  box-shadow: var(--shadow-md);
   list-style-type: none;
   z-index: 3;
 `
 
 const DropDownItem = styled.li`
-  padding: 0 16px;
-  margin: 10px 0px;
+  padding: 8px 20px;
+  margin: 2px 0px;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+
+  &:hover {
+    background-color: var(--color-primary-soft);
+  }
 
   &.selected {
-    // background-color: lightgray;
-    color:#2a2f4f;
-    font-weight:600
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    font-weight: 600;
   }
 `
 

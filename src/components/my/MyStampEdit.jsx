@@ -395,15 +395,19 @@ const MyStampEdit = () => {
 const InputBox = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 3px;
-  border: 1px solid black;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
   width : 100%;
-  height : 30px;
-  border-radius: 3px 3px 3px 3px;
+  height : 32px;
+  border-radius: 10px;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
   z-index: 3;
 
   &:focus-within {
-    // box-shadow: 0 10px 10px rgb(0, 0, 0, 0.3);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
   }
 `
 
