@@ -1127,16 +1127,54 @@ input, select, textarea {
                     }
 
                     .inputbox.stamp {
-                        select {
-                            @extend %input-pill;
-                            width: auto;
-                            min-width: 120px;
-                            height: 36px;
-                            appearance: none;
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: flex-start;
+                        gap: var(--space-3);
+
+                        .stampPlate {
+                            flex: 1 1 45%;
+                            select {
+                                @extend %input-pill;
+                                width: auto;
+                                min-width: 120px;
+                                height: 36px;
+                                appearance: none;
+                            }
+                            select::-ms-expand { display: none; }
+                            select option:disabled { color: var(--color-muted); }
+                            select option:focus { background-color: var(--color-primary); }
+
                         }
-                        select::-ms-expand { display: none; }
-                        select option:disabled { color: var(--color-muted); }
-                        select option:focus { background-color: var(--color-primary); }
+
+                        .stampCount {
+                            flex: 1 1 35%;
+
+                            .stampCount-options {
+                                display: flex;
+                                gap: var(--space-3);
+                                margin-top: 10px;
+                            }
+
+                            label {
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 4px;
+                                margin-bottom: 0;
+                                font-weight: 500;
+                                font-size: 13px;
+                                color: var(--color-ink-soft);
+                                cursor: pointer;
+                            }
+
+                            input[type="checkbox"] {
+                                width: 16px;
+                                height: 16px;
+                                accent-color: var(--color-primary);
+                                cursor: pointer;
+                            }
+                        }
+
                     }
 
                     .btn {

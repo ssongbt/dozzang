@@ -368,8 +368,34 @@ const MyStampAdd = () =>{
                             />
                         </div>
                         <div className="inputbox stamp">
-                            <label htmlFor="stamp">도장판</label>
-                            {max !== 0 ? StmapList() : ''}
+                            <div className="stampPlate">
+                                <label htmlFor="stamp">도장판</label>
+                                {max !== 0 ? StmapList() : ''}
+                            </div>
+                            <div className="stampCount">
+                                <label htmlFor="countCheck">적립체크</label>
+                                <div className="stampCount-options">
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            id="countCheck"
+                                            name="stampCount"
+                                            checked={double === 2}
+                                            onChange={(e) => setDouble(e.target.checked ? 2 : 1)}
+                                        />
+                                        더블적립
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="stampCount"
+                                            checked={double === 3}
+                                            onChange={(e) => setDouble(e.target.checked ? 3 : 1)}
+                                        />
+                                        트리플적립
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <div className="inputbox memo">
                             <label htmlFor="stampMemo">메모</label>
