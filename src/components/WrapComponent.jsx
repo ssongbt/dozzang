@@ -7,6 +7,8 @@ import AddPlayList from './admin/AddPlayList';
 import PlayDetail from './admin/PlayDetail';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
+import BottomNavComponent from './BottomNavComponent';
+import CalendarComponent from './CalendarComponent';
 import SearchList from './home/SearchList';
 import SearchPlay from './home/SearchPlay';
 import MyHome from './my/MyHome';
@@ -120,8 +122,10 @@ const WrapComponent = () =>{
                 <Route path='/myhome/stamp/add' element={<MyStampAdd/>} />
                 <Route path='/myhome/stamp/edit/:num' element={<MyStampEdit/>} />
                 <Route path='/myhome/stamp/detail/' element={<MyStampDetail/>} />
+                <Route path='/calendar' element={<CalendarComponent/>} />
             </Routes>
             <FooterComponent />
+            <BottomNavComponent />
             </CookiesProvider>
         </div>
 

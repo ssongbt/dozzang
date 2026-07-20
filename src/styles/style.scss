@@ -346,6 +346,7 @@ input, select, textarea {
     max-width: 800px;
     margin: 0 auto;
     min-height: 100vh;
+    padding-bottom: 76px;
     background: var(--color-surface);
     position: relative;
 
@@ -1404,6 +1405,67 @@ input, select, textarea {
                     }
                 }
             }
+        }
+    }
+
+    #calendar {
+        width: 100%;
+        min-height: 100%;
+        padding-bottom: var(--space-6);
+        .wrap {
+            width: 100%;
+            margin: 0 auto;
+            .calendar-gap {
+                width: 88%;
+                margin: var(--space-5) auto 0;
+                text-align: center;
+
+                .calendar-title { font-size: 20px; font-weight: 700; margin-bottom: var(--space-4); }
+                .calendar-empty {
+                    @extend %card;
+                    padding: var(--space-6) var(--space-4);
+                    color: var(--color-muted);
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+
+    .bottom-nav {
+        position: fixed;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 800px;
+        z-index: 20;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: saturate(180%) blur(8px);
+        border-top: 1px solid var(--color-border);
+        box-shadow: 0 -4px 16px rgba(31, 33, 56, 0.06);
+
+        .bottom-nav-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: var(--space-2) 0 max(var(--space-2), env(safe-area-inset-bottom));
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+            padding: var(--space-1) 0;
+            color: var(--color-muted);
+            font-size: 11px;
+            font-weight: 600;
+            transition: color var(--transition);
+
+            &:hover { color: var(--color-primary); }
+
+            &.active { color: var(--color-primary); }
         }
     }
 }
