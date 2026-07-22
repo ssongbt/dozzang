@@ -196,6 +196,7 @@ input, select, textarea {
         height: 2.2em;
         width: 2.2em;
         color: var(--color-primary);
+        pointer-events: none;
     }
     .react-datepicker {
         font-size: 0.8rem !important;
@@ -223,7 +224,6 @@ input, select, textarea {
         .btn_month.btn_month-next { margin-left: auto; cursor: pointer; }
     }
     .react-datepicker__triangle { display: none !important; }
-    .react-datepicker-popper { transform: translate3d(3px, 48px, 0px) !important; }
 }
 
 %datepicker-time-theme {

@@ -2,6 +2,9 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import { useCookies } from 'react-cookie';
 import { Link } from "react-router-dom";
+import { format } from 'date-fns';
+import searchPlayList from "../../data/searchPlayList.json";
+import { loadAllStamps } from "../../utils/stampStorage";
 
 const MyStamp = () => {
 
@@ -19,22 +22,58 @@ const MyStamp = () => {
     const [userImg, setUserImg] = useState(localStorage.getItem('userImg'));
 
     const getStampList = () =>{
-        axios({
-            url:'/api/myhome/stamp',
-            method:'GET'
-        })
-        .then((res)=>{
-            setNowStampList(res.data.nowRows);
-            setNowMyCount(res.data.nowMyCount);
-            setEndStampList(res.data.endRows);
-            setEndMyCount(res.data.endMyCount);
-            setTotalStampList(res.data.totalRows);
-            setTotalMyCount(res.data.totalMyCount);
-            console.log(res.data.nowRows);
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+        const all = loadAllStamps();
+        const today = format(new Date(),'yyyy-MM-dd');
+        const now = [];
+        const end = [];
+        const total = [];
+console.log(all);
+        Object.keys(all).forEach((playNum) => {
+            const play = searchPlayList.find((p) => p.play_num === Number(playNum));
+            if(!play){
+                return;
+            }
+            all[playNum].forEach((card) => {
+                const row = {
+                    stamp_play_num: play.play_num,
+                    play_name: play.play_name,
+                    play_genre: play.play_genre,
+                    coalesce: card.coalesce,
+                    nomal: card.nomal,
+                    double: card.double,
+                    max: play.play_stamp,
+                };
+                total.push(row);
+                if(!play.play_end || play.play_end >= today){
+                    now.push(row);
+                }else{
+                    end.push(row);
+                }
+            });
+        });
+
+        setNowStampList(now);
+        setNowMyCount(now.length);
+        setEndStampList(end);
+        setEndMyCount(end.length);
+        setTotalStampList(total);
+        setTotalMyCount(total.length);
+        // axios({
+        //     url:'/api/myhome/stamp',
+        //     method:'GET'
+        // })
+        // .then((res)=>{
+        //     setNowStampList(res.data.nowRows);
+        //     setNowMyCount(res.data.nowMyCount);
+        //     setEndStampList(res.data.endRows);
+        //     setEndMyCount(res.data.endMyCount);
+        //     setTotalStampList(res.data.totalRows);
+        //     setTotalMyCount(res.data.totalMyCount);
+        //     console.log(res.data.nowRows);
+        // })
+        // .catch((err)=>{
+        //     console.log(err);
+        // })
     }
 
     useEffect(()=>{

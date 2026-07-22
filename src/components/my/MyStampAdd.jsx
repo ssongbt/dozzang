@@ -10,6 +10,7 @@ import { ko } from "date-fns/esm/locale";
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
 import searchPlayList from "../../data/searchPlayList.json";
+import { loadAllStamps, saveStamp } from "../../utils/stampStorage";
 
 const MyStampAdd = () =>{
 
@@ -39,8 +40,8 @@ const MyStampAdd = () =>{
 
     useEffect(()=>{
         if(playNum){
-            getStampList();
-            StmapList();
+            getStampList(playNum);
+            StampList();
         }
         return () =>{
             // setPlayNum('');
@@ -64,29 +65,39 @@ const MyStampAdd = () =>{
         console.log("메모",stampMemo);
     }
 
-    const getStampList = () =>{
-        axios({
-            url:`/api/myhome/stamp/add/${playNum}`,
-            method:'POST'
-        })
-        .then((res)=>{
-            console.log(res.data);
-            setStartDate(res.data.start ? format(parseISO(res.data.start),'yyyy-MM-dd') : '');
-            setEndDate(res.data.end ? format(parseISO(res.data.end),'yyyy-MM-dd') : '');
-            setMax(res.data.max);
-            setFirstDouble(res.data.firstdouble);
-            // setHasStamp(res.data.stamp);
-            // console.log("startdate",startDate);
-            // console.log("도장판있는지확인하는거", max);
-            // console.log(format(parseISO(res.data.start),'yyyy-MM-dd'));
-            if(res.data.stamp !== 0){
-                setStamps(res.data.stamp);
-                console.log("stamps",stamps);
-            }
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+    const getStampList = (playNum) =>{
+        const play = searchPlayList.find((p) => p.play_num === Number(playNum));
+        if(!play){
+            return;
+        }
+        setStartDate(play.play_start ? format(parseISO(play.play_start),'yyyy-MM-dd') : '');
+        setEndDate(play.play_end ? format(parseISO(play.play_end),'yyyy-MM-dd') : '');
+        setMax(play.play_stamp);
+        setFirstDouble(play.play_firststamp);
+        setStamps(loadAllStamps()[playNum] || []);
+        // axios({
+        //     url:`/api/myhome/stamp/add/${playNum}`,
+        //     method:'POST'
+        // })
+        // .then((res)=>{
+        //     console.log(res.data);
+        //     setStartDate(res.data.start ? format(parseISO(res.data.start),'yyyy-MM-dd') : '');
+        //     setEndDate(res.data.end ? format(parseISO(res.data.end),'yyyy-MM-dd') : '');
+        //     setMax(res.data.max);
+        //     setFirstDouble(res.data.firstdouble);
+        //     // setHasStamp(res.data.stamp);
+        //     // console.log("startdate",startDate);
+        //     // console.log("도장판있는지확인하는거", max);
+        //     // console.log(format(parseISO(res.data.start),'yyyy-MM-dd'));
+        //     if(res.data.stamp !== 0){
+        //         setStamps(res.data.stamp);
+        //         console.log("stamps",stamps);
+        //     }
+        // })
+        // .catch((err)=>{
+        //     console.log(err);
+        // })
+
     }
 
     const getStampCnt = () =>{
@@ -118,7 +129,7 @@ const MyStampAdd = () =>{
 
 
     // console.log(stampCnt);
-    const StmapList = () => {
+    const StampList = () => {
         // console.log(stamps);
         if(stamps.length === 0){
             // console.log("도장처음");
@@ -176,7 +187,7 @@ const MyStampAdd = () =>{
             window.alert("공연 시간을 입력해주세요");
             return false;
         }
-        if(stampMemo.length>200){
+        if(stampMemo && stampMemo.length>200){
             window.alert("메모는 200자를 초과할 수 없습니다.");
             return false;
         }
@@ -200,20 +211,24 @@ const MyStampAdd = () =>{
             stampMemo : stampMemo,
             doubleStamp : double2
         }
-
-        await axios({
-            url:"/api/myhome/stamp/add",
-            method:"POST",
-            data: data
-        })
-        .then(()=>{
-            alert("저장되었습니다");
-            window.location.replace("/myhome/stamp");
-        })
-        .catch((err)=>{
-            alert(err);
-            console.log(err);
-        })
+        console.log("콘솔");
+console.log(data);
+        saveStamp(playNum, stampCnt, double2, data);
+        window.alert("저장되었습니다");
+        window.location.replace("/myhome/stamp");
+        // await axios({
+        //     url:"/api/myhome/stamp/add",
+        //     method:"POST",
+        //     data: data
+        // })
+        // .then(()=>{
+        //     alert("저장되었습니다");
+        //     window.location.replace("/myhome/stamp");
+        // })
+        // .catch((err)=>{
+        //     alert(err);
+        //     console.log(err);
+        // })
 
 
     }
@@ -223,8 +238,8 @@ const MyStampAdd = () =>{
         // console.log("체크더블스탬프double",double);
     }
 
-    const firstDoubleStmap = () =>{
-        // console.log("첫발급더블cnt",stampCnt);
+    const firstDoubleStamp = () =>{
+        console.log("첫발급더블cnt",stampCnt);
         // console.log("첫발급더블",firstDouble);
         if(stamps.length === 0 && firstDouble === 2){
             return(
@@ -363,14 +378,14 @@ const MyStampAdd = () =>{
                             {max === 0 ?
                             <div> 도장이 없는 공연입니다. </div>
                             :''}
-                            {firstDoubleStmap()}
+                            {firstDoubleStamp()}
                             <DoubleCheck stampDate={playDate?playDate:new Date()} stampTime={playTime} playNum={playNum} chkDoubleStamp={chkDoubleStamp}
                             />
                         </div>
                         <div className="inputbox stamp">
                             <div className="stampPlate">
                                 <label htmlFor="stamp">도장판</label>
-                                {max !== 0 ? StmapList() : ''}
+                                {max !== 0 ? StampList() : ''}
                             </div>
                             <div className="stampCount">
                                 <label htmlFor="countCheck">적립체크</label>
