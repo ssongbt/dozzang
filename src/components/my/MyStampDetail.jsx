@@ -5,6 +5,8 @@ import { parseISO, format } from "date-fns";
 import { Link45deg, PatchPlusFill } from "react-bootstrap-icons";
 import BenefitCheck from "./BenefitCheck";
 import Linkimg from "../../assets/free-icon-link-2089782.png";
+import searchPlayList from "../../data/searchPlayList.json";
+import { loadAllStamps } from "../../utils/stampStorage";
 
 const MyStampDetail = () => {
 
@@ -23,26 +25,40 @@ const MyStampDetail = () => {
     const getDetail = () =>{
         const playNum = detailParams.get('playNum');
         const stampNum = detailParams.get('stampNum');
-        axios({
-            url:`/api/myhome/stamp/detail?playNum=${playNum}&stampNum=${stampNum}`,
-            method:'GET'
-        })
-        .then((res)=>{
-            setDetailList(res.data.rows);
-            setPlayName(res.data.play.play_name);
-            setPlayGenre(res.data.play.play_genre);
-            setPlayStart(res.data.play.play_start);
-            setPlayEnd(res.data.play.play_end);
-            setPlayCast(res.data.play.play_cast);
-            setPlayUrl(res.data.play.play_url);
-            setPlayFirstStamp(res.data.play.play_firststamp);
-            setPlayFirstDouble(res.data.play.play_firstdouble);
-            setMax(res.data.play.max);
-            console.log(res.data.play);
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+
+        const play = searchPlayList.find((p) => p.play_num === Number(playNum));
+        if(!play){
+            return;
+        }
+        setPlayName(play.play_name);
+        setPlayGenre(play.play_genre);
+        setPlayStart(play.play_start);
+        setPlayEnd(play.play_end);
+        setPlayCast(play.play_cast);
+        setPlayUrl(play.play_url);
+        setPlayFirstStamp(play.play_firststamp);
+        setPlayFirstDouble(play.play_firststamp);
+        setMax(play.play_stamp);
+
+        const cards = loadAllStamps()[playNum] || [];
+        const card = cards.find((c) => Number(c.coalesce) === Number(stampNum));
+        const records = card && card.records ? card.records : [];
+
+        let sum = 0;
+        const rows = records.map((record, index) => {
+            sum += Number(record.doubleStamp) || 1;
+            return {
+                idx: index,
+                ustamp_num: index,
+                sum,
+                ustamp_play_date: record.playDate,
+                ustamp_play_time: record.playTime,
+                ustamp_double: record.doubleStamp,
+                ustamp_memo: record.stampMemo,
+            };
+        });
+
+        setDetailList(rows);
     }
 
     const startDate = playStart ? format(parseISO(playStart),'yyyy-MM-dd') : "미정";

@@ -23,6 +23,7 @@ const MyStampAdd = () =>{
     const [double, setDouble] = useState(1);
     const [stampMemo, setStampMemo]  = useState();
     const [hasStamp, setHasStamp] = useState();
+    const [firstStampCnt, setFirstStampCnt] = useState();
     // const [userStamp, setUserStamp] = useState({
     //     // playNum:'',
     //     // playDate:'',
@@ -32,6 +33,8 @@ const MyStampAdd = () =>{
     // })
 
     const [stampCnt, setStampCnt] = useState();
+
+    const isNewCardSelected = stamps.length === 0 || Number(stampCnt) === stamps.length + 1;
 
     function getPlayNum(e) {
         // console.log("전달된 공연번호",e);
@@ -127,12 +130,19 @@ const MyStampAdd = () =>{
         }
     },[stamps]);
 
+    useEffect(()=>{
+        if(isNewCardSelected && firstDouble !== 1){
+            setFirstStampCnt(firstDouble);
+        }
+        console.log("머야",stamps);
+    },[stamps, stampCnt, firstDouble, isNewCardSelected]);
+
 
     // console.log(stampCnt);
     const StampList = () => {
         // console.log(stamps);
         if(stamps.length === 0){
-            // console.log("도장처음");
+            console.log("도장처음");
             return(
                 <div className="stamp">
                     <select defaultValue="0" name="stampCnt">
@@ -141,9 +151,9 @@ const MyStampAdd = () =>{
                 </div>
             )
         }else{
-            // console.log("도장판존재");
+            console.log("도장판존재");
             const size = stamps.length;
-
+console.log(stamps);
             // console.log(max);
             // console.log(size);
             // console.log(stamps[Number(size-1)].coalesce);
@@ -191,10 +201,10 @@ const MyStampAdd = () =>{
             window.alert("메모는 200자를 초과할 수 없습니다.");
             return false;
         }
-        // console.log("addstamp",double);
+        console.log("firstDouble",firstDouble);
         //첫적립 이고 첫적립이 더블적립일 경우
         let double2 = double ? double : 1;
-        if(stamps.length === 0 && firstDouble === 2){
+        if(isNewCardSelected && firstDouble === 2){
             setStampCnt(stampCnt+1);
             double2 = double2 +1;
             // console.log("첫적립더블",double2);
@@ -241,7 +251,7 @@ console.log(data);
     const firstDoubleStamp = () =>{
         console.log("첫발급더블cnt",stampCnt);
         // console.log("첫발급더블",firstDouble);
-        if(stamps.length === 0 && firstDouble === 2){
+        if(isNewCardSelected && firstDouble !== 1){
             return(
                 <div>
                     첫발급 더블적립
@@ -395,7 +405,7 @@ console.log(data);
                                             type="checkbox"
                                             id="countCheck"
                                             name="stampCount"
-                                            checked={double === 2}
+                                            checked={double === 2 || firstStampCnt === 2 }
                                             onChange={(e) => setDouble(e.target.checked ? 2 : 1)}
                                         />
                                         더블적립
@@ -404,7 +414,7 @@ console.log(data);
                                         <input
                                             type="checkbox"
                                             name="stampCount"
-                                            checked={double === 3}
+                                            checked={double === 3 || firstStampCnt === 3 }
                                             onChange={(e) => setDouble(e.target.checked ? 3 : 1)}
                                         />
                                         트리플적립
