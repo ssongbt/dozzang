@@ -17,7 +17,7 @@
     --color-bg: #F7F7FB;
     --color-danger: #FF5C6C;
     --color-success: #2FBF87;
-    --color-warning: #FFB020;
+    --color-warning: #b9b4da;
 
     --shadow-sm: 0 1px 3px rgba(31, 33, 56, 0.06);
     --shadow-md: 0 6px 20px rgba(31, 33, 56, 0.08);
@@ -1252,17 +1252,80 @@ input, select, textarea {
 
                         .myStamp {
                             @extend %card;
-                            @extend %card-hover;
                             padding: var(--space-4);
                             position: relative;
 
-                            .playName { margin-bottom: var(--space-1); color: var(--color-ink); font-size: 15px; font-weight: 700; }
-                            .stamp {
-                                margin-bottom: var(--space-1);
-                                .mymax { font-size: 17px; font-weight: 700; color: var(--color-ink); }
-                                .max { color: var(--color-primary); }
+                            .stampTop {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: baseline;
+                                gap: var(--space-2);
+                                margin-bottom: var(--space-2);
+
+                                .playName { 
+                                    color: var(--color-ink); font-size: 15px; font-weight: 700; 
+                                    .stampCoalesce { font-size: 12px; font-weight: 500; }
+                                }
+                                .stampCount {
+                                    flex: 0 0 auto;
+                                    white-space: nowrap;
+                                    .mymax { font-size: 17px; font-weight: 700; color: var(--color-ink); }
+                                    .max { color: var(--color-primary); }
+                                }
                             }
-                            .warning { position: absolute; top: var(--space-3); right: var(--space-3); color: var(--color-warning); }
+
+                            .stampIcons {
+                                display: grid;
+                                grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+                                gap: var(--space-3);
+
+                                .stampIcon-cell {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    gap: 2px;
+                                    position: relative;
+
+                                    &.clickable {
+                                        cursor: pointer;
+                                        transition: transform var(--transition);
+                                        &:hover { transform: translateY(-2px); }
+                                    }
+
+                                    .benefitBadge {
+                                        position: absolute;
+                                        top: -8px;
+                                        right: -4px;
+                                        font-size: 12px;
+                                        line-height: 1;
+                                    }
+
+                                    .stampIcon {
+                                        width: 100%;
+                                        aspect-ratio: 1 / 1;
+                                        background-color: var(--color-border);
+                                        -webkit-mask-image: url(../assets/dozzang_logo.png);
+                                        mask-image: url(../assets/dozzang_logo.png);
+                                        -webkit-mask-size: contain;
+                                        mask-size: contain;
+                                        -webkit-mask-repeat: no-repeat;
+                                        mask-repeat: no-repeat;
+                                        -webkit-mask-position: center;
+                                        mask-position: center;
+
+                                        &.filled { background-color: var(--color-primary); }
+                                        &.upcoming { background-color: var(--color-warning); }
+                                    }
+
+                                    .stampIconLabel {
+                                        font-size: 9px;
+                                        color: var(--color-muted);
+                                        text-align: center;
+                                        line-height: 1.2;
+                                    }
+                                }
+                            }
+                            .warning { position: absolute; bottom: var(--space-3); right: var(--space-3); color: var(--color-warning); }
                         }
                     }
                 }

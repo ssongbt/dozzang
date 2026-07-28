@@ -2,9 +2,83 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import { useCookies } from 'react-cookie';
 import { Link } from "react-router-dom";
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import searchPlayList from "../../data/searchPlayList.json";
+import playStampList from "../../data/playStampList.json";
 import { loadAllStamps } from "../../utils/stampStorage";
+
+const formatDotLabel = (date, time) => {
+    if(!date){
+        return '';
+    }
+    const md = format(parseISO(date),'MM/dd');
+    if(!time){
+        return md;
+    }
+    const hour24 = Number(time.substring(0,2));
+    const ampm = hour24 >= 12 ? 'pm' : 'am';
+    const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
+    return `${md} ${hour12}${ampm}`;
+}
+
+const editStamp = (num) =>{
+    window.location.href=`/myhome/stamp/edit/${num}`;
+}
+
+const buildStampDots = (row) => {
+    const today = format(new Date(),'yyyy-MM-dd');
+    const indexedRecords = (row.records || []).map((record, recordIndex) => ({ record, recordIndex }));
+    indexedRecords.sort((a, b) => {
+        const dateCompare = (a.record.playDate || '').localeCompare(b.record.playDate || '');
+        if(dateCompare !== 0){
+            return dateCompare;
+        }
+        return (a.record.playTime || '').localeCompare(b.record.playTime || '');
+    });
+    const visits = [];
+    indexedRecords.forEach(({ record, recordIndex }) => {
+        const weight = Number(record.doubleStamp) || 1;
+        for(let i=0; i<weight; i++){
+            visits.push({ date: record.playDate, time: record.playTime, recordIndex });
+        }
+    });
+    const total = Math.max(Number(row.max) || 0, visits.length);
+    return Array.from({ length: total }, (_, i) => {
+        const round = i + 1;
+        const visit = visits[i];
+        const hasBenefit = playStampList.some((s) => s.stamp_play_num === row.stamp_play_num && Number(s.stamp_benefit_num) === round);
+        return {
+            filled: Boolean(visit),
+            date: visit ? visit.date : null,
+            time: visit ? visit.time : null,
+            recordIndex: visit ? visit.recordIndex : null,
+            benefit: hasBenefit,
+            upcoming: Boolean(visit && visit.date && visit.date > today),
+        };
+    });
+}
+
+const StampDots = ({ row }) => {
+    const dots = buildStampDots(row);
+    return(
+        <div className="stampIcons">
+            {dots.map((dot, i) => (
+                <div
+                    className={`stampIcon-cell ${dot.filled ? 'clickable' : ''}`}
+                    key={i}
+                    onClick={dot.filled ? () => editStamp(`${row.stamp_play_num}-${row.coalesce}-${dot.recordIndex}`) : undefined}
+                >
+                    {dot.benefit ? <span className="benefitBadge" title="혜택 회차">🎁</span> : ''}
+                    <span className={`stampIcon ${dot.filled ? 'filled' : ''} ${dot.upcoming ? 'upcoming' : ''}`} />
+                    <span className="stampIconLabel">
+                        {dot.filled ? formatDotLabel(dot.date, dot.time) : ''}
+                        {dot.upcoming ? ' 예정' : ''}
+                    </span>
+                </div>
+            ))}
+        </div>
+    )
+}
 
 const MyStamp = () => {
 
@@ -27,7 +101,7 @@ const MyStamp = () => {
         const now = [];
         const end = [];
         const total = [];
-console.log(all);
+
         Object.keys(all).forEach((playNum) => {
             const play = searchPlayList.find((p) => p.play_num === Number(playNum));
             if(!play){
@@ -42,6 +116,7 @@ console.log(all);
                     nomal: card.nomal,
                     double: card.double,
                     max: play.play_stamp,
+                    records: card.records || [],
                 };
                 total.push(row);
                 if(!play.play_end || play.play_end >= today){
@@ -83,11 +158,13 @@ console.log(all);
 
     },[])
 
-    const viewDetail = (playNum, stampNum) => {
-        console.log(playNum);
-        console.log(stampNum);
-        window.location.href = `/myhome/stamp/detail?playNum=${playNum}&stampNum=${stampNum}`;
-    }
+    // const viewDetail = (playNum, stampNum) => {
+    //     // console.log(playNum);
+    //     // console.log(stampNum);
+    //     window.location.href = `/myhome/stamp/detail?playNum=${playNum}&stampNum=${stampNum}`;
+    // }
+
+    
 
     const changeStamp = (state) => {
         setStampState(state);
@@ -133,53 +210,31 @@ console.log(all);
         }
     }
 
-    const nowList = nowStampList && nowStampList.map((list, index)=>{
+    const renderStampCard = (list, index) => {
+        const mySum = Number(list.nomal) + Number(list.double*2);
         return(
-            <div className="myStamp" key={index} onClick={()=>viewDetail(list.stamp_play_num, list.coalesce)}>
-                <div className="playName">
-                {list.play_genre} &lt;{list.play_name}&gt;
+            <div className="myStamp" key={index}>
+                <div className="stampTop">
+                    <div className="playName">
+                    {list.play_genre} &lt;{list.play_name}&gt; <span className="stampCoalesce">도장판{list.coalesce}</span>
+                    </div>
+                    <div className="stampCount">
+                        <span className="mymax">{mySum}</span><span className="max"> /{list.max}</span>
+                    </div>
                 </div>
-                <div className="stamp">
-                    <span className="mymax">{Number(list.nomal) + Number(list.double*2)}</span><span className="max"> /{list.max}</span>
-                </div>
+                <StampDots row={list} />
                 <div className="warning">
-                    {Number(list.nomal) + Number(list.double*2)>list.max ? '❗❗수정필요':''}
+                    {mySum>list.max ? '❗❗수정필요':''}
                 </div>
             </div>
         )
-    })
+    }
 
-    const endList = endStampList && endStampList.map((list, index)=>{
-        return(
-            <div className="myStamp" key={index} onClick={()=>viewDetail(list.stamp_play_num, list.coalesce)}>
-                <div className="playName">
-                {list.play_genre} &lt;{list.play_name}&gt;
-                </div>
-                <div className="stamp">
-                    <span className="mymax">{Number(list.nomal) + Number(list.double*2)}</span><span className="max"> /{list.max}</span>
-                </div>
-                <div className="warning">
-                    {Number(list.nomal) + Number(list.double*2)>list.max ? '❗❗수정필요':''}
-                </div>
-            </div>
-        )
-    })
+    const nowList = nowStampList && nowStampList.map(renderStampCard)
 
-    const totalList = totalStampList && totalStampList.map((list, index)=>{
-        return(
-            <div className="myStamp" key={index} onClick={()=>viewDetail(list.stamp_play_num, list.coalesce)}>
-                <div className="playName">
-                {list.play_genre} &lt;{list.play_name}&gt;
-                </div>
-                <div className="stamp">
-                    <span className="mymax">{Number(list.nomal) + Number(list.double*2)}</span><span className="max"> /{list.max}</span>
-                </div>
-                <div className="warning">
-                    {Number(list.nomal) + Number(list.double*2)>list.max ? '❗❗수정필요':''}
-                </div>
-            </div>
-        )
-    })
+    const endList = endStampList && endStampList.map(renderStampCard)
+
+    const totalList = totalStampList && totalStampList.map(renderStampCard)
 
     return(
         <div id="myStamp">

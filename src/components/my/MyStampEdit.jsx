@@ -1,144 +1,74 @@
-import axios from "axios";
 import {useEffect, useState, forwardRef} from "react";
 import {Link, useParams} from 'react-router-dom';
-import Searching from '../common/Searching';
-import { format, parseISO, add } from 'date-fns';
-import DoubleCheck from "./DoubleCheck";
+import { format, parseISO } from 'date-fns';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from "date-fns/esm/locale";
 import getYear from "date-fns/getYear";
 import styled from 'styled-components';
+import searchPlayList from "../../data/searchPlayList.json";
+import { loadAllStamps, saveStamp, updateStamp, removeStamp } from "../../utils/stampStorage";
 
 const MyStampEdit = () => {
 
     const [stamps, setStamps] = useState([]);
     const [playNum, setPlayNum] = useState();
+    const [coalesce, setCoalesce] = useState();
+    const [recordIndex, setRecordIndex] = useState();
     const [playTitle, setPlayTitle] = useState();
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
-    const [memo, setMemo] = useState();
     const [max, setMax] = useState();
-    const [firstDouble, setFirstDouble] = useState();
-    const [double, setDouble] = useState();
-    const [userStamp, setUserStamp] = useState({
-        // playNum:'',
-        // playDate:'',
-        // playTime:'',
-        // stampCnt:'',
-        stampMemo:''
-    })
+    const [double, setDouble] = useState(1);
+    const [stampMemo, setStampMemo] = useState('');
+    const [stampCnt, setStampCnt] = useState();
 
     const [playDate, setPlayDate] = useState(null);
     const [playTime, setPlayTime] = useState(null);
     const [month, setMonth] = useState(new Date().getMonth());
 
-
     let params = useParams();
-    console.log(params);
-
-    const [stampCnt, setStampCnt] = useState();
-
-    const date = "1000-01-01T15:00:00.000Z";
-
-    function getPlayNum(e) {
-        console.log("전달된 공연번호",e);
-        setPlayNum(e);
-    }
-
-    useEffect(()=>{
-    
-            getStamp();
-            StmapList();
-
-        return () =>{
-            // setPlayNum('');
-            setStamps([]);
-            setUserStamp({
-                playDate:'',
-                playTime:'',
-                stampMemo:''
-            });
-            setDouble();
-            // console.log("스타드데이트",startDate);
-        }
-    },[playNum]);
-
-    const Reset = () => {
-        // console.log("리셋");
-        setStamps([]);
-        setPlayDate(null);
-        setPlayTime(null);
-        setStartDate();
-        setEndDate();
-    }
 
     const getStamp = () =>{
-        const num = params.num;
-        axios({
-            url:`/api/myhome/stamp/edit/${num}`,
-            method:'GET'
-        })
-        .then((res)=>{
-            setPlayTitle(res.data.mystamp.play_name);
-            setPlayDate(parseISO(res.data.mystamp.ustamp_play_date));
-            // setPlayTime(res.data.stamp.ustamp_play_time.substring(0,5));
-            // console.log(res.data.stamp.ustamp_play_time.substring(0,2));
-            // console.log(format(add(parseISO(res.data.stamp.ustamp_play_date), {hours: res.data.stamp.ustamp_play_time.substring(0,2)}),"HH:mm"));
-            setPlayTime(add(parseISO(res.data.mystamp.ustamp_play_date), {hours: res.data.mystamp.ustamp_play_time.substring(0,2)}));
-            console.log(res.data);
-            setPlayNum(res.data.mystamp.ustamp_play_num);
-            setStartDate(res.data.start ? format(parseISO( res.data.start),'yyyy-MM-dd') : '');
-            setEndDate(res.data.end ? format(parseISO(res.data.end),'yyyy-MM-dd'):'');
-            setMemo(res.data.mystamp.ustamp_memo);
-            setMax(res.data.max);
-            setDouble(res.data.mystamp.ustamp_double);
-            setFirstDouble(res.data.firstdouble);
-            console.log("double",res.data.mystamp.ustamp_double);
-            if(res.data.stamp !== 0){
-                setStamps(res.data.stamp);
-                console.log("stamps",stamps);
-            }
+        const [numPlay, numCoalesce, numRecordIndex] = params.num.split('-');
+        const parsedPlayNum = Number(numPlay);
+        const parsedCoalesce = Number(numCoalesce);
+        const parsedRecordIndex = Number(numRecordIndex);
 
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-    }
-
-    const getStampCnt = () =>{
-        if(stamps && stamps.length !==0){
-            for(let i=0;i<stamps.length;i++){
-                let myMax = Number(stamps[i].nomal) + Number((stamps[i].double*2));
-                console.log(myMax);
-                if(myMax < max){
-                    setStampCnt(stamps[i].coalesce);
-                    // console.log("mymax",myMax);
-                    // console.log("i",i);
-                    // console.log("그래이겨",stamps[i].coalesce);
-                    // console.log("stampcnt",stampCnt);
-                    break;
-                }else{
-                    continue;
-                }
-            }
-        }else{
-            setStampCnt(1);
+        const play = searchPlayList.find((p) => p.play_num === parsedPlayNum);
+        if(!play){
+            return;
         }
+        const cards = loadAllStamps()[parsedPlayNum] || [];
+        const card = cards.find((c) => Number(c.coalesce) === parsedCoalesce);
+        const record = card && card.records ? card.records[parsedRecordIndex] : null;
+        if(!record){
+            return;
+        }
+
+        setPlayNum(parsedPlayNum);
+        setCoalesce(parsedCoalesce);
+        setRecordIndex(parsedRecordIndex);
+        setStampCnt(parsedCoalesce);
+        setStamps(cards);
+
+        setPlayTitle(play.play_name);
+        setStartDate(play.play_start ? format(parseISO(play.play_start),'yyyy-MM-dd') : '');
+        setEndDate(play.play_end ? format(parseISO(play.play_end),'yyyy-MM-dd'):'');
+        setMax(play.play_stamp);
+
+        setPlayDate(parseISO(record.playDate));
+        setPlayTime(parseISO(`${record.playDate}T${record.playTime}`));
+        setStampMemo(record.stampMemo || '');
+        setDouble(Number(record.doubleStamp) || 1);
     }
 
     useEffect(()=>{
-        if(stamps){
-            getStampCnt();
-        }
-    },[stamps]);
+        getStamp();
+    },[]);
 
-
-    console.log(stampCnt);
     const StmapList = () => {
-        console.log(stamps);
         if(stamps.length === 0){
-            // console.log("도장처음");
             return(
                 <div className="stamp">
                     <select defaultValue="0" name="stampCnt">
@@ -147,21 +77,17 @@ const MyStampEdit = () => {
                 </div>
             )
         }else{
-            // console.log("도장판존재");
             const size = stamps.length;
-
-            // console.log(max);
-            // console.log(size);
-            // console.log(stamps[Number(size-1)].coalesce);
             return(
                 <div className="stamp">
-                    <select defaultValue={stampCnt} name="stampCnt" onChange={(e) => setStampCnt(e.target.value)}>
-                        {stamps && stamps.map(stamp=>{
+                    <select value={stampCnt || ''} name="stampCnt" onChange={(e) => setStampCnt(e.target.value)}>
+                        {stamps.map(stamp=>{
+                            const isOwnCard = Number(stamp.coalesce) === Number(coalesce);
+                            const isFull = (Number(stamp.nomal) + Number((stamp.double*2)))>=max;
                             return(
-                                <option key={stamp.coalesce} value={stamp.coalesce} disabled={(Number(stamp.nomal) + Number((stamp.double*2)))>=max ? "disabled" : "" } onChange={getUserStamp}>{stamp.coalesce}</option>
+                                <option key={stamp.coalesce} value={stamp.coalesce} disabled={!isOwnCard && isFull}>{stamp.coalesce}</option>
                             )
                         })}
-                        
                         <option value={size+1}>새 도장판</option>
                     </select>
                 </div>
@@ -169,78 +95,38 @@ const MyStampEdit = () => {
         }
     }
 
-    const getUserStamp = e =>{
-        const {name, value} = e.target;
-        const newStamp = {
-            ...userStamp,
-            [name] : value,
-        };
-
-        setUserStamp(newStamp);
-        console.log(userStamp);
-    }
-
-
-    const addStamp = async() =>{
-        // if(!playNum){
-        //     window.alert("공연을 입력해주세요");
-        //     return false;
-        // }
-        // if(!userStamp.playDate){
-        //     window.alert("공연날짜를 입력해주세요");
-        //     return false;
-        // }
-        // if(!userStamp.playTime){
-        //     window.alert("공연 시간을 입력해주세요");
-        //     return false;
-        // }
-        // if(userStamp.stampMemo.length>200){
-        //     window.alert("메모는 200자를 초과할수 없습니다.");
-        //     return false;
-        // }
-
-        //첫적립 이고 첫적립이 더블적립일 경우
-        if(stampCnt === 0 && firstDouble === 2){
-            setStampCnt(stampCnt+1);
-            setDouble(double+1);
-        }else if(stampCnt === 0 && firstDouble === null){
-            setStampCnt(stampCnt+1);
-        }else{
-            console.log("엘스부분?");
-            console.log(double);
-            setDouble(double);
+    const addStamp = () =>{
+        if(!playDate){
+            window.alert("공연날짜를 입력해주세요");
+            return false;
+        }
+        if(!playTime){
+            window.alert("공연 시간을 입력해주세요");
+            return false;
+        }
+        if(stampMemo && stampMemo.length>200){
+            window.alert("메모는 200자를 초과할 수 없습니다.");
+            return false;
         }
 
-        const data = {
-            stampNum : params.num,
+        const record = {
             playNum : playNum,
             playDate : format(playDate,'yyyy-MM-dd'),
             playTime : playTime.toTimeString().split(' ')[0],
-            stampCnt : stampCnt,
-            stampMemo : userStamp.stampMemo,
+            stampCnt : Number(stampCnt),
+            stampMemo : stampMemo,
             doubleStamp : double
         }
 
-        await axios({
-            url:"/api/myhome/stamp/edit",
-            method:"POST",
-            data: data
-        })
-        .then(()=>{
-            alert("저장되었습니다");
-            // window.location.replace("/myhome/stamp");
-        })
-        .catch((err)=>{
-            alert(err);
-            console.log(err);
-        })
+        if(Number(stampCnt) !== Number(coalesce)){
+            removeStamp(playNum, coalesce, recordIndex);
+            saveStamp(playNum, stampCnt, double, record);
+        }else{
+            updateStamp(playNum, coalesce, recordIndex, record);
+        }
 
-
-    }
-
-    function doubleStamp (double) {
-        setDouble(double);
-        console.log("double",double);
+        window.alert("저장되었습니다");
+        window.location.href = "/myhome/stamp";
     }
 
     const months = [
@@ -260,7 +146,7 @@ const MyStampEdit = () => {
       ];
 
 
-    
+
 
     const handleMonthChange = (date) => {
         setMonth(date.getMonth());
@@ -285,14 +171,11 @@ const MyStampEdit = () => {
                         </div>
                         <div className="inputbox play">
                             <label htmlFor="play">공연명</label>
-                            {/* <Searching getPlayNum={getPlayNum} Reset={Reset} editPlayNum={playNum}/> */}
                             <InputBox>
                                 <Input type="text" name="search" value ={playTitle||""} readonly/>
-                            {/* <button>검색</button> */}
                             </InputBox>
                         </div>
                         <div className="inputbox date">
-                            {/* <input type="date" name="playDate" id="playDate" onChange={getUserStamp}></input> */}
                             <div className = "date">
                             <label htmlFor="playDate">일자</label>
                             <DatePicker
@@ -333,19 +216,17 @@ const MyStampEdit = () => {
                                             disabled={prevMonthButtonDisabled}
                                             >
                                             &lt;
-                                            {/* <img src="/static/images/arrow-black-left.png" /> */}
                                         </div>
                                         <div className="month-day">
                                             {getYear(date)}년 {months[date.getMonth()]}월
                                         </div>
-                                    
+
                                         <div
                                             className="btn_month btn_month-next"
                                             onClick={increaseMonth}
                                             disabled={nextMonthButtonDisabled}
                                             >
                                             &gt;
-                                            {/* <img src="/static/images/arrow-black-right.png" /> */}
                                         </div>
                                         </div>
                                     )}
@@ -363,24 +244,47 @@ const MyStampEdit = () => {
                                 dateFormat="h:mm aa"
                                 customInput={<Input />}
                             />
-                            {/* <input type="time" name="playTime" id="playTime" onChange={getUserStamp}></input> */}
                             </div>
-                            <DoubleCheck stampDate={playDate?playDate:new Date()} stampTime={playTime} playNum={playNum} chkDoubleStamp={doubleStamp}
-                            />
                         </div>
                         <div className="inputbox stamp">
-                            <label htmlFor="stamp">도장판</label>
-                            {StmapList()}
+                            <div className="stampPlate">
+                                <label htmlFor="stamp">도장판</label>
+                                {StmapList()}
+                            </div>
+                            <div className="stampCount">
+                                <label htmlFor="countCheck">적립체크</label>
+                                <div className="stampCount-options">
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            id="countCheck"
+                                            name="stampCount"
+                                            checked={double === 2}
+                                            onChange={(e) => setDouble(e.target.checked ? 2 : 1)}
+                                        />
+                                        더블적립
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="stampCount"
+                                            checked={double === 3}
+                                            onChange={(e) => setDouble(e.target.checked ? 3 : 1)}
+                                        />
+                                        트리플적립
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <div className="inputbox memo">
                             <label htmlFor="stampMemo">메모</label>
                             <br></br>
-                            <input type="text" name="stampMemo" id="stampMemo" onChange={getUserStamp} defaultValue={memo||''}></input>
+                            <input type="text" name="stampMemo" id="stampMemo" value={stampMemo||''} onChange={(e)=>setStampMemo(e.target.value)}></input>
                         </div>
 
                         <div className="btn">
                             <button className="save" type="submit" onClick={addStamp}>저장</button>
-                            <button className="list"> <Link to="/myhome/stamp">목록</Link></button>
+                            <button className="list"> <Link to="/myhome/stamp">복사</Link></button>
                         </div>
                     </div>
                 </div>
