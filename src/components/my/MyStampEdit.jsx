@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from "date-fns/esm/locale";
 import getYear from "date-fns/getYear";
 import styled from 'styled-components';
+import { Files, Trash3 } from "react-bootstrap-icons";
 import searchPlayList from "../../data/searchPlayList.json";
 import { loadAllStamps, saveStamp, updateStamp, removeStamp } from "../../utils/stampStorage";
 
@@ -210,6 +211,12 @@ const MyStampEdit = () => {
                     <div className="myStampAdd-wrap">
                         <div className="myStampAdd-title">
                             {mode === 'copy' ? '도장 복사' : '도장 수정'}
+                            {mode === 'copy' ? '' : (
+                                <div className="title-actions">
+                                    <button type="button" className="icon-btn" onClick={copyStamp} title="복사" aria-label="복사"><Files size={15}/></button>
+                                    <button type="button" className="icon-btn danger" onClick={deleteStamp} title="삭제" aria-label="삭제"><Trash3 size={15}/></button>
+                                </div>
+                            )}
                         </div>
                         <div className="inputbox play">
                             <label htmlFor="play">공연명</label>
@@ -325,9 +332,7 @@ const MyStampEdit = () => {
                         </div>
 
                         <div className="btn">
-                            <button className="save" type="submit" onClick={mode === 'copy' ? saveCopy : addStamp}>저장</button>
-                            {mode === 'copy' ? '' : <button className="copy" onClick={copyStamp}>복사</button>}
-                            {mode === 'copy' ? '' : <button className="delete" onClick={deleteStamp}>삭제</button>}
+                            <button className="save" type="submit" onClick={mode === 'copy' ? saveCopy : addStamp}>수정</button>
                         </div>
                     </div>
                 </div>

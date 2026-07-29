@@ -219,7 +219,7 @@ const MyStamp = () => {
                     {list.play_genre} &lt;{list.play_name}&gt; <span className="stampCoalesce">도장판{list.coalesce}</span>
                     </div>
                     <div className="stampCount">
-                        <span className="mymax">{mySum}</span><span className="max"> /{list.max}</span>
+                        <span className="mymax">{mySum}</span><span className="max"> / {list.max}</span>
                     </div>
                 </div>
                 <StampDots row={list} />

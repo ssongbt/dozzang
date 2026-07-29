@@ -142,7 +142,6 @@ const MyStampAdd = () =>{
     const StampList = () => {
         // console.log(stamps);
         if(stamps.length === 0){
-            console.log("도장처음");
             return(
                 <div className="stamp">
                     <select defaultValue="0" name="stampCnt">
@@ -151,12 +150,9 @@ const MyStampAdd = () =>{
                 </div>
             )
         }else{
-            console.log("도장판존재");
+
             const size = stamps.length;
-console.log(stamps);
-            // console.log(max);
-            // console.log(size);
-            // console.log(stamps[Number(size-1)].coalesce);
+
             return(
                 <div className="stamp">
                     <select defaultValue={stampCnt} name="stampCnt" onChange={(e) => setStampCnt(e.target.value)}>
@@ -246,18 +242,6 @@ console.log(data);
     function chkDoubleStamp (chkDoubleStamp) {
         setDouble(chkDoubleStamp);
         // console.log("체크더블스탬프double",double);
-    }
-
-    const firstDoubleStamp = () =>{
-        console.log("첫발급더블cnt",stampCnt);
-        // console.log("첫발급더블",firstDouble);
-        if(isNewCardSelected && firstDouble !== 1){
-            return(
-                <div>
-                    첫발급 더블적립
-                </div>
-            )
-        }
     }
 
     const months = [
@@ -388,7 +372,6 @@ console.log(data);
                             {max === 0 ?
                             <div> 도장이 없는 공연입니다. </div>
                             :''}
-                            {firstDoubleStamp()}
                             <DoubleCheck stampDate={playDate?playDate:new Date()} stampTime={playTime} playNum={playNum} chkDoubleStamp={chkDoubleStamp}
                             />
                         </div>
