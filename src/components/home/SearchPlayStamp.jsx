@@ -22,7 +22,7 @@ const SearchPlayStamp = ({stampbenefit, stamplist, type}) =>{
                             <div key={stamp.stamp_num}>
 
                                 <div className="benefit">
-                                    <span className="benefitName" >{stamp.stamp_benefit}</span>
+                                    <span className="benefitName" >{stamp.stamp_benefit_emoji} {stamp.stamp_benefit}</span>
                                     {stamp.stamp_url ? 
                                         <img className="linkImg" src={Linkimg} alt="link" onClick={() => window.open(`${stamp.stamp_url}`, "_blank")} />
                                         :''}

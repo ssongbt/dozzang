@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import styled from 'styled-components';
 import { parseISO, format } from "date-fns";
 import {Search} from "react-bootstrap-icons";
-import Searchimg from "../../assets/search.png"
 import searchPlayList from "../../data/searchPlayList.json";
 
 const SearchingHome = () => {
@@ -84,7 +83,7 @@ const SearchingHome = () => {
                 <InputBox haveInputValue={haveInputValue}>
                     <Input type="text" name="search" value={searchItem||""} onChange={changeInput} onKeyUp={handleDropDownKey} onKeyPress={handleOnkeyPress} placeholder="공연명을 검색하세요"/>
                     {/* <button>검색</button> */}
-                    <DeleteButton onClick={() => searchList()}><img src={Searchimg} alt="search" className="search-btn"/></DeleteButton>
+                    <DeleteButton onClick={() => searchList()}><Search className="search-btn" size={18} /></DeleteButton>
                 </InputBox>
                 {haveInputValue && (
                     <DropDownBox>

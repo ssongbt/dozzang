@@ -5,10 +5,10 @@
 // Design tokens
 // ================================================================
 :root {
-    --color-primary: #6C5DD3;
-    --color-primary-dark: #4E3FC4;
-    --color-primary-light: #EFEBFF;
-    --color-primary-soft: #F5F3FF;
+    --color-primary: #2A2F4F;
+    --color-primary-dark: #1E2239;
+    --color-primary-light: #E4E5EC;
+    --color-primary-soft: #F4F5F7;
     --color-ink: #1F2138;
     --color-ink-soft: #565973;
     --color-muted: #9296AC;
@@ -336,8 +336,7 @@ input, select, textarea {
         img { display: block; height: 26px; border-radius: 6px; }
 
         &:hover {
-            box-shadow: 0 6px 14px rgba(31, 33, 56, 0.3);
-            border-color: var(--color-primary);
+            box-shadow: 0 6px 8px rgba(31, 33, 56, 0.3);
             transform: translateY(-2px);
         }
         &:active { transform: scale(0.97); }
@@ -1198,14 +1197,21 @@ input, select, textarea {
                                 flex: 1;
                                 min-width: 160px;
                                 .benefit {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: var(--space-1);
                                     margin-bottom: var(--space-1);
                                     .benefitName {
                                         color: var(--color-ink);
                                         font-weight: 700;
-                                        display: flex;
-                                        align-items: center;
-                                        gap: var(--space-1);
-                                        .linkImg { height: 3vh; }
+                                    }
+                                    .linkImg {
+                                        height: 14px;
+                                        width: 14px;
+                                        cursor: pointer;
+                                        opacity: 0.6;
+                                        transition: opacity var(--transition);
+                                        &:hover { opacity: 1; }
                                     }
                                 }
                                 .useDate { color: var(--color-ink-soft); font-size: 13px; margin-bottom: var(--space-1); }
@@ -1625,16 +1631,24 @@ input, select, textarea {
                                     .benefit {
                                         margin-bottom: var(--space-1);
                                         .getBenefit {
+                                            display: flex;
+                                            align-items: center;
+                                            flex-wrap: wrap;
+                                            gap: var(--space-1);
                                             margin-bottom: var(--space-1);
                                             .benefitName {
                                                 color: var(--color-ink);
                                                 font-weight: 700;
-                                                display: flex;
-                                                align-items: center;
-                                                gap: var(--space-1);
-                                                .linkImg { height: 3vh; }
                                             }
-                                            .useDate { margin-bottom: var(--space-1); color: var(--color-ink-soft); font-size: 13px; }
+                                            .linkImg {
+                                                height: 14px;
+                                                width: 14px;
+                                                cursor: pointer;
+                                                opacity: 0.6;
+                                                transition: opacity var(--transition);
+                                                &:hover { opacity: 1; }
+                                            }
+                                            .useDate { color: var(--color-ink-soft); font-size: 13px; }
                                         }
                                         .memo { font-size: 11px; color: var(--color-muted); }
                                     }
