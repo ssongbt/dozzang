@@ -73,32 +73,23 @@ const SearchList = () => {
 
         const startDate = list.play_start ? format(parseISO(list.play_start),'yyyy-MM-dd') : "미정";
         const endDate = list.play_end ? format(parseISO(list.play_end),'yyyy-MM-dd') : "미정";
-        console.log("어디야");
-        console.log(playList.play.length);
+
             return(
                 <div className="list" key={list.play_num} onClick={() => viewDetail(list.play_num)}>
                     <div className="play">
                         <div className="playName">
-                            <span className="title">{list.play_genre}&lt;{list.play_name.trim()} &gt;</span>
-                            {/* &nbsp;&nbsp; */}
-                            {/* {list.play_url ? 
-                                <Link45deg onClick={() => window.open(`${list.play_url}`, "_blank")} />
-                            : ''} */}
-                            &nbsp;&nbsp;
+                            <span className="genreBadge">{list.play_genre}</span>
+                            <span className="title">{list.play_name.trim()}</span>
                             {list.play_stamp ?
                                 <img className="stampImg" src={Stampimg} alt="stamp" />
                             :''}
-
                         </div>
                         <div className="playDate">
                             {startDate} ~ {endDate}
                         </div>
-                        {/* <div className="playCast">
-                            {list.play_cast}
-                        </div> */}
                     </div>
                     <div className="stamp">
-                        {list.play_stamp === 1 ?
+                        {list.play_stamp ?
                             <SearchStampList
                                 playNum={list.play_num}
                                 playStamp={list.play_stamp}

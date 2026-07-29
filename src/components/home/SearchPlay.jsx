@@ -3,8 +3,10 @@ import { format, parseISO } from 'date-fns';
 import { Link, useParams } from 'react-router-dom';
 import { Link45deg, PatchPlusFill } from "react-bootstrap-icons";
 import SearchPlayStamp from "./SearchPlayStamp";
-import Linkimg from "../../assets/free-icon-link-2089782.png";
 import Stampimg from "../../assets/stamp.png";
+import Ticketlinkimg from "../../assets/ticketlink.png";
+import Yes24img from "../../assets/yes24.png";
+import Nolimg from "../../assets/nol.png";
 import searchPlayList from "../../data/searchPlayList.json";
 import playStampList from "../../data/playStampList.json";
 
@@ -16,7 +18,9 @@ const SearchPlay = () => {
     const [playEnd, setPlayEnd] = useState();
     const [playCast, setPlayCast] = useState();
     const [playStamp, setPlayStamp] = useState();
-    const [playUrl, setPlayUrl] = useState();
+    const [playUrlT, setPlayUrlT] = useState();
+    const [playUrlY, setPlayUrlY] = useState();
+    const [playUrlN, setPlayUrlN] = useState();
     // const [playImg, setPlayImg] = useState();
     const [playGenre, setPlayGenre] = useState();
     const [playFirstStamp, setPlayFirstStamp] = useState();
@@ -46,7 +50,9 @@ const SearchPlay = () => {
         setPlayEnd(play.play_end);
         setPlayCast(play.play_cast);
         setPlayStamp(play.play_stamp);
-        setPlayUrl(play.play_url);
+        setPlayUrlT(play.play_url_t);
+        setPlayUrlY(play.play_url_y);
+        setPlayUrlN(play.play_url_n);
         setPlayFirstStamp(play.play_firststamp);
 
         const stamp = playStampList.filter((s) => s.stamp_play_num === play.play_num);
@@ -90,24 +96,36 @@ const SearchPlay = () => {
                             <div className="playdetail">
                                 <div className="play">
                                     <div className="playName">
-                                        <span className="title">{playGenre}&lt;{playName}&gt;</span>
-                                        &nbsp;&nbsp;
-                                        {playUrl ? 
-                                            <img className="linkImg" src={Linkimg} alt="link" onClick={() => window.open(`${playUrl}`, "_blank")}></img>
-                                            : ''}
-                                        &nbsp;&nbsp;
-                                        <br></br>
+                                        <span className="genreBadge">{playGenre}</span>
+                                        <span className="title">{playName}</span>
                                         {playStamp ?
-                                            <img className="stampImg" src ={Stampimg} alt="stamp"></img>
-                                            :''}
-                                        &nbsp;
-                                        {playStamp === 1 ?
-                                            '첫발급' + playFirstStamp + '회차'
+                                            <span className="firstStamp">
+                                                <img className="stampImg" src={Stampimg} alt="stamp" />
+                                                첫발급 {playFirstStamp}회차
+                                            </span>
                                             : ''}
-
                                     </div>
-                                    <div className="playDate">
-                                        {startDate} ~ {endDate}
+                                    <div className="playMeta">
+                                        <span className="playDate">{startDate} ~ {endDate}</span>
+                                        {(playUrlT || playUrlY || playUrlN) &&
+                                            <div className="ticketLinks">
+                                                {playUrlT ?
+                                                    <a className="ticketBtn" href={playUrlT} target="_blank" rel="noreferrer">
+                                                        <img src={Ticketlinkimg} alt="티켓링크" />
+                                                    </a>
+                                                    : ''}
+                                                {playUrlY ?
+                                                    <a className="ticketBtn" href={playUrlY} target="_blank" rel="noreferrer">
+                                                        <img src={Yes24img} alt="YES24" />
+                                                    </a>
+                                                    : ''}
+                                                {playUrlN ?
+                                                    <a className="ticketBtn" href={playUrlN} target="_blank" rel="noreferrer">
+                                                        <img src={Nolimg} alt="NOL" />
+                                                    </a>
+                                                    : ''}
+                                            </div>
+                                        }
                                     </div>
                                     <div className="playCast">
                                         {playCast}

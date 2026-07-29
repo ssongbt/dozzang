@@ -299,11 +299,48 @@ input, select, textarea {
             gap: var(--space-2);
             margin-bottom: var(--space-2);
             flex-wrap: wrap;
-            .title { color: var(--color-ink); font-size: 18px; font-weight: 700; }
-            .stampImg { height: 3.4vh; }
+
+            .genreBadge {
+                flex: none;
+                background: var(--color-primary-light);
+                color: var(--color-primary-dark);
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+                padding: 3px 10px;
+                border-radius: var(--radius-pill);
+            }
+            .title { color: var(--color-ink); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+            .stampImg { height: 3.4vh; margin-left: auto; }
             .linkImg { height: 2.6vh; }
         }
         .playDate { color: var(--color-ink-soft); font-size: 13px; }
+    }
+}
+
+%ticket-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: var(--space-3);
+
+    .ticketBtn {
+        display: inline-flex;
+        line-height: 0;
+        border-radius: 6px;
+        border: 1px solid var(--color-border);
+        box-shadow: 0 3px 4px rgba(31, 33, 56, 0.22);
+        overflow: hidden;
+        transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+
+        img { display: block; height: 26px; border-radius: 6px; }
+
+        &:hover {
+            box-shadow: 0 6px 14px rgba(31, 33, 56, 0.3);
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+        &:active { transform: scale(0.97); }
     }
 }
 
@@ -1015,28 +1052,56 @@ input, select, textarea {
                     .search-result {
                         text-align: center;
                         color: var(--color-ink-soft);
-                        span { color: var(--color-primary); font-weight: 700; }
+                        font-size: 13px;
+                        margin-bottom: var(--space-2);
+                        span {
+                            color: var(--color-primary-dark);
+                            font-weight: 700;
+                            background: var(--color-primary-light);
+                            border-radius: var(--radius-pill);
+                            padding: 2px 10px;
+                            margin-right: 2px;
+                        }
                     }
 
                     .list {
                         @extend %play-card;
+                        cursor: pointer;
 
                         .stamp {
                             padding: 0 var(--space-5) var(--space-5);
 
                             .stamplist {
+                                display: flex;
+                                flex-direction: column;
+                                gap: var(--space-2);
+
                                 .benefitlist {
                                     display: flex;
-                                    align-items: flex-start;
+                                    align-items: center;
                                     flex-wrap: wrap;
                                     gap: var(--space-3);
-                                    padding: var(--space-2) 0;
-                                    border-top: 1px dashed var(--color-border);
+                                    padding: var(--space-2) var(--space-3);
+                                    background: var(--color-bg);
+                                    border-radius: var(--radius-md);
 
-                                    .benefitNum span { color: var(--color-primary); font-weight: 700; }
+                                    .benefitNum span {
+                                        display: inline-flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        min-width: 22px;
+                                        height: 22px;
+                                        padding: 0 6px;
+                                        border-radius: var(--radius-pill);
+                                        background: var(--color-primary);
+                                        color: #fff;
+                                        font-size: 11px;
+                                        font-weight: 700;
+                                    }
                                     .searchPlayStamp {
                                         flex: 1;
-                                        .benefit { font-weight: 500; }
+                                        min-width: 120px;
+                                        .benefit { font-weight: 500; color: var(--color-ink); }
                                     }
                                 }
                             }
@@ -1062,25 +1127,80 @@ input, select, textarea {
                 .playdetail {
                     @extend %play-card;
 
+                    .play {
+                        .playName {
+                            .firstStamp {
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 4px;
+                                background: var(--color-primary-light);
+                                color: var(--color-primary-dark);
+                                font-weight: 600;
+                                font-size: 12px;
+                                border-radius: var(--radius-pill);
+                                padding: 3px 10px;
+                                .stampImg { height: 1.9vh; margin: 0; }
+                            }
+                        }
+
+                        .playMeta {
+                            display: flex;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            gap: var(--space-3);
+                            margin-bottom: var(--space-3);
+
+                            .playDate {
+                                background: var(--color-bg);
+                                color: var(--color-ink-soft);
+                                border-radius: var(--radius-pill);
+                                padding: 4px 12px;
+                            }
+
+                            .ticketLinks { @extend %ticket-links; margin-bottom: 0; }
+                        }
+
+                        .playCast {
+                            color: var(--color-ink-soft);
+                            font-size: 13px;
+                            line-height: 1.6;
+                        }
+                    }
+
                     .stamp {
                         padding: 0 var(--space-5) var(--space-5);
 
                         .benefitlist {
                             display: flex;
-                            align-items: flex-start;
+                            align-items: center;
                             flex-wrap: wrap;
                             gap: var(--space-3);
-                            padding: var(--space-3) 0;
-                            border-top: 1px dashed var(--color-border);
+                            padding: var(--space-3);
+                            margin-top: var(--space-3);
+                            background: var(--color-bg);
+                            border-radius: var(--radius-md);
 
-                            .benefitNum span { color: var(--color-primary); font-weight: 700; }
+                            .benefitNum span {
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                                min-width: 22px;
+                                height: 22px;
+                                padding: 0 6px;
+                                border-radius: var(--radius-pill);
+                                background: var(--color-primary);
+                                color: #fff;
+                                font-size: 11px;
+                                font-weight: 700;
+                            }
 
                             .searchPlayStamp {
                                 flex: 1;
+                                min-width: 160px;
                                 .benefit {
                                     margin-bottom: var(--space-1);
                                     .benefitName {
-                                        color: var(--color-primary);
+                                        color: var(--color-ink);
                                         font-weight: 700;
                                         display: flex;
                                         align-items: center;
