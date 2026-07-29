@@ -46,13 +46,14 @@ const buildStampDots = (row) => {
     return Array.from({ length: total }, (_, i) => {
         const round = i + 1;
         const visit = visits[i];
-        const hasBenefit = playStampList.some((s) => s.stamp_play_num === row.stamp_play_num && Number(s.stamp_benefit_num) === round);
+        const benefit = playStampList.find((s) => s.stamp_play_num === row.stamp_play_num && Number(s.stamp_benefit_num) === round);
         return {
             filled: Boolean(visit),
             date: visit ? visit.date : null,
             time: visit ? visit.time : null,
             recordIndex: visit ? visit.recordIndex : null,
-            benefit: hasBenefit,
+            benefit: Boolean(benefit),
+            benefitEmoji: benefit ? (benefit.stamp_benefit_emoji || '🎁') : null,
             upcoming: Boolean(visit && visit.date && visit.date > today),
         };
     });
@@ -68,7 +69,7 @@ const StampDots = ({ row }) => {
                     key={i}
                     onClick={dot.filled ? () => editStamp(`${row.stamp_play_num}-${row.coalesce}-${dot.recordIndex}`) : undefined}
                 >
-                    {dot.benefit ? <span className="benefitBadge" title="혜택 회차">🎁</span> : ''}
+                    {dot.benefit ? <span className="benefitBadge" title="혜택 회차">{dot.benefitEmoji}</span> : ''}
                     <span className={`stampIcon ${dot.filled ? 'filled' : ''} ${dot.upcoming ? 'upcoming' : ''}`} />
                     <span className="stampIconLabel">
                         {dot.filled ? formatDotLabel(dot.date, dot.time) : ''}
