@@ -1314,9 +1314,18 @@ input, select, textarea {
                                 flex: 1;
                                 text-align: center;
                                 border-right: 1px solid var(--color-border);
+                                cursor: pointer;
+                                color: var(--color-ink-soft);
+                                transition: color var(--transition);
+
+                                &.active {
+                                    color: var(--color-primary);
+                                    font-weight: 700;
+                                }
                             }
                             .total { border-right: none; }
                             .num { font-size: 20px; font-weight: 700; color: var(--color-ink); margin-top: var(--space-1); }
+                            .active .num { color: var(--color-primary); }
                         }
                     }
 
@@ -1324,6 +1333,36 @@ input, select, textarea {
                         display: flex;
                         flex-direction: column;
                         gap: var(--space-3);
+
+                        .playFilter {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: var(--space-2);
+                            margin-bottom: var(--space-1);
+
+                            .playFilter-chip {
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 4px;
+                                border: 1px solid var(--color-border);
+                                border-radius: var(--radius-pill);
+                                background: var(--color-surface);
+                                color: var(--color-ink-soft);
+                                font-size: 12px;
+                                font-weight: 600;
+                                padding: var(--space-1) var(--space-3);
+                                cursor: pointer;
+                                transition: color var(--transition), border-color var(--transition), background var(--transition);
+
+                                .playFilter-emoji { font-size: 13px; }
+
+                                &.active {
+                                    color: var(--color-primary);
+                                    border-color: var(--color-primary);
+                                    background: var(--color-primary-light);
+                                }
+                            }
+                        }
 
                         .myStamp {
                             @extend %card;

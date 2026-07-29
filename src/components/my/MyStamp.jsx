@@ -1,5 +1,5 @@
 import axios from "axios";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import { useCookies } from 'react-cookie';
 import { Link } from "react-router-dom";
 import { format, parseISO } from 'date-fns';
@@ -83,6 +83,7 @@ const StampDots = ({ row }) => {
 const MyStamp = () => {
 
     const [stampState, setStampState] = useState('now');
+    const [selectedPlayNum, setSelectedPlayNum] = useState(null);
     const [nowStampList, setNowStampList] = useState([]);
     const [nowMyCount, setNowMyCount] = useState();
     const [endStampList, setEndStampList] = useState([]);
@@ -112,6 +113,7 @@ const MyStamp = () => {
                     stamp_play_num: play.play_num,
                     play_name: play.play_name,
                     play_genre: play.play_genre,
+                    play_emoji: play.play_emoji,
                     coalesce: card.coalesce,
                     nomal: card.nomal,
                     double: card.double,
@@ -168,46 +170,58 @@ const MyStamp = () => {
 
     const changeStamp = (state) => {
         setStampState(state);
+        setSelectedPlayNum(null);
     }
 
-    const stampChoice = (stampState) => {
-        if(stampState === 'now') {
-            if(nowMyCount === 0){
-                return(
-                    <p className="no-stamp">도장판이 없습니다</p>
-                )
-            }else{
-                return(
-                    <div className="list">
-                    {nowList}
-                    </div>
-                )
+    const currentList = stampState === 'now' ? nowStampList : stampState === 'end' ? endStampList : totalStampList;
+
+    const playFilterOptions = useMemo(() => {
+        const seen = new Map();
+        currentList.forEach((row) => {
+            if(!seen.has(row.stamp_play_num)){
+                seen.set(row.stamp_play_num, { stamp_play_num: row.stamp_play_num, play_name: row.play_name, play_emoji: row.play_emoji });
             }
-        }else if(stampState === 'end'){
-            if(endMyCount === 0){
-                return(
-                    <p className="no-stamp">도장판이 없습니다</p>
-                )
-            }else{
-                return(
-                    <div className="list">
-                    {endList}
-                    </div>
-                )
-            }
-        }else{
-            if(totalMyCount === 0){
-                return(
-                    <p className="no-stamp">도장판이 없습니다</p>
-                )
-            }else{
-                return(
-                    <div className="list">
-                    {totalList}
-                    </div>
-                )
-            }
+        });
+        return Array.from(seen.values());
+    }, [currentList]);
+
+    const filteredList = selectedPlayNum ? currentList.filter((row) => row.stamp_play_num === selectedPlayNum) : currentList;
+
+    const stampChoice = () => {
+        if(currentList.length === 0){
+            return(
+                <p className="no-stamp">도장판이 없습니다</p>
+            )
         }
+        return(
+            <>
+                {playFilterOptions.length > 1 &&
+                    <div className="playFilter">
+                        <button
+                            type="button"
+                            className={`playFilter-chip ${selectedPlayNum === null ? 'active' : ''}`}
+                            onClick={() => setSelectedPlayNum(null)}
+                        >
+                            전체
+                        </button>
+                        {playFilterOptions.map((play) => (
+                            <button
+                                type="button"
+                                key={play.stamp_play_num}
+                                className={`playFilter-chip ${selectedPlayNum === play.stamp_play_num ? 'active' : ''}`}
+                                onClick={() => setSelectedPlayNum(play.stamp_play_num)}
+                            >
+                                <span className="playFilter-emoji">{play.play_emoji}</span>
+                                <span className="playFilter-name">{play.play_name}</span>
+                            </button>
+                        ))}
+                    </div>
+                }
+                <div className="list">
+                    {filteredList.map(renderStampCard)}
+                </div>
+            </>
+        )
     }
 
     const renderStampCard = (list, index) => {
@@ -230,12 +244,6 @@ const MyStamp = () => {
         )
     }
 
-    const nowList = nowStampList && nowStampList.map(renderStampCard)
-
-    const endList = endStampList && endStampList.map(renderStampCard)
-
-    const totalList = totalStampList && totalStampList.map(renderStampCard)
-
     return(
         <div id="myStamp">
             <div className="wrap">
@@ -243,15 +251,15 @@ const MyStamp = () => {
                     <div className="myStamp-wrap">
                         <div className="myInfo">
                             <div className="state">
-                                <div className="now" onClick={()=>changeStamp('now')}>
+                                <div className={`now ${stampState === 'now' ? 'active' : ''}`} onClick={()=>changeStamp('now')}>
                                     <p>현재 도장판</p>
                                     <p className="num">{nowMyCount}</p>
                                 </div>
-                                <div className="end" onClick={()=>changeStamp('end')}>
+                                <div className={`end ${stampState === 'end' ? 'active' : ''}`} onClick={()=>changeStamp('end')}>
                                     <p>종료 도장판</p>
                                     <p className="num">{endMyCount}</p>
                                 </div>
-                                <div className="total" onClick={()=>changeStamp('total')}>
+                                <div className={`total ${stampState === 'total' ? 'active' : ''}`} onClick={()=>changeStamp('total')}>
                                     <p>전체 도장판</p>
                                     <p className="num">{totalMyCount}</p>
                                 </div>
@@ -259,7 +267,7 @@ const MyStamp = () => {
                             </div>
                         </div>
                         <div className="myStampList">
-                            {stampChoice(stampState)}
+                            {stampChoice()}
                         </div>
                     </div>
                 </div>
