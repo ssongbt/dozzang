@@ -107,24 +107,10 @@ const HeaderComponent = () => {
             <div className="wrap">
                 <div className="header-gap">
                     <div className="header-wrap">
-                        <div className="pre">
-                            <div className="pre-gap">
-                                <div className="pre-wrap">
-                                    {adminLeftCheck()}
-                                </div>
-                            </div>
-                        </div>
                         <div className="title">
                             <div className="title-gap">
                                 <div className="title-wrap">
                                     <p><a href="/home"><img className="logo" src={Logo} alt="dozzang"></img></a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="my">
-                            <div className="my-gap">
-                                <div className="my-wrap">
-                                    {adminRightCheck()}
                                 </div>
                             </div>
                         </div>

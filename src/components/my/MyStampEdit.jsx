@@ -22,6 +22,7 @@ const MyStampEdit = () => {
     const [double, setDouble] = useState(1);
     const [stampMemo, setStampMemo] = useState('');
     const [stampCnt, setStampCnt] = useState();
+    const [mode, setMode] = useState('edit');
 
     const [playDate, setPlayDate] = useState(null);
     const [playTime, setPlayTime] = useState(null);
@@ -158,6 +159,47 @@ const MyStampEdit = () => {
     </button>
     ));
 
+    const copyStamp = () => {
+        setMode('copy');
+    }
+
+    const deleteStamp = () => {
+        if(window.confirm("정말 삭제하시겠습니까?")){
+            removeStamp(playNum, coalesce, recordIndex);
+            window.alert("삭제되었습니다.");
+            window.location.href = "/myhome/stamp";
+        }
+    }
+
+    const saveCopy = () => {
+        if(!playDate){
+            window.alert("공연날짜를 입력해주세요");
+            return false;
+        }
+        if(!playTime){
+            window.alert("공연 시간을 입력해주세요");
+            return false;
+        }
+        if(stampMemo && stampMemo.length>200){
+            window.alert("메모는 200자를 초과할 수 없습니다.");
+            return false;
+        }
+
+        const record = {
+            playNum : playNum,
+            playDate : format(playDate,'yyyy-MM-dd'),
+            playTime : playTime.toTimeString().split(' ')[0],
+            stampCnt : Number(stampCnt),
+            stampMemo : stampMemo,
+            doubleStamp : double
+        }
+
+        saveStamp(playNum, stampCnt, double, record);
+
+        window.alert("복사되었습니다");
+        window.location.href = "/myhome/stamp";
+    }
+
 
 
     return(
@@ -167,7 +209,7 @@ const MyStampEdit = () => {
                 <div className="myStampAdd-gap">
                     <div className="myStampAdd-wrap">
                         <div className="myStampAdd-title">
-                            도장 수정
+                            {mode === 'copy' ? '도장 복사' : '도장 수정'}
                         </div>
                         <div className="inputbox play">
                             <label htmlFor="play">공연명</label>
@@ -283,8 +325,9 @@ const MyStampEdit = () => {
                         </div>
 
                         <div className="btn">
-                            <button className="save" type="submit" onClick={addStamp}>저장</button>
-                            <button className="list"> <Link to="/myhome/stamp">복사</Link></button>
+                            <button className="save" type="submit" onClick={mode === 'copy' ? saveCopy : addStamp}>저장</button>
+                            {mode === 'copy' ? '' : <button className="copy" onClick={copyStamp}>복사</button>}
+                            {mode === 'copy' ? '' : <button className="delete" onClick={deleteStamp}>삭제</button>}
                         </div>
                     </div>
                 </div>

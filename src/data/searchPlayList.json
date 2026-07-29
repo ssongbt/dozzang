@@ -8,7 +8,8 @@
     "play_cast": "손유동, 현석준, 백기범, 최수진, 허윤슬, 임예진, 박영수, 장민수, 임별",
     "play_stamp": 7,
     "play_url": "https://www.ticketlink.co.kr/product/63124",
-    "play_firststamp": 1
+    "play_firststamp": 1,
+    "play_emoji" : "💣"
   },
   {
     "play_num": 2,
@@ -19,7 +20,8 @@
     "play_cast": "최은영, 조소은, 김소율, 현석준, 윤은오, 김리현, 박란주, 한재아, 최호중, 김지훈, 정연, 이지숙, 한보라, 원종환, 김대웅",
     "play_stamp": 6,
     "play_url": "",
-    "play_firststamp": 1
+    "play_firststamp": 1,
+    "play_emoji" : "💙🪻"
   },
   {
     "play_num": 3,
@@ -30,6 +32,7 @@
     "play_cast": "황정민",
     "play_stamp": 9,
     "play_url": "https://example.com/hamlet",
-    "play_firststamp": 2
+    "play_firststamp": 2,
+    "play_emoji" : "😎"
   }
 ]

@@ -1186,6 +1186,11 @@ input, select, textarea {
                             width: 90px;
                             height: 38px;
                             margin: 0 var(--space-1);
+
+                            &.delete {
+                                background: var(--color-danger);
+                                &:hover { background: var(--color-danger); filter: brightness(0.9); }
+                            }
                         }
                     }
                 }
