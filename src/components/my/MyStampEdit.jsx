@@ -235,7 +235,7 @@ const MyStampEdit = () => {
                                     minDate ={parseISO(startDate)}
                                     maxDate={parseISO(endDate)}
                                     onChange={(date) => setPlayDate(date)}
-                                    dateFormat="yyyy년 MM월 dd일"
+                                    dateFormat="yyyy.MM.dd"
                                     customInput={<Input />}
                                     onMonthChange={handleMonthChange}
                                     dayClassName={(d) =>

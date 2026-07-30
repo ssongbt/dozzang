@@ -35,68 +35,68 @@ const WrapComponent = () =>{
     const [cookies, setCookie] = useCookies(['id','img','nick']);
     const expires = new Date();
     expires.setMinutes(expires.getHours() + 600);
-    console.log(localStorage);
+  
     const location = useLocation();
 
-    const loginCheck = () =>{
+    // const loginCheck = () =>{
 
-        if(location.pathname.substring(1,6) === 'admin'){
-            axios({
-                url:'/api/admin',
-                method:'get'
-            },
-            { withCredentials: true })
-            .then((res)=>{
-                localStorage.setItem('adminId',res.data.adminId);
-                localStorage.setItem('adminLogined', res.data.adminLogined);
-            })
-            .catch((err)=>{
-                console.log(err);
-            })
-        }else{
-            axios({
-                url:'/api/home',
-                method:'get'
-            },
-            { withCredentials: true })
-            .then((res)=>{
-                setUserInfo(res.data.usernum);
-                // console.log(userInfo);
-                localStorage.setItem('usernum', res.data.usernum);
-                localStorage.setItem('userNick', res.data.loginNick);
-                localStorage.setItem('userImg', res.data.loginImg);
-                localStorage.setItem('logined', res.data.logined);
-                // setCookie('id', res.data.loginId, {
-                //     path:"/mystamp",
-                //     expires,
-                //     // secure:true,
-                //     // httpOnly:true
-                // });
-                // setCookie('img', res.data.loginImg, {
-                //     path:"/mystamp",
-                //     expires,
-                //     // secure:true,
-                //     // httpOnly:true
-                // });
-                // setCookie('nick', res.data.loginNick,{
-                //     path:"/mystamp",
-                //     expires,
-                //     // secure:true,
-                //     // httpOnly:true
-                // });
-                // console.log(localStorage.getItem('userId'));
-                // console.log(cookies.img);
-            })
-            .catch((err)=>{
-                console.log(err);
-            })
-        }
+    //     if(location.pathname.substring(1,6) === 'admin'){
+    //         axios({
+    //             url:'/api/admin',
+    //             method:'get'
+    //         },
+    //         { withCredentials: true })
+    //         .then((res)=>{
+    //             localStorage.setItem('adminId',res.data.adminId);
+    //             localStorage.setItem('adminLogined', res.data.adminLogined);
+    //         })
+    //         .catch((err)=>{
+    //             console.log(err);
+    //         })
+    //     }else{
+    //         axios({
+    //             url:'/api/home',
+    //             method:'get'
+    //         },
+    //         { withCredentials: true })
+    //         .then((res)=>{
+    //             setUserInfo(res.data.usernum);
+    //             // console.log(userInfo);
+    //             localStorage.setItem('usernum', res.data.usernum);
+    //             localStorage.setItem('userNick', res.data.loginNick);
+    //             localStorage.setItem('userImg', res.data.loginImg);
+    //             localStorage.setItem('logined', res.data.logined);
+    //             // setCookie('id', res.data.loginId, {
+    //             //     path:"/mystamp",
+    //             //     expires,
+    //             //     // secure:true,
+    //             //     // httpOnly:true
+    //             // });
+    //             // setCookie('img', res.data.loginImg, {
+    //             //     path:"/mystamp",
+    //             //     expires,
+    //             //     // secure:true,
+    //             //     // httpOnly:true
+    //             // });
+    //             // setCookie('nick', res.data.loginNick,{
+    //             //     path:"/mystamp",
+    //             //     expires,
+    //             //     // secure:true,
+    //             //     // httpOnly:true
+    //             // });
+    //             // console.log(localStorage.getItem('userId'));
+    //             // console.log(cookies.img);
+    //         })
+    //         .catch((err)=>{
+    //             console.log(err);
+    //         })
+    //     }
 
-    }
+    // }
 
-    useEffect(()=>{
-        loginCheck();
-    },[userInfo])
+    // useEffect(()=>{
+        // loginCheck();
+    // },[userInfo])
     
     return (
         <div id="wrap">

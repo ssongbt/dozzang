@@ -29,7 +29,6 @@ const Searching = (props) => {
             setPlayList([])
         }else{
             const playList = [...new Map(searchPlayList.map((play) => [play.play_num, play])).values()];
-            console.log(playList);
             const filtered = playList.filter((play) => play.play_name.includes(searchItem));
             setPlayList({play:filtered});
 

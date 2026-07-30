@@ -24,11 +24,9 @@ const MyStampAdd = () =>{
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
     const [max, setMax] = useState();
-    const [firstDouble, setFirstDouble] = useState();
     const [double, setDouble] = useState(1);
     const [stampMemo, setStampMemo]  = useState();
     const [hasStamp, setHasStamp] = useState();
-    const [firstStampCnt, setFirstStampCnt] = useState();
     // const [userStamp, setUserStamp] = useState({
     //     // playNum:'',
     //     // playDate:'',
@@ -38,8 +36,6 @@ const MyStampAdd = () =>{
     // })
 
     const [stampCnt, setStampCnt] = useState();
-
-    const isNewCardSelected = stamps.length === 0 || Number(stampCnt) === stamps.length + 1;
 
     function getPlayNum(e) {
         // console.log("전달된 공연번호",e);
@@ -61,16 +57,14 @@ const MyStampAdd = () =>{
     },[playNum]);
 
     const Reset = () => {
-        console.log("리셋");
         setPlayNum();
         setStamps([]);
-        setPlayDate(null);
+        setPlayDate(new Date());
         setPlayTime(null);
         setStartDate();
         setEndDate();
         setStampMemo('');
         setHasStamp();
-        console.log("메모",stampMemo);
     }
 
     const getStampList = (playNum) =>{
@@ -81,7 +75,6 @@ const MyStampAdd = () =>{
         setStartDate(play.play_start ? format(parseISO(play.play_start),'yyyy-MM-dd') : '');
         setEndDate(play.play_end ? format(parseISO(play.play_end),'yyyy-MM-dd') : '');
         setMax(play.play_stamp);
-        setFirstDouble(play.play_firststamp);
         setStamps(loadAllStamps()[playNum] || []);
         // axios({
         //     url:`/api/myhome/stamp/add/${playNum}`,
@@ -92,7 +85,6 @@ const MyStampAdd = () =>{
         //     setStartDate(res.data.start ? format(parseISO(res.data.start),'yyyy-MM-dd') : '');
         //     setEndDate(res.data.end ? format(parseISO(res.data.end),'yyyy-MM-dd') : '');
         //     setMax(res.data.max);
-        //     setFirstDouble(res.data.firstdouble);
         //     // setHasStamp(res.data.stamp);
         //     // console.log("startdate",startDate);
         //     // console.log("도장판있는지확인하는거", max);
@@ -112,13 +104,10 @@ const MyStampAdd = () =>{
         if(stamps && stamps.length !==0){
             for(let i=0;i<stamps.length;i++){
                 let myMax = Number(stamps[i].nomal) + Number((stamps[i].double*2));
-                // console.log(myMax);
+
                 if(myMax < max){
                     setStampCnt(stamps[i].coalesce);
-                    // console.log("mymax",myMax);
-                    // console.log("i",i);
-                    // console.log("그래이겨",stamps[i].coalesce);
-                    // console.log("stampcnt",stampCnt);
+
                     break;
                 }else{
                     continue;
@@ -141,14 +130,6 @@ const MyStampAdd = () =>{
         }
     },[stamps]);
 
-    useEffect(()=>{
-        if(isNewCardSelected && firstDouble !== 1){
-            setFirstStampCnt(firstDouble);
-        }
-        console.log("머야",stamps);
-    },[stamps, stampCnt, firstDouble, isNewCardSelected]);
-
-
     // console.log(stampCnt);
     const StampList = () => {
         // console.log(stamps);
@@ -160,7 +141,7 @@ const MyStampAdd = () =>{
                     </select>
                 </div>
             )
-        }else{
+        }else{ 
 
             const size = stamps.length;
 
@@ -208,18 +189,7 @@ const MyStampAdd = () =>{
             window.alert("메모는 200자를 초과할 수 없습니다.");
             return false;
         }
-        console.log("firstDouble",firstDouble);
-        //첫적립 이고 첫적립이 더블적립일 경우
-        let double2 = double ? double : 1;
-        if(isNewCardSelected && firstDouble === 2){
-            setStampCnt(stampCnt+1);
-            double2 = double2 +1;
-            // console.log("첫적립더블",double2);
-            // break;
-        }else if(stampCnt === 0 && firstDouble === null){
-            setStampCnt(stampCnt+1);
-        }
-        // console.log("double",double);
+        const double2 = double ? double : 1;
         const data = {
             playNum : playNum,
             playDate : format(playDate,'yyyy-MM-dd'),
@@ -228,8 +198,7 @@ const MyStampAdd = () =>{
             stampMemo : stampMemo,
             doubleStamp : double2
         }
-        console.log("콘솔");
-console.log(data);
+
         saveStamp(playNum, stampCnt, double2, data);
         window.alert("저장되었습니다");
         window.location.replace("/myhome/stamp");
@@ -252,7 +221,6 @@ console.log(data);
 
     function chkDoubleStamp (chkDoubleStamp) {
         setDouble(chkDoubleStamp);
-        // console.log("체크더블스탬프double",double);
     }
 
     const months = [
@@ -275,7 +243,6 @@ console.log(data);
     const [playTime, setPlayTime] = useState(null);
     const [month, setMonth] = useState(new Date().getMonth());
     
-    console.log(playDate);
     const handleMonthChange = (date) => {
         setMonth(date.getMonth());
     };
@@ -314,7 +281,7 @@ console.log(data);
                                     minDate ={parseISO(startDate)}
                                     maxDate={parseISO(endDate)}
                                     onChange={(date) => setPlayDate(date)}
-                                    dateFormat="yyyy년 MM월 dd일"
+                                    dateFormat="yyyy.MM.dd"
                                     customInput={<Input />}
                                     onMonthChange={handleMonthChange}
                                     dayClassName={(d) =>
@@ -383,8 +350,8 @@ console.log(data);
                             {max === 0 ?
                             <div> 도장이 없는 공연입니다. </div>
                             :''}
-                            <DoubleCheck stampDate={playDate?playDate:new Date()} stampTime={playTime} playNum={playNum} chkDoubleStamp={chkDoubleStamp}
-                            />
+                            {/* <DoubleCheck stampDate={playDate?playDate:new Date()} stampTime={playTime} playNum={playNum} chkDoubleStamp={chkDoubleStamp}
+                            /> */}
                         </div>
                         <div className="inputbox stamp">
                             <div className="stampPlate">
@@ -399,7 +366,7 @@ console.log(data);
                                             type="checkbox"
                                             id="countCheck"
                                             name="stampCount"
-                                            checked={double === 2 || firstStampCnt === 2 }
+                                            checked={double === 2}
                                             onChange={(e) => setDouble(e.target.checked ? 2 : 1)}
                                         />
                                         더블적립
@@ -408,7 +375,7 @@ console.log(data);
                                         <input
                                             type="checkbox"
                                             name="stampCount"
-                                            checked={double === 3 || firstStampCnt === 3 }
+                                            checked={double === 3}
                                             onChange={(e) => setDouble(e.target.checked ? 3 : 1)}
                                         />
                                         트리플적립
