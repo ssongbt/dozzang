@@ -101,7 +101,7 @@ const SearchPlay = () => {
                                         {playStamp ?
                                             <span className="firstStamp">
                                                 <img className="stampImg" src={Stampimg} alt="stamp" />
-                                                첫발급 {playFirstStamp}회차
+                                                {playFirstStamp}회차 첫발급
                                             </span>
                                             : ''}
                                     </div>

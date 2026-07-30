@@ -80,9 +80,9 @@ const SearchList = () => {
                         <div className="playName">
                             <span className="genreBadge">{list.play_genre}</span>
                             <span className="title">{list.play_name.trim()}</span>
-                            {list.play_stamp ?
+                            {/* {list.play_stamp ?
                                 <img className="stampImg" src={Stampimg} alt="stamp" />
-                            :''}
+                            :''} */}
                         </div>
                         <div className="playDate">
                             {startDate} ~ {endDate}
