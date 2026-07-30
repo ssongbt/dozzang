@@ -119,7 +119,7 @@ const WrapComponent = () =>{
                 <Route path='/admin/admininfo' element={<AdminInfo/>} />
                 <Route path='/myhome' element={<MyHome/>} />
                 <Route path='/myhome/stamp' element={<MyStamp />} />
-                <Route path='/myhome/stamp/add' element={<MyStampAdd/>} />
+                <Route path='/myhome/stamp/add/:playNum?/:coalesce?' element={<MyStampAdd/>} />
                 <Route path='/myhome/stamp/edit/:num' element={<MyStampEdit/>} />
                 <Route path='/myhome/stamp/detail/' element={<MyStampDetail/>} />
                 <Route path='/calendar' element={<CalendarComponent/>} />

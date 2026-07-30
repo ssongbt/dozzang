@@ -21,6 +21,18 @@ export const loadAllStamps = () => {
     }
 };
 
+export const exportStampsBackup = () => {
+    return JSON.stringify(loadAllStamps(), null, 2);
+};
+
+export const restoreStampsBackup = (jsonString) => {
+    const parsed = JSON.parse(jsonString);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+        throw new Error('올바른 백업 파일이 아닙니다.');
+    }
+    localStorage.setItem(STAMPS_KEY, JSON.stringify(parsed));
+};
+
 export const saveStamp = (playNum, coalesce, doubleWeight, record) => {
     const all = loadAllStamps();
     const cards = all[playNum] ? [...all[playNum]] : [];

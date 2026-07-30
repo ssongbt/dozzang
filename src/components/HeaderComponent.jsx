@@ -1,11 +1,14 @@
 import axios from "axios";
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { format } from 'date-fns';
 import Logo from "../assets/dozzang_logo.png";
 import {Link, useLocation, useNavigate } from 'react-router-dom';
 import {useState} from 'react';
+import { Download, Upload } from 'react-bootstrap-icons';
 import stampplus from '../assets/stampplus.png';
 import my from '../assets/my.png';
 import pre from '../assets/pre.png';
+import { exportStampsBackup, restoreStampsBackup } from '../utils/stampStorage';
 
 const HeaderComponent = () => {
 
@@ -13,6 +16,49 @@ const HeaderComponent = () => {
 
     const navigate  = useNavigate();
     console.log(navigate);
+
+    const fileInputRef = useRef(null);
+
+    const handleBackup = () => {
+        const data = exportStampsBackup();
+        const blob = new Blob([data], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `dozzang-backup-${format(new Date(), 'yyyyMMdd-HHmm')}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    };
+
+    const handleRestoreClick = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
+    };
+
+    const handleRestoreFile = (e) => {
+        const file = e.target.files[0];
+        e.target.value = '';
+        if (!file) {
+            return;
+        }
+        if (!window.confirm('현재 도장판 데이터를 백업 파일 내용으로 덮어씁니다. 계속할까요?')) {
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+            try {
+                restoreStampsBackup(reader.result);
+                window.alert('복원되었습니다');
+                window.location.reload();
+            } catch (err) {
+                window.alert('복원에 실패했습니다. 올바른 백업 파일인지 확인해주세요.');
+            }
+        };
+        reader.readAsText(file);
+    };
 
     const logout = () =>{
         axios({
@@ -113,6 +159,23 @@ const HeaderComponent = () => {
                                     <p><a href="/home"><img className="logo" src={Logo} alt="dozzang"></img></a></p>
                                 </div>
                             </div>
+                        </div>
+                        <div className="header-actions">
+                            <button type="button" className="header-util-btn" onClick={handleBackup}>
+                                <Download size={16} />
+                                <span>데이터 백업</span>
+                            </button>
+                            <button type="button" className="header-util-btn" onClick={handleRestoreClick}>
+                                <Upload size={16} />
+                                <span>데이터 복원</span>
+                            </button>
+                            <input
+                                ref={fileInputRef}
+                                type="file"
+                                accept="application/json"
+                                className="header-file-input"
+                                onChange={handleRestoreFile}
+                            />
                         </div>
                     </div>
                 </div>

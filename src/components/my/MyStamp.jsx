@@ -25,6 +25,10 @@ const editStamp = (num) =>{
     window.location.href=`/myhome/stamp/edit/${num}`;
 }
 
+const addStamp = (playNum, coalesce) =>{
+    window.location.href=`/myhome/stamp/add/${playNum}/${coalesce}`;
+}
+
 const buildStampDots = (row) => {
     const today = format(new Date(),'yyyy-MM-dd');
     const indexedRecords = (row.records || []).map((record, recordIndex) => ({ record, recordIndex }));
@@ -65,9 +69,11 @@ const StampDots = ({ row }) => {
         <div className="stampIcons">
             {dots.map((dot, i) => (
                 <div
-                    className={`stampIcon-cell ${dot.filled ? 'clickable' : ''}`}
+                    className="stampIcon-cell clickable"
                     key={i}
-                    onClick={dot.filled ? () => editStamp(`${row.stamp_play_num}-${row.coalesce}-${dot.recordIndex}`) : undefined}
+                    onClick={dot.filled
+                        ? () => editStamp(`${row.stamp_play_num}-${row.coalesce}-${dot.recordIndex}`)
+                        : () => addStamp(row.stamp_play_num, row.coalesce)}
                 >
                     {dot.benefit ? <span className="benefitBadge" title="혜택 회차">{dot.benefitEmoji}</span> : ''}
                     <span className={`stampIcon ${dot.filled ? 'filled' : ''} ${dot.upcoming ? 'upcoming' : ''}`} />

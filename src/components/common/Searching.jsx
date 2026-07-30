@@ -7,7 +7,7 @@ import searchPlayList from "../../data/searchPlayList.json";
 const Searching = (props) => {
 
     
-    const [searchItem, setSearchItem] = useState();
+    const [searchItem, setSearchItem] = useState(props.initialValue || '');
     const [haveInputValue, setHaveInputValue] = useState(false);
     const [playList, setPlayList] = useState([
         {

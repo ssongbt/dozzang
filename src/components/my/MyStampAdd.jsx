@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useEffect, useState, forwardRef} from "react";
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import Searching from '../common/Searching';
 import { format, parseISO } from 'date-fns';
 import DoubleCheck from "./DoubleCheck";
@@ -14,8 +14,13 @@ import { loadAllStamps, saveStamp } from "../../utils/stampStorage";
 
 const MyStampAdd = () =>{
 
+    const params = useParams();
+    const presetPlayNum = params.playNum ? Number(params.playNum) : null;
+    const presetCoalesce = params.coalesce ? Number(params.coalesce) : null;
+    const presetPlay = presetPlayNum ? searchPlayList.find((p) => p.play_num === presetPlayNum) : null;
+
     const [stamps, setStamps] = useState([]);
-    const [playNum, setPlayNum] = useState();
+    const [playNum, setPlayNum] = useState(presetPlayNum || undefined);
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
     const [max, setMax] = useState();
@@ -127,6 +132,12 @@ const MyStampAdd = () =>{
     useEffect(()=>{
         if(stamps){
             getStampCnt();
+        }
+    },[stamps]);
+
+    useEffect(()=>{
+        if(presetCoalesce && stamps.some((s) => Number(s.coalesce) === presetCoalesce)){
+            setStampCnt(presetCoalesce);
         }
     },[stamps]);
 
@@ -260,7 +271,7 @@ console.log(data);
         "12",
       ];
 
-    const [playDate, setPlayDate] = useState(null);
+    const [playDate, setPlayDate] = useState(new Date());
     const [playTime, setPlayTime] = useState(null);
     const [month, setMonth] = useState(new Date().getMonth());
     
@@ -288,7 +299,7 @@ console.log(data);
                         </div>
                         <div className="inputbox play">
                             <label htmlFor="play">공연명</label>
-                            <Searching getPlayNum={getPlayNum} Reset={Reset}/>
+                            <Searching getPlayNum={getPlayNum} Reset={Reset} initialValue={presetPlay ? presetPlay.play_name : ''}/>
                         </div>
                         <div className="inputbox date">
                             {/* <input type="date" name="playDate" id="playDate" onChange={getUserStamp}></input> */}
