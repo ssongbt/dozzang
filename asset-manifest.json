@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/dozzang/static/css/main.ea4d9358.css",
+    "main.js": "/dozzang/static/js/main.a81f7fc2.js",
+    "static/media/dozzang_logo.png": "/dozzang/static/media/dozzang_logo.df41935269a8790aa77d.png",
+    "static/media/ticketlink.png": "/dozzang/static/media/ticketlink.f5a5ad48518350c6881a.png",
+    "static/media/yes24.png": "/dozzang/static/media/yes24.ec113ab6a1ad0803a4c4.png",
+    "static/media/nol.png": "/dozzang/static/media/nol.4f55515a3493585f8615.png",
+    "static/media/stampplus.png": "/dozzang/static/media/stampplus.da7fc02fca689be3fa4a.png",
+    "static/media/my.png": "/dozzang/static/media/my.ffb60b990a479b07bce9.png",
+    "index.html": "/dozzang/index.html",
+    "main.ea4d9358.css.map": "/dozzang/static/css/main.ea4d9358.css.map",
+    "main.a81f7fc2.js.map": "/dozzang/static/js/main.a81f7fc2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ea4d9358.css",
+    "static/js/main.a81f7fc2.js"
+  ]
+}
