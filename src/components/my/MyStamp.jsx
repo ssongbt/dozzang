@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { format, parseISO } from 'date-fns';
 import searchPlayList from "../../data/searchPlayList.json";
 import playStampList from "../../data/playStampList.json";
-import { loadAllStamps } from "../../utils/stampStorage";
+import { loadAllStamps, getFilledCount } from "../../utils/stampStorage";
 
 const formatDotLabel = (date, time) => {
     if(!date){
@@ -16,9 +16,13 @@ const formatDotLabel = (date, time) => {
         return md;
     }
     const hour24 = Number(time.substring(0,2));
+    const minute = time.substring(3,5);
     const ampm = hour24 >= 12 ? 'pm' : 'am';
     const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
-    return `${md} ${hour12}${ampm}`;
+    const timeLabel = minute === '00'
+        ? `${hour12}${ampm}`
+        : `${hour12}:${minute}${ampm}`;
+    return `${md} ${timeLabel}`;
 }
 
 const editStamp = (num) =>{
@@ -122,8 +126,6 @@ const MyStamp = () => {
                     play_genre: play.play_genre,
                     play_emoji: play.play_emoji,
                     coalesce: card.coalesce,
-                    nomal: card.nomal,
-                    double: card.double,
                     max: play.play_stamp,
                     records: card.records || [],
                 };
@@ -232,7 +234,7 @@ const MyStamp = () => {
     }
 
     const renderStampCard = (list, index) => {
-        const mySum = Number(list.nomal) + Number(list.double*2);
+        const mySum = getFilledCount(list);
         return(
             <div className="myStamp" key={index}>
                 <div className="stampTop">
@@ -245,7 +247,7 @@ const MyStamp = () => {
                 </div>
                 <StampDots row={list} />
                 <div className="warning">
-                    {mySum>list.max ? '❗❗수정필요':''}
+                    {mySum>list.max ? '‼️수정필요':''}
                 </div>
             </div>
         )

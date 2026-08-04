@@ -238,6 +238,7 @@ input, select, textarea {
         }
         .btn_month.btn_month-prev { margin-right: auto; cursor: pointer; }
         .btn_month.btn_month-next { margin-left: auto; cursor: pointer; }
+        .btn_month.disabled { opacity: 0.25; cursor: default; pointer-events: none; }
     }
     .react-datepicker__triangle { display: none !important; }
 }
