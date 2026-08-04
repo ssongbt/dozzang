@@ -21,7 +21,7 @@ const MyHome = () =>{
             // removeCookie('nick');
             // removeCookie('img');
             localStorage.clear();
-            window.location.href= '/home';
+            window.location.href= '#/home';
             // document.location.href = '/home'
         })
         .catch((err)=>{
@@ -43,7 +43,7 @@ const MyHome = () =>{
                 // removeCookie('img');
                 alert('탈퇴되었습니다');
                 localStorage.clear();
-                window.location.href= '/home';
+                window.location.href= '#/home';
                 // document.location.href = '/home'
             })
             .catch((err)=>{

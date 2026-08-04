@@ -26,11 +26,11 @@ const formatDotLabel = (date, time) => {
 }
 
 const editStamp = (num) =>{
-    window.location.href=`/myhome/stamp/edit/${num}`;
+    window.location.href=`#/myhome/stamp/edit/${num}`;
 }
 
 const addStamp = (playNum, coalesce) =>{
-    window.location.href=`/myhome/stamp/add/${playNum}/${coalesce}`;
+    window.location.href=`#/myhome/stamp/add/${playNum}/${coalesce}`;
 }
 
 const buildStampDots = (row) => {

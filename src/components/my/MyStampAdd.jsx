@@ -204,7 +204,7 @@ console.log("dja마아"+presetCoalesce);
 
         saveStamp(playNum, stampCnt, double2, data);
         window.alert("저장되었습니다");
-        window.location.replace("/myhome/stamp");
+        window.location.replace("#/myhome/stamp");
         // await axios({
         //     url:"/api/myhome/stamp/add",
         //     method:"POST",

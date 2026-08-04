@@ -128,7 +128,7 @@ const MyStampEdit = () => {
         }
 
         window.alert("저장되었습니다");
-        window.location.href = "/myhome/stamp";
+        window.location.href = "#/myhome/stamp";
     }
 
     const months = [
@@ -168,7 +168,7 @@ const MyStampEdit = () => {
         if(window.confirm("정말 삭제하시겠습니까?")){
             removeStamp(playNum, coalesce, recordIndex);
             window.alert("삭제되었습니다.");
-            window.location.href = "/myhome/stamp";
+            window.location.href = "#/myhome/stamp";
         }
     }
 
@@ -198,7 +198,7 @@ const MyStampEdit = () => {
         saveStamp(playNum, stampCnt, double, record);
 
         window.alert("복사되었습니다");
-        window.location.href = "/myhome/stamp";
+        window.location.href = "#/myhome/stamp";
     }
 
 
