@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { format, parseISO } from 'date-fns';
 import { Link, useParams } from 'react-router-dom';
-import { Link45deg, PatchPlusFill } from "react-bootstrap-icons";
+import { Link45deg, PatchPlusFill, PlusCircle } from "react-bootstrap-icons";
 import SearchPlayStamp from "./SearchPlayStamp";
 import Stampimg from "../../assets/stamp.png";
 import Ticketlinkimg from "../../assets/ticketlink.png";
@@ -94,6 +94,11 @@ const SearchPlay = () => {
                     <div className="searchplay-wrap">
                         <div className="playdetail-gap">
                             <div className="playdetail">
+                                {playNum ?
+                                    <Link className="addStampBtn" to={`/myhome/stamp/add/${playNum}`}>
+                                        <PlusCircle size={14} /> 도장추가
+                                    </Link>
+                                    : ''}
                                 <div className="play">
                                     <div className="playName">
                                         <span className="genreBadge">{playGenre}</span>
