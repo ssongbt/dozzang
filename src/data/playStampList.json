@@ -375,8 +375,8 @@
     "stamp_play_num": 13,
     "stamp_play_name": "비더슈탄트",
     "stamp_benefit_num": 4,
-    "stamp_benefit": "50% 할인권 1매 + 랜덤 폴라로아드 1매(페어, 개인)",
-    "stamp_and_benefit": ["50% 할인권 1매", "랜덤 폴라로아드 1매(페어, 개인)"],
+    "stamp_benefit": "50% 할인권 1매 + 랜덤 폴라로이드 1매(페어, 개인)",
+    "stamp_and_benefit": ["50% 할인권 1매", "랜덤 폴라로이드 1매(페어, 개인)"],
     "stamp_benefit_emoji": "🎁",
     "stamp_url": "",
     "stamp_getstartdate": "",
@@ -390,7 +390,7 @@
     "stamp_play_num": 13,
     "stamp_play_name": "비더슈탄트",
     "stamp_benefit_num": 7,
-    "stamp_benefit": "폴라로아드 1매(캐스트 지정)",
+    "stamp_benefit": "폴라로이드 1매(캐스트 지정)",
     "stamp_benefit_emoji": "📸",
     "stamp_url": "",
     "stamp_getstartdate": "",
@@ -891,7 +891,7 @@
     "stamp_getenddate": "",
     "stamp_usestartdate": "",
     "stamp_useenddate": "",
-    "stamp_memo": "전 캐스트 관림 시 대본집 1관"
+    "stamp_memo": "전 캐스트 관람 시 대본집 1권"
   },
   {
     "stamp_num": 160,
