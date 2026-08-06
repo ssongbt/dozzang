@@ -1090,5 +1090,47 @@
     "stamp_usestartdate": "",
     "stamp_useenddate": "",
     "stamp_memo": "당일 캐스트 지정"
+  },
+  {
+    "stamp_num": 173,
+    "stamp_play_num": 37,
+    "stamp_play_name": "엠. 버터플라이",
+    "stamp_benefit_num": 3,
+    "stamp_benefit": "40% 할인권 1매",
+    "stamp_benefit_emoji": ".🎟️",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": "",
+    "stamp_usestartdate": "2026-09-26",
+    "stamp_useenddate": "2026-12-06",
+    "stamp_memo": ""
+  },
+  {
+    "stamp_num": 173,
+    "stamp_play_num": 37,
+    "stamp_play_name": "엠. 버터플라이",
+    "stamp_benefit_num": 5,
+    "stamp_benefit": "50% 할인권 1매",
+    "stamp_benefit_emoji": ".🎟️",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": "",
+    "stamp_usestartdate": "2026-09-26",
+    "stamp_useenddate": "2026-12-06",
+    "stamp_memo": ""
+  },
+  {
+    "stamp_num": 173,
+    "stamp_play_num": 37,
+    "stamp_play_name": "엠. 버터플라이",
+    "stamp_benefit_num": 7,
+    "stamp_benefit": "미니 실황 OST",
+    "stamp_benefit_emoji": "💿",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": "",
+    "stamp_usestartdate": "",
+    "stamp_useenddate": "",
+    "stamp_memo": ""
   }
 ]

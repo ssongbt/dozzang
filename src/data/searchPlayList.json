@@ -502,5 +502,19 @@
     "play_url_n" : "",
     "play_firststamp": 1,
     "play_emoji" : "🌔"
+  },
+  {
+    "play_num": 37,
+    "play_name": "엠. 버터플라이",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-09-22",
+    "play_end": "2026-12-13",
+    "play_cast": "주민진, 안재영, 유현석, 김바다, 유태율, 홍기범, 황만익, 김승용, 장재웅, 남민우, 안상은, 전하영",
+    "play_stamp": 7,
+    "play_url_t": "",
+    "play_url_y" : "https://ticket.yes24.com/Perf/59565?Gcode=009_217_001",
+    "play_url_n" : "https://nol.yanolja.com/ticket/products/26011453",
+    "play_firststamp": 1,
+    "play_emoji" : "🦋"
   }
 ]
