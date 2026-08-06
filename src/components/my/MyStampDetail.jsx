@@ -7,6 +7,19 @@ import Linkimg from "../../assets/free-icon-link-2089782.png";
 import searchPlayList from "../../data/searchPlayList.json";
 import playStampList from "../../data/playStampList.json";
 import { loadAllStamps, removeStamp, getFilledCount, getCardAlias, setCardAlias } from "../../utils/stampStorage";
+import { getBenefitDisplayText } from "../../utils/benefitDisplay";
+
+const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
+
+const formatStampDateTime = (dateStr, timeStr) => {
+    const dt = parseISO(`${dateStr}T${timeStr}`);
+    const weekday = WEEKDAYS[dt.getDay()];
+    const hour24 = dt.getHours();
+    const ampm = hour24 >= 12 ? 'PM' : 'AM';
+    const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
+    const minute = format(dt, 'mm');
+    return `${format(dt, 'yyyy-MM-dd')}(${weekday}) ${ampm} ${hour12}:${minute}`;
+};
 
 const MyStampDetail = () => {
 
@@ -96,8 +109,6 @@ const MyStampDetail = () => {
     const today = format(new Date(),'yyyy-MM-dd');
 
     const list = detailList && detailList.map(list=>{
-        const date = format(parseISO(list.ustamp_play_date),'yyyy-MM-dd');
-        const time = list.ustamp_play_time.substr(0,5);
         const upcoming = list.ustamp_play_date > today;
         const weight = Number(list.ustamp_double) || 1;
         const roundStart = list.sum - weight + 1;
@@ -115,14 +126,16 @@ const MyStampDetail = () => {
 
                 <div className="stampInfo">
                     <div className="stampDate">
-                        {date}&nbsp;{time}
+                        {formatStampDateTime(list.ustamp_play_date, list.ustamp_play_time)}
                         {upcoming ? <span className="upcomingBadge">예정</span> : ''}
                         {list.ustamp_double===2 ? <span className="doubleBadge">더블적립</span> : ''}
+                        {list.ustamp_double===3 ? <span className="doubleBadge">트리플적립</span> : ''}
+                        {list.ustamp_double===4 ? <span className="doubleBadge">쿼드적립</span> : ''}
                     </div>
                     {roundBenefits.length > 0 &&
                         <div className="stampBenefit">
                             {roundBenefits.map((b) => (
-                                <span className="benefitTag" key={b.stamp_num}>{b.stamp_benefit_emoji || '🎁'} {b.stamp_benefit}</span>
+                                <span className="benefitTag" key={b.stamp_num}>{b.stamp_benefit_emoji || '🎁'} {getBenefitDisplayText(b)}</span>
                             ))}
                         </div>
                     }
@@ -150,15 +163,14 @@ const MyStampDetail = () => {
                         <div className="playdetail">
                             <div className="play">
                                 <div className="playName">
-                                    <span className="title">{playGenre}&lt;{playName}&gt;</span>
-                                    &nbsp;&nbsp;
-                                        {playUrl ?
-                                            <img className="linkImg" src={Linkimg} alt="link" onClick={() => window.open(`${playUrl}`, "_blank")} />
-                                            : ''}
-                                    &nbsp;&nbsp;
+                                    <span className="genreBadge">{playGenre}</span>
+                                    <span className="title">{playName}</span>
+                                    {playUrl ?
+                                        <img className="linkImg" src={Linkimg} alt="link" onClick={() => window.open(`${playUrl}`, "_blank")} />
+                                        : ''}
                                 </div>
-                                <div className="playDate">
-                                    {startDate} ~ {endDate}
+                                <div className="playMeta">
+                                    <span className="playDate">{startDate} ~ {endDate}</span>
                                 </div>
                                 <div className="playCast">
                                     {playCast}

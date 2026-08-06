@@ -66,15 +66,36 @@ export const loadBenefitStatus = () => {
     }
 };
 
+// status shape: { selected: number|null, items: { [itemIdx]: { received: bool, used: bool[] } } }
+// selected is only meaningful for "or" benefits (which item was chosen).
 export const getBenefitStatus = (playNum, coalesce, benefitNum) => {
     const all = loadBenefitStatus();
-    return all[benefitKey(playNum, coalesce, benefitNum)] || { received: false, used: false };
+    const raw = all[benefitKey(playNum, coalesce, benefitNum)];
+    if (!raw) {
+        return { selected: null, items: {} };
+    }
+    if (raw.items) {
+        return { selected: raw.selected ?? null, items: raw.items };
+    }
+    // legacy shape from before per-item tracking: { received, used }
+    return { selected: null, items: { 0: { received: !!raw.received, used: Array.isArray(raw.used) ? raw.used : [] } } };
 };
 
-export const setBenefitStatus = (playNum, coalesce, benefitNum, status) => {
+export const setBenefitItemStatus = (playNum, coalesce, benefitNum, itemIdx, patch) => {
+    const current = getBenefitStatus(playNum, coalesce, benefitNum);
+    const items = { ...current.items, [itemIdx]: { ...current.items[itemIdx], ...patch } };
     const all = loadBenefitStatus();
     const key = benefitKey(playNum, coalesce, benefitNum);
-    all[key] = { ...all[key], ...status };
+    all[key] = { selected: current.selected, items };
+    localStorage.setItem(BENEFITS_KEY, JSON.stringify(all));
+    return all[key];
+};
+
+export const setBenefitSelected = (playNum, coalesce, benefitNum, itemIdx) => {
+    const current = getBenefitStatus(playNum, coalesce, benefitNum);
+    const all = loadBenefitStatus();
+    const key = benefitKey(playNum, coalesce, benefitNum);
+    all[key] = { selected: itemIdx, items: current.items };
     localStorage.setItem(BENEFITS_KEY, JSON.stringify(all));
     return all[key];
 };

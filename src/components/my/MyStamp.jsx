@@ -247,12 +247,12 @@ const MyStamp = () => {
             <div className="myStamp" key={index}>
                 <div className="stampTop clickable" onClick={() => viewDetail(list.stamp_play_num, list.coalesce)}>
                     <div className="playName">
-                    {list.play_genre} &lt;{list.play_name}&gt;
-                    <span className="stampCoalesce">
-                        도장판{list.coalesce}
-                        {list.alias ? <span className="stampAlias">{list.alias}</span> : ''}
-                        <button type="button" className="alias-edit-btn" title="별칭 수정" aria-label="별칭 수정" onClick={(e)=>editAlias(e, list.stamp_play_num, list.coalesce, list.alias)}><PencilSquare size={11}/></button>
-                    </span>
+                        <span className="genreBadge">{list.play_genre}</span>
+                        <span className="title">{list.play_name}</span>
+                        <span className="stampCoalesce">
+                            도장판{list.coalesce}
+                            {list.alias ? <span className="stampAlias">{list.alias}</span> : ''}
+                        </span>
                     </div>
                     <div className="stampCount">
                         <span className="mymax">{mySum}</span><span className="max"> / {list.max}</span>

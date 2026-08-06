@@ -29,7 +29,7 @@ const Searching = (props) => {
             setPlayList([])
         }else{
             const playList = [...new Map(searchPlayList.map((play) => [play.play_num, play])).values()];
-            const filtered = playList.filter((play) => play.play_name.includes(searchItem));
+            const filtered = playList.filter((play) => `${play.play_genre} ${play.play_name}`.includes(searchItem));
             setPlayList({play:filtered});
 
         }
@@ -75,9 +75,9 @@ const Searching = (props) => {
                             <DropDownItem>해당하는 공연이 없습니다.</DropDownItem>
                             )}
                         {playList.play && playList.play.map((play, index) =>  {
-                            const startDate = play.play_start ? format(parseISO(play.play_start),'yyyy') : '미정';
-                            const endDate = play.play_end ? format(parseISO(play.play_end), 'yyyy') : '미정';
-                            const year = startDate === endDate ? startDate : startDate - endDate;
+                            const startDate = play.play_start ? format(parseISO(play.play_start),'yyyy') : null;
+                            const endDate = play.play_end ? format(parseISO(play.play_end), 'yyyy') : null;
+                            const year = !startDate || !endDate ? '미정' : startDate === endDate ? startDate : `${startDate}-${endDate}`;
                             return( 
                                 <DropDownItem
                                 key={index}
@@ -87,7 +87,7 @@ const Searching = (props) => {
                                     choiceIndex === index ? 'selected' : ''
                                 }
                                 >
-                                {play.play_name} ({isNaN(year) ? '미정' : year})
+                                <GenreBadge>{play.play_genre}</GenreBadge>{play.play_name} ({year})
                             </DropDownItem>
                         )
                     } )}
@@ -158,6 +158,8 @@ const DropDownBox = styled.ul`
 `
 
 const DropDownItem = styled.li`
+  display: flex;
+  align-items: center;
   padding: 6px 10px;
   margin: 1px 0px;
   cursor: pointer;
@@ -168,10 +170,25 @@ const DropDownItem = styled.li`
   }
 
   &.selected {
-    background-color: var(--color-primary-light);
+    background-color: var(--color-primary-soft);
+    border-left: 3px solid var(--color-primary);
     color: var(--color-primary-dark);
     font-weight: 600;
   }
+`
+
+const GenreBadge = styled.span`
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  margin-right: 6px;
 `
 
 const SearchBox = styled.div`

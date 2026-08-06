@@ -11,6 +11,7 @@ import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
 import searchPlayList from "../../data/searchPlayList.json";
 import { loadAllStamps, saveStamp, getFilledCount, getCardAlias } from "../../utils/stampStorage";
+import { getDefaultPlayTime } from "../../utils/defaultPlayTime";
 
 const MyStampAdd = () =>{
 
@@ -60,7 +61,7 @@ console.log("dja마아"+presetCoalesce);
         setPlayNum();
         setStamps([]);
         setPlayDate(new Date());
-        setPlayTime(null);
+        setPlayTime(getDefaultPlayTime(new Date()));
         setStartDate();
         setEndDate();
         setStampMemo('');
@@ -78,7 +79,9 @@ console.log("dja마아"+presetCoalesce);
         setStamps(loadAllStamps()[playNum] || []);
         const today = new Date();
         const playStart = play.play_start ? parseISO(play.play_start) : null;
-        setPlayDate(playStart && playStart > today ? playStart : today);
+        const initialDate = playStart && playStart > today ? playStart : today;
+        setPlayDate(initialDate);
+        setPlayTime(getDefaultPlayTime(initialDate));
         // axios({
         //     url:`/api/myhome/stamp/add/${playNum}`,
         //     method:'POST'
@@ -285,8 +288,8 @@ console.log("dja마아"+presetCoalesce);
                                     selected={playDate}
                                     minDate ={parseISO(startDate)}
                                     maxDate={parseISO(endDate)}
-                                    onChange={(date) => setPlayDate(date)}
-                                    dateFormat="yyyy.MM.dd"
+                                    onChange={(date) => { setPlayDate(date); setPlayTime(getDefaultPlayTime(date)); }}
+                                    dateFormat="yyyy년 MM월 dd일"
                                     customInput={<Input />}
                                     onMonthChange={handleMonthChange}
                                     dayClassName={(d) =>
@@ -344,7 +347,8 @@ console.log("dja마아"+presetCoalesce);
                                     showTimeSelectOnly
                                     timeIntervals={15}
                                     timeCaption="Time"
-                                    dateFormat="h:mm aa"
+                                    dateFormat="aa h:mm"
+                                    timeFormat="aa h:mm"
                                     customInput={<Input />}
                                 />
                             :''}
@@ -403,7 +407,6 @@ console.log("dja마아"+presetCoalesce);
 
                         <div className="btn">
                             <button className="save" type="submit" onClick={addStamp}>저장</button>
-                            <button className="list"> <Link to="/myhome/stamp">목록</Link></button>
                         </div>
                     </div>
                 </div>

@@ -6,9 +6,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from "date-fns/esm/locale";
 import getYear from "date-fns/getYear";
 import styled from 'styled-components';
-import { Files, Trash3 } from "react-bootstrap-icons";
+import { Files, Trash3, ListUl } from "react-bootstrap-icons";
 import searchPlayList from "../../data/searchPlayList.json";
 import { loadAllStamps, saveStamp, updateStamp, removeStamp, getFilledCount, getCardAlias } from "../../utils/stampStorage";
+import { getDefaultPlayTime } from "../../utils/defaultPlayTime";
 
 const MyStampEdit = () => {
 
@@ -214,6 +215,7 @@ const MyStampEdit = () => {
                             {mode === 'copy' ? '도장 복사' : '도장 수정'}
                             {mode === 'copy' ? '' : (
                                 <div className="title-actions">
+                                    <Link className="icon-btn" to={`/myhome/stamp/detail/?playNum=${playNum}&stampNum=${coalesce}`} title="목록" aria-label="목록"><ListUl size={15}/></Link>
                                     <button type="button" className="icon-btn" onClick={copyStamp} title="복사" aria-label="복사"><Files size={15}/></button>
                                     <button type="button" className="icon-btn danger" onClick={deleteStamp} title="삭제" aria-label="삭제"><Trash3 size={15}/></button>
                                 </div>
@@ -235,8 +237,8 @@ const MyStampEdit = () => {
                                     selected={playDate}
                                     minDate ={parseISO(startDate)}
                                     maxDate={parseISO(endDate)}
-                                    onChange={(date) => setPlayDate(date)}
-                                    dateFormat="yyyy.MM.dd"
+                                    onChange={(date) => { setPlayDate(date); setPlayTime(getDefaultPlayTime(date)); }}
+                                    dateFormat="yyyy년 MM월 dd일"                                    
                                     customInput={<Input />}
                                     onMonthChange={handleMonthChange}
                                     dayClassName={(d) =>
@@ -289,7 +291,8 @@ const MyStampEdit = () => {
                                 showTimeSelectOnly
                                 timeIntervals={15}
                                 timeCaption="Time"
-                                dateFormat="h:mm aa"
+                                dateFormat="aa h:mm"
+                                timeFormat="aa h:mm"
                                 customInput={<Input />}
                             />
                             </div>

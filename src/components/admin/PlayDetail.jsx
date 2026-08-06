@@ -2,6 +2,7 @@ import axios from "axios";
 import {useEffect, useState, forwardRef} from "react";
 import { Link, useParams } from 'react-router-dom';
 import { format, parseISO } from 'date-fns';
+import { formatStampDate } from "../../utils/formatStampDate";
 import InputContainer from "./InputContainer";
 import EditStampList from "./EditStampList";
 import DatePicker from 'react-datepicker';
@@ -442,10 +443,10 @@ const PlayDetail = () => {
                                     stampNum = {stamp.stamp_num}
                                     stampBenefitNum = {stamp.stamp_benefit_num}
                                     stampBenefit = {stamp.stamp_benefit}
-                                    stampGetStartDate = {stamp.stamp_getstartdate ? format(parseISO(stamp.stamp_getstartdate),'yyyy-MM-dd') : ''}
-                                    stampGetEndDate = {stamp.stamp_getenddate ? format(parseISO(stamp.stamp_getenddate),'yyyy-MM-dd') : ''}
-                                    stampUseStartDate = {stamp.stamp_usestartdate ? format(parseISO(stamp.stamp_usestartdate),'yyyy-MM-dd') : ''}
-                                    stampUseEndDate = {stamp.stamp_useenddate ? format(parseISO(stamp.stamp_useenddate),'yyyy-MM-dd') :''}
+                                    stampGetStartDate = {formatStampDate(stamp.stamp_getstartdate)}
+                                    stampGetEndDate = {formatStampDate(stamp.stamp_getenddate)}
+                                    stampUseStartDate = {formatStampDate(stamp.stamp_usestartdate)}
+                                    stampUseEndDate = {formatStampDate(stamp.stamp_useenddate)}
                                     stampUrl = {stamp.stamp_url}
                                     stampMemo = {stamp.stamp_memo}
                                 />
