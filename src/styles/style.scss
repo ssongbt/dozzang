@@ -101,6 +101,25 @@ input, select, textarea {
     &:hover { background: var(--color-primary-dark); box-shadow: var(--shadow-md); }
 }
 
+%icon-btn-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-ink-soft);
+    cursor: pointer;
+    flex: none;
+    padding: 0;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+
+    &:hover { background: var(--color-primary-soft); color: var(--color-primary); border-color: var(--color-primary-light); }
+    &.danger:hover { background: rgba(255,92,108,0.08); color: var(--color-danger); border-color: rgba(255,92,108,0.35); }
+}
+
 %input-underline {
     width: 100%;
     border: none;
@@ -1590,9 +1609,45 @@ input, select, textarea {
                                 gap: var(--space-2);
                                 margin-bottom: var(--space-2);
 
-                                .playName { 
-                                    color: var(--color-ink); font-size: 15px; font-weight: 700; 
-                                    .stampCoalesce { font-size: 12px; font-weight: 500; }
+                                &.clickable {
+                                    cursor: pointer;
+                                    border-radius: var(--radius-md);
+                                    padding: var(--space-1) var(--space-2);
+                                    margin: calc(var(--space-1) * -1) calc(var(--space-2) * -1) var(--space-2);
+                                    transition: transform var(--transition), background var(--transition);
+
+                                    &:hover {
+                                        transform: translateY(-2px);
+                                        background: var(--color-primary-soft);
+                                    }
+                                }
+
+                                .playName {
+                                    color: var(--color-ink); font-size: 15px; font-weight: 700;
+                                    .stampCoalesce {
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 4px;
+                                        font-size: 12px;
+                                        font-weight: 500;
+                                        color: var(--color-ink-soft);
+
+                                        .stampAlias {
+                                            color: var(--color-primary);
+                                            font-weight: 700;
+                                            &::before { content: '· '; color: var(--color-ink-soft); font-weight: 500; }
+                                        }
+
+                                        .alias-edit-btn {
+                                            @extend %icon-btn-sm;
+                                            width: 18px;
+                                            height: 18px;
+                                            border: none;
+                                            background: transparent;
+                                            opacity: 0.5;
+                                            &:hover { opacity: 1; background: var(--color-primary-soft); }
+                                        }
+                                    }
                                 }
                                 .stampCount {
                                     flex: 0 0 auto;
@@ -1678,56 +1733,93 @@ input, select, textarea {
                         @extend %play-card;
                         margin-bottom: var(--space-4);
 
-                        .stamplist {
-                            padding: 0 var(--space-5) var(--space-5);
+                        .myStampStatus {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            gap: var(--space-2);
+                            margin: 0 var(--space-5) var(--space-4);
+                            padding: var(--space-3) var(--space-4);
+                            border-radius: var(--radius-md);
+                            background: var(--color-primary-soft);
 
-                            .stampdetail {
+                            .titleRow {
                                 display: flex;
-                                flex-wrap: wrap;
                                 align-items: center;
-                                gap: var(--space-2);
-                                padding: var(--space-3) 0;
-                                border-top: 1px dashed var(--color-border);
+                                gap: var(--space-1);
 
-                                .stampNum {
-                                    .num { color: var(--color-ink); font-weight: 700; }
-                                    .max { color: var(--color-muted); }
-                                }
-                                .stampDate {
+                                .stampCoalesce { color: var(--color-ink); font-weight: 700; font-size: 14px; }
+                                .stampAlias {
                                     color: var(--color-primary);
-                                    font-weight: 600;
+                                    font-weight: 700;
                                     font-size: 13px;
-                                    span {
-                                        border-radius: var(--radius-sm);
-                                        padding: 2px 6px;
-                                        background-color: var(--color-primary-light);
-                                        font-size: 11px;
-                                        color: var(--color-primary-dark);
-                                        margin-left: var(--space-1);
-                                    }
+                                    &::before { content: '· '; color: var(--color-ink-soft); font-weight: 500; }
                                 }
-                                .small-btn {
-                                    display: flex;
-                                    gap: var(--space-2);
-                                    margin-left: auto;
-                                    .edit-btn, .div-btn, .del-btn { color: var(--color-ink-soft); font-size: 12px; }
+                                .icon-btn {
+                                    @extend %icon-btn-sm;
+                                    width: 20px;
+                                    height: 20px;
+                                    border: none;
+                                    background: transparent;
+                                    opacity: 0.5;
+                                    &:hover { opacity: 1; background: rgba(255,255,255,0.6); }
                                 }
+                            }
 
-                                .benefitdetail {
-                                    flex: 1 1 100%;
-                                    margin-left: var(--space-5);
-                                    .benefit {
-                                        margin-bottom: var(--space-1);
-                                        .getBenefit {
+                            .count {
+                                .mymax { font-size: 18px; font-weight: 700; color: var(--color-ink); }
+                                .max { color: var(--color-primary); }
+                            }
+                        }
+
+                        .benefitdetail {
+                            margin: var(--space-5) var(--space-5) var(--space-4);
+
+                            .section-title {
+                                color: var(--color-ink);
+                                font-size: 15px;
+                                font-weight: 700;
+                                margin-bottom: var(--space-2);
+                            }
+
+                            .benefitCheckList {
+                                display: flex;
+                                flex-direction: column;
+                                gap: var(--space-2);
+
+                                .benefitlist {
+                                    display: flex;
+                                    gap: var(--space-3);
+                                    padding: var(--space-3);
+                                    border: 1px solid var(--color-border);
+                                    border-radius: var(--radius-md);
+                                    transition: opacity var(--transition), border-color var(--transition);
+
+                                    &.locked { opacity: 0.55; }
+                                    &.achieved { border-color: var(--color-primary-light); }
+
+                                    .benefitNum {
+                                        flex: none;
+                                        width: 64px;
+                                        span {
+                                            color: var(--color-primary);
+                                            font-weight: 700;
+                                            font-size: 13px;
+                                        }
+                                    }
+
+                                    .benefitBody {
+                                        flex: 1;
+                                        min-width: 0;
+
+                                        .benefit {
                                             display: flex;
                                             align-items: center;
-                                            flex-wrap: wrap;
                                             gap: var(--space-1);
                                             margin-bottom: var(--space-1);
-                                            .benefitName {
-                                                color: var(--color-ink);
-                                                font-weight: 700;
-                                            }
+
+                                            .benefitName { color: var(--color-ink); font-weight: 700; font-size: 13px; }
                                             .linkImg {
                                                 height: 14px;
                                                 width: 14px;
@@ -1736,20 +1828,163 @@ input, select, textarea {
                                                 transition: opacity var(--transition);
                                                 &:hover { opacity: 1; }
                                             }
-                                            .useDate { color: var(--color-ink-soft); font-size: 13px; }
                                         }
-                                        .memo { font-size: 11px; color: var(--color-muted); }
+
+                                        .useDate { color: var(--color-ink-soft); font-size: 12px; margin-bottom: var(--space-1); }
+                                        .memo { font-size: 11px; color: var(--color-muted); margin-bottom: var(--space-1); }
+                                        .lockedLabel { font-size: 12px; color: var(--color-muted); }
+
+                                        .benefitCheckRow {
+                                            display: flex;
+                                            flex-wrap: wrap;
+                                            align-items: center;
+                                            gap: var(--space-1) var(--space-3);
+                                            margin-top: var(--space-1);
+
+                                            .couponRow {
+                                                display: flex;
+                                                flex-wrap: wrap;
+                                                gap: var(--space-1) var(--space-3);
+                                            }
+
+                                            .benefitCheck {
+                                                display: inline-flex;
+                                                align-items: center;
+                                                gap: 4px;
+                                                font-size: 12px;
+                                                color: var(--color-ink-soft);
+                                                cursor: pointer;
+
+                                                input[type="checkbox"] { accent-color: var(--color-primary); cursor: pointer; }
+                                                input:disabled { cursor: not-allowed; }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .stamplist {
+                            padding: 0 var(--space-5) var(--space-5);
+
+                            .stampdetail {
+                                display: flex;
+                                align-items: center;
+                                gap: var(--space-3);
+                                padding: var(--space-3) var(--space-2);
+                                margin: 0 calc(var(--space-2) * -1);
+                                border-top: 1px dashed var(--color-border);
+                                border-left: 3px solid transparent;
+                                border-radius: var(--radius-sm);
+
+                                &.visited { border-left-color: var(--color-primary-light); }
+                                &.upcoming { border-left-color: var(--color-warning); }
+
+                                .stampIconWrap {
+                                    flex: none;
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    gap: 2px;
+                                    width: 36px;
+
+                                    .stampIcon {
+                                        width: 26px;
+                                        height: 26px;
+                                        background-color: var(--color-primary);
+                                        -webkit-mask-image: url(../assets/dozzang_logo.png);
+                                        mask-image: url(../assets/dozzang_logo.png);
+                                        -webkit-mask-size: contain;
+                                        mask-size: contain;
+                                        -webkit-mask-repeat: no-repeat;
+                                        mask-repeat: no-repeat;
+                                        -webkit-mask-position: center;
+                                        mask-position: center;
+
+                                        &.upcoming { background-color: var(--color-warning); }
+                                    }
+
+                                    .stampNum {
+                                        font-size: 10px;
+                                        .num { color: var(--color-ink); font-weight: 700; }
+                                        .max { color: var(--color-muted); }
                                     }
                                 }
 
-                                .stampMemo {
-                                    flex: 1 1 100%;
-                                    margin-left: var(--space-5);
-                                    padding: var(--space-2);
-                                    background-color: var(--color-primary-soft);
-                                    border-radius: var(--radius-sm);
-                                    font-size: 12px;
-                                    color: var(--color-ink-soft);
+                                .stampInfo {
+                                    flex: 1;
+                                    min-width: 0;
+
+                                    .stampDate {
+                                        color: var(--color-ink);
+                                        font-weight: 600;
+                                        font-size: 13px;
+
+                                        .doubleBadge {
+                                            display: inline-block;
+                                            border-radius: var(--radius-sm);
+                                            padding: 2px 6px;
+                                            background-color: var(--color-primary-light);
+                                            font-size: 11px;
+                                            color: var(--color-primary-dark);
+                                            margin-left: var(--space-1);
+                                        }
+
+                                        .upcomingBadge {
+                                            display: inline-block;
+                                            border-radius: var(--radius-sm);
+                                            padding: 2px 6px;
+                                            background-color: var(--color-warning);
+                                            font-size: 11px;
+                                            color: var(--color-primary-dark);
+                                            margin-left: var(--space-1);
+                                            font-weight: 700;
+                                        }
+                                    }
+
+                                    .stampBenefit {
+                                        display: flex;
+                                        flex-wrap: wrap;
+                                        gap: var(--space-1);
+                                        margin-top: var(--space-1);
+
+                                        .benefitTag {
+                                            display: inline-block;
+                                            border-radius: var(--radius-pill);
+                                            padding: 2px 8px;
+                                            background-color: var(--color-primary-soft);
+                                            border: 1px solid var(--color-primary-light);
+                                            font-size: 11px;
+                                            color: var(--color-primary-dark);
+                                            font-weight: 600;
+                                        }
+                                    }
+
+                                    .stampMemo {
+                                        margin-top: var(--space-1);
+                                        padding: var(--space-1) var(--space-2);
+                                        background-color: var(--color-primary-soft);
+                                        border-radius: var(--radius-sm);
+                                        font-size: 12px;
+                                        color: var(--color-ink-soft);
+                                        display: inline-block;
+                                    }
+
+                                    .warnLabel {
+                                        display: block;
+                                        margin-top: var(--space-1);
+                                        font-size: 12px;
+                                        color: var(--color-danger);
+                                        cursor: pointer;
+                                    }
+                                }
+
+                                .rowActions {
+                                    flex: none;
+                                    display: flex;
+                                    gap: var(--space-2);
+
+                                    .icon-btn { @extend %icon-btn-sm; }
                                 }
                             }
                         }

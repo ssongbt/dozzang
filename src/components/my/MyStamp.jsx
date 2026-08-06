@@ -1,11 +1,9 @@
-import axios from "axios";
 import {useEffect, useMemo, useState} from "react";
-import { useCookies } from 'react-cookie';
-import { Link } from "react-router-dom";
 import { format, parseISO } from 'date-fns';
+import { PencilSquare } from "react-bootstrap-icons";
 import searchPlayList from "../../data/searchPlayList.json";
 import playStampList from "../../data/playStampList.json";
-import { loadAllStamps, getFilledCount } from "../../utils/stampStorage";
+import { loadAllStamps, getFilledCount, getCardAlias, setCardAlias } from "../../utils/stampStorage";
 
 const formatDotLabel = (date, time) => {
     if(!date){
@@ -31,6 +29,10 @@ const editStamp = (num) =>{
 
 const addStamp = (playNum, coalesce) =>{
     window.location.href=`#/myhome/stamp/add/${playNum}/${coalesce}`;
+}
+
+const viewDetail = (playNum, coalesce) => {
+    window.location.href = `#/myhome/stamp/detail/?playNum=${playNum}&stampNum=${coalesce}`;
 }
 
 const buildStampDots = (row) => {
@@ -102,11 +104,6 @@ const MyStamp = () => {
     const [totalStampList, setTotalStampList] = useState([]);
     const [totalMyCount, setTotalMyCount] = useState();
 
-    const [cookies, setCookie] = useCookies(['id','nick','img']);
-
-    const [userNick, setUserNick] = useState(localStorage.getItem('userNick'));
-    const [userImg, setUserImg] = useState(localStorage.getItem('userImg'));
-
     const getStampList = () =>{
         const all = loadAllStamps();
         const today = format(new Date(),'yyyy-MM-dd');
@@ -128,6 +125,7 @@ const MyStamp = () => {
                     coalesce: card.coalesce,
                     max: play.play_stamp,
                     records: card.records || [],
+                    alias: getCardAlias(play.play_num, card.coalesce),
                 };
                 total.push(row);
                 if(!play.play_end || play.play_end >= today){
@@ -176,6 +174,16 @@ const MyStamp = () => {
     // }
 
     
+
+    const editAlias = (e, playNum, coalesce, currentAlias) => {
+        e.stopPropagation();
+        const next = window.prompt("도장판 별칭을 입력하세요", currentAlias || '');
+        if(next === null){
+            return;
+        }
+        setCardAlias(playNum, coalesce, next.trim());
+        getStampList();
+    }
 
     const changeStamp = (state) => {
         setStampState(state);
@@ -237,9 +245,14 @@ const MyStamp = () => {
         const mySum = getFilledCount(list);
         return(
             <div className="myStamp" key={index}>
-                <div className="stampTop">
+                <div className="stampTop clickable" onClick={() => viewDetail(list.stamp_play_num, list.coalesce)}>
                     <div className="playName">
-                    {list.play_genre} &lt;{list.play_name}&gt; <span className="stampCoalesce">도장판{list.coalesce}</span>
+                    {list.play_genre} &lt;{list.play_name}&gt;
+                    <span className="stampCoalesce">
+                        도장판{list.coalesce}
+                        {list.alias ? <span className="stampAlias">{list.alias}</span> : ''}
+                        <button type="button" className="alias-edit-btn" title="별칭 수정" aria-label="별칭 수정" onClick={(e)=>editAlias(e, list.stamp_play_num, list.coalesce, list.alias)}><PencilSquare size={11}/></button>
+                    </span>
                     </div>
                     <div className="stampCount">
                         <span className="mymax">{mySum}</span><span className="max"> / {list.max}</span>

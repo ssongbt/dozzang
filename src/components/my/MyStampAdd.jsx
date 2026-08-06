@@ -10,7 +10,7 @@ import { ko } from "date-fns/esm/locale";
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
 import searchPlayList from "../../data/searchPlayList.json";
-import { loadAllStamps, saveStamp, getFilledCount } from "../../utils/stampStorage";
+import { loadAllStamps, saveStamp, getFilledCount, getCardAlias } from "../../utils/stampStorage";
 
 const MyStampAdd = () =>{
 
@@ -152,8 +152,10 @@ console.log("dja마아"+presetCoalesce);
                 <div className="stamp">
                     <select defaultValue={stampCnt} name="stampCnt" onChange={(e) => setStampCnt(e.target.value)}>
                         {stamps && stamps.map(stamp=>{
+                            const coalesceLabel = presetCoalesce ? presetCoalesce : stamp.coalesce;
+                            const alias = getCardAlias(playNum, stamp.coalesce);
                             return(
-                                <option key={stamp.coalesce} value={presetCoalesce ? presetCoalesce : stamp.coalesce} disabled={getFilledCount(stamp)>=max ? "disabled" : "" } >{presetCoalesce ? presetCoalesce : stamp.coalesce}</option>
+                                <option key={stamp.coalesce} value={presetCoalesce ? presetCoalesce : stamp.coalesce} disabled={getFilledCount(stamp)>=max ? "disabled" : "" } >{coalesceLabel}{alias ? ` (${alias})` : ''}</option>
                             )
                         })}
                         

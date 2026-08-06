@@ -8,7 +8,7 @@ import getYear from "date-fns/getYear";
 import styled from 'styled-components';
 import { Files, Trash3 } from "react-bootstrap-icons";
 import searchPlayList from "../../data/searchPlayList.json";
-import { loadAllStamps, saveStamp, updateStamp, removeStamp, getFilledCount } from "../../utils/stampStorage";
+import { loadAllStamps, saveStamp, updateStamp, removeStamp, getFilledCount, getCardAlias } from "../../utils/stampStorage";
 
 const MyStampEdit = () => {
 
@@ -86,8 +86,9 @@ const MyStampEdit = () => {
                         {stamps.map(stamp=>{
                             const isOwnCard = Number(stamp.coalesce) === Number(coalesce);
                             const isFull = getFilledCount(stamp)>=max;
+                            const alias = getCardAlias(playNum, stamp.coalesce);
                             return(
-                                <option key={stamp.coalesce} value={stamp.coalesce} disabled={!isOwnCard && isFull}>{stamp.coalesce}</option>
+                                <option key={stamp.coalesce} value={stamp.coalesce} disabled={!isOwnCard && isFull}>{stamp.coalesce}{alias ? ` (${alias})` : ''}</option>
                             )
                         })}
                         <option value={size+1}>새 도장판</option>

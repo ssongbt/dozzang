@@ -1,4 +1,6 @@
 const STAMPS_KEY = 'myStamps';
+const BENEFITS_KEY = 'myBenefits';
+const ALIASES_KEY = 'myStampAliases';
 
 export const getFilledCount = (card) => {
     return (card.records || []).reduce((sum, r) => sum + (Number(r.doubleStamp) || 1), 0);
@@ -52,6 +54,55 @@ export const updateStamp = (playNum, coalesce, recordIndex, record) => {
     cards[cardIndex] = { ...cards[cardIndex], records };
     all[playNum] = cards;
     localStorage.setItem(STAMPS_KEY, JSON.stringify(all));
+};
+
+const benefitKey = (playNum, coalesce, benefitNum) => `${playNum}-${coalesce}-${benefitNum}`;
+
+export const loadBenefitStatus = () => {
+    try {
+        return JSON.parse(localStorage.getItem(BENEFITS_KEY)) || {};
+    } catch (e) {
+        return {};
+    }
+};
+
+export const getBenefitStatus = (playNum, coalesce, benefitNum) => {
+    const all = loadBenefitStatus();
+    return all[benefitKey(playNum, coalesce, benefitNum)] || { received: false, used: false };
+};
+
+export const setBenefitStatus = (playNum, coalesce, benefitNum, status) => {
+    const all = loadBenefitStatus();
+    const key = benefitKey(playNum, coalesce, benefitNum);
+    all[key] = { ...all[key], ...status };
+    localStorage.setItem(BENEFITS_KEY, JSON.stringify(all));
+    return all[key];
+};
+
+const aliasKey = (playNum, coalesce) => `${playNum}-${coalesce}`;
+
+export const loadCardAliases = () => {
+    try {
+        return JSON.parse(localStorage.getItem(ALIASES_KEY)) || {};
+    } catch (e) {
+        return {};
+    }
+};
+
+export const getCardAlias = (playNum, coalesce) => {
+    const all = loadCardAliases();
+    return all[aliasKey(playNum, coalesce)] || '';
+};
+
+export const setCardAlias = (playNum, coalesce, alias) => {
+    const all = loadCardAliases();
+    const key = aliasKey(playNum, coalesce);
+    if (alias) {
+        all[key] = alias;
+    } else {
+        delete all[key];
+    }
+    localStorage.setItem(ALIASES_KEY, JSON.stringify(all));
 };
 
 export const removeStamp = (playNum, coalesce, recordIndex) => {

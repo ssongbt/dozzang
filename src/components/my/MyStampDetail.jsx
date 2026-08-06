@@ -1,31 +1,30 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from 'react-router-dom';
 import { parseISO, format } from "date-fns";
-import { Link45deg, PatchPlusFill } from "react-bootstrap-icons";
+import { PencilSquare, Trash3 } from "react-bootstrap-icons";
 import BenefitCheck from "./BenefitCheck";
 import Linkimg from "../../assets/free-icon-link-2089782.png";
 import searchPlayList from "../../data/searchPlayList.json";
-import { loadAllStamps } from "../../utils/stampStorage";
+import playStampList from "../../data/playStampList.json";
+import { loadAllStamps, removeStamp, getFilledCount, getCardAlias, setCardAlias } from "../../utils/stampStorage";
 
 const MyStampDetail = () => {
 
     const [detailParams] = useSearchParams();
+    const playNum = detailParams.get('playNum');
+    const stampNum = detailParams.get('stampNum');
     const [playName, setPlayName] = useState();
     const [playGenre, setPlayGenre] = useState();
     const [playStart, setPlayStart] = useState();
     const [playEnd, setPlayEnd] = useState();
     const [playCast, setPlayCast] = useState();
     const [playUrl, setPlayUrl] = useState();
-    const [playFirstStamp, setPlayFirstStamp] = useState();
-    const [playFirstDouble, setPlayFirstDouble] = useState();
     const [max, setMax] = useState();
     const [detailList, setDetailList] = useState();
+    const [mySum, setMySum] = useState(0);
+    const [alias, setAlias] = useState('');
 
     const getDetail = () =>{
-        const playNum = detailParams.get('playNum');
-        const stampNum = detailParams.get('stampNum');
-
         const play = searchPlayList.find((p) => p.play_num === Number(playNum));
         if(!play){
             return;
@@ -36,13 +35,14 @@ const MyStampDetail = () => {
         setPlayEnd(play.play_end);
         setPlayCast(play.play_cast);
         setPlayUrl(play.play_url);
-        setPlayFirstStamp(play.play_firststamp);
-        setPlayFirstDouble(play.play_firststamp);
         setMax(play.play_stamp);
 
         const cards = loadAllStamps()[playNum] || [];
         const card = cards.find((c) => Number(c.coalesce) === Number(stampNum));
         const records = card && card.records ? card.records : [];
+
+        setMySum(card ? getFilledCount(card) : 0);
+        setAlias(getCardAlias(playNum, stampNum));
 
         let sum = 0;
         const rows = records.map((record, index) => {
@@ -67,73 +67,77 @@ const MyStampDetail = () => {
 
     useEffect(()=>{
         getDetail();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
-    const editStamp = (num) =>{
-        window.location.href=`#/myhome/stamp/edit/${num}`;
+    const editStamp = (recordIndex) =>{
+        window.location.href=`#/myhome/stamp/edit/${playNum}-${stampNum}-${recordIndex}`;
     }
 
-    const delStamp = (num) => {
+    const delStamp = (recordIndex) => {
         if(window.confirm("정말 삭제하시겠습니까?")){
-            axios({
-                url:`/api/myhome/stamp/detail/del/${num}`,
-                method:'POST'
-            })
-            .then(()=>{
-                alert("삭제되었습니다.");
-                window.location.reload();
-            })
-            .catch((err)=>{
-                console.log(err);
-            })
+            removeStamp(playNum, stampNum, recordIndex);
+            alert("삭제되었습니다.");
+            getDetail();
         }else{
             return false;
         }
     }
 
-    const doubleCheck = () => {
-        return(
-            <span>
-                더블적립
-            </span>
-        )
+    const editAlias = () => {
+        const next = window.prompt("도장판 별칭을 입력하세요", alias || '');
+        if(next === null){
+            return;
+        }
+        setCardAlias(playNum, stampNum, next.trim());
+        setAlias(next.trim());
     }
+
+    const today = format(new Date(),'yyyy-MM-dd');
 
     const list = detailList && detailList.map(list=>{
         const date = format(parseISO(list.ustamp_play_date),'yyyy-MM-dd');
         const time = list.ustamp_play_time.substr(0,5);
+        const upcoming = list.ustamp_play_date > today;
+        const weight = Number(list.ustamp_double) || 1;
+        const roundStart = list.sum - weight + 1;
+        const roundBenefits = playStampList.filter((b) =>
+            b.stamp_play_num === Number(playNum) &&
+            Number(b.stamp_benefit_num) >= roundStart &&
+            Number(b.stamp_benefit_num) <= list.sum
+        );
         return(
-            <div className="stampdetail" key={list.idx}>
-                <div className="stampNum"><span className="num">{list.sum}</span><span className="max">/{max}</span></div>
-                {/* {list.idx} */}
-                <div className="stampDate">
-                {date}
-                &nbsp;{time}
-                &nbsp; {list.ustamp_double===2? doubleCheck():''}
-                </div>
-                
-                <div className="small-btn">
-                    <div className="edit-btn" onClick={()=>editStamp(list.ustamp_num)}>수정</div>
-                    <div className="div-btn">&nbsp; | &nbsp;</div>
-                    <div className="del-btn" onClick={()=>delStamp(list.ustamp_num)}>삭제</div>
+            <div className={`stampdetail ${upcoming ? 'upcoming' : 'visited'}`} key={list.idx}>
+                <div className="stampIconWrap">
+                    <span className={`stampIcon filled ${upcoming ? 'upcoming' : ''}`} />
+                    <span className="stampNum"><span className="num">{list.sum}</span><span className="max">/{max}</span></span>
                 </div>
 
-                <div className="benefitdetail">
-                    <BenefitCheck
-                        benefitNum = {list.sum}
-                        double = {list.ustamp_double}
-                    />
+                <div className="stampInfo">
+                    <div className="stampDate">
+                        {date}&nbsp;{time}
+                        {upcoming ? <span className="upcomingBadge">예정</span> : ''}
+                        {list.ustamp_double===2 ? <span className="doubleBadge">더블적립</span> : ''}
+                    </div>
+                    {roundBenefits.length > 0 &&
+                        <div className="stampBenefit">
+                            {roundBenefits.map((b) => (
+                                <span className="benefitTag" key={b.stamp_num}>{b.stamp_benefit_emoji || '🎁'} {b.stamp_benefit}</span>
+                            ))}
+                        </div>
+                    }
+                    {list.ustamp_memo ?
+                        <div className="stampMemo">{list.ustamp_memo}</div>
+                        : ''}
+                    {list.sum>max ?
+                        <span className="warnLabel" onClick={()=>editStamp(list.ustamp_num)}>‼️ 수정필요</span>
+                        : ''}
                 </div>
 
-                
-                {list.ustamp_memo ? 
-                <div className="stampMemo" > {list.ustamp_memo} </div>
-                  : ''}
-                
-                
-                {list.sum>max?<span className="edit-btn" onClick={()=>editStamp(list.ustamp_num)}>수정필요</span>:''}
-
-
+                <div className="rowActions">
+                    <button type="button" className="icon-btn" title="수정" aria-label="수정" onClick={()=>editStamp(list.ustamp_num)}><PencilSquare size={13}/></button>
+                    <button type="button" className="icon-btn danger" title="삭제" aria-label="삭제" onClick={()=>delStamp(list.ustamp_num)}><Trash3 size={13}/></button>
+                </div>
             </div>
             )
     })
@@ -148,7 +152,7 @@ const MyStampDetail = () => {
                                 <div className="playName">
                                     <span className="title">{playGenre}&lt;{playName}&gt;</span>
                                     &nbsp;&nbsp;
-                                        {playUrl ? 
+                                        {playUrl ?
                                             <img className="linkImg" src={Linkimg} alt="link" onClick={() => window.open(`${playUrl}`, "_blank")} />
                                             : ''}
                                     &nbsp;&nbsp;
@@ -160,10 +164,29 @@ const MyStampDetail = () => {
                                     {playCast}
                                 </div>
                             </div>
-                            <div className="stamplist">                    
+
+                            <div className="benefitdetail">
+                                <div className="section-title">혜택 안내</div>
+                                <BenefitCheck
+                                    playNum = {playNum}
+                                    coalesce = {stampNum}
+                                    mySum = {mySum}
+                                />
+                            </div>
+
+                            <div className="myStampStatus">
+                                <div className="titleRow">
+                                    <span className="stampCoalesce">도장판{stampNum}</span>
+                                    {alias ? <span className="stampAlias">{alias}</span> : ''}
+                                    <button type="button" className="icon-btn" title="별칭 수정" aria-label="별칭 수정" onClick={editAlias}><PencilSquare size={12}/></button>
+                                </div>
+                                <span className="count"><span className="mymax">{mySum}</span><span className="max"> / {max}</span></span>
+                            </div>
+
+                            <div className="stamplist">
                                 {list}
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
