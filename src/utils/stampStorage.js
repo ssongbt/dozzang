@@ -15,7 +15,12 @@ export const loadAllStamps = () => {
 };
 
 export const exportStampsBackup = () => {
-    return JSON.stringify(loadAllStamps(), null, 2);
+    const backup = {
+        stamps: loadAllStamps(),
+        benefits: loadBenefitStatus(),
+        aliases: loadCardAliases(),
+    };
+    return JSON.stringify(backup, null, 2);
 };
 
 export const restoreStampsBackup = (jsonString) => {
@@ -23,7 +28,21 @@ export const restoreStampsBackup = (jsonString) => {
     if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
         throw new Error('올바른 백업 파일이 아닙니다.');
     }
-    localStorage.setItem(STAMPS_KEY, JSON.stringify(parsed));
+
+    // 예전 백업 파일은 stamps 맵 하나뿐이라 { stamps, benefits, aliases } 모양이 아니다.
+    const isBundledFormat = parsed.stamps && typeof parsed.stamps === 'object' && !Array.isArray(parsed.stamps);
+    const stamps = isBundledFormat ? parsed.stamps : parsed;
+
+    localStorage.setItem(STAMPS_KEY, JSON.stringify(stamps));
+
+    if (isBundledFormat) {
+        if (parsed.benefits && typeof parsed.benefits === 'object') {
+            localStorage.setItem(BENEFITS_KEY, JSON.stringify(parsed.benefits));
+        }
+        if (parsed.aliases && typeof parsed.aliases === 'object') {
+            localStorage.setItem(ALIASES_KEY, JSON.stringify(parsed.aliases));
+        }
+    }
 };
 
 export const saveStamp = (playNum, coalesce, doubleWeight, record) => {
