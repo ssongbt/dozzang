@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Home from './home/Home';
 import PlayList from './admin/PlayList';
@@ -104,6 +104,7 @@ const WrapComponent = () =>{
 
             <HeaderComponent />
             <Routes>
+                <Route path='/' element={<Navigate to="/home" replace />} />
                 <Route path='/home' element={<Home/>} />
                 {/* <Route path='/home/login/kakao' element={<Kakao/>} /> */}
                 <Route path='/home/search/:keyword' element={<SearchList/>} />

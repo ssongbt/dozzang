@@ -10,7 +10,7 @@ import { ko } from "date-fns/esm/locale";
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
 import searchPlayList from "../../data/searchPlayList.json";
-import { loadAllStamps, saveStamp } from "../../utils/stampStorage";
+import { loadAllStamps, saveStamp, getFilledCount } from "../../utils/stampStorage";
 
 const MyStampAdd = () =>{
 
@@ -34,7 +34,7 @@ const MyStampAdd = () =>{
     //     // stampCnt:'',
     //     stampMemo:''
     // })
-
+console.log("dja마아"+presetCoalesce);
     const [stampCnt, setStampCnt] = useState();
 
     function getPlayNum(e) {
@@ -76,6 +76,9 @@ const MyStampAdd = () =>{
         setEndDate(play.play_end ? format(parseISO(play.play_end),'yyyy-MM-dd') : '');
         setMax(play.play_stamp);
         setStamps(loadAllStamps()[playNum] || []);
+        const today = new Date();
+        const playStart = play.play_start ? parseISO(play.play_start) : null;
+        setPlayDate(playStart && playStart > today ? playStart : today);
         // axios({
         //     url:`/api/myhome/stamp/add/${playNum}`,
         //     method:'POST'
@@ -103,7 +106,7 @@ const MyStampAdd = () =>{
     const getStampCnt = () =>{
         if(stamps && stamps.length !==0){
             for(let i=0;i<stamps.length;i++){
-                let myMax = Number(stamps[i].nomal) + Number((stamps[i].double*2));
+                let myMax = getFilledCount(stamps[i]);
 
                 if(myMax < max){
                     setStampCnt(stamps[i].coalesce);
@@ -150,7 +153,7 @@ const MyStampAdd = () =>{
                     <select defaultValue={stampCnt} name="stampCnt" onChange={(e) => setStampCnt(e.target.value)}>
                         {stamps && stamps.map(stamp=>{
                             return(
-                                <option key={stamp.coalesce} value={stamp.coalesce} disabled={(Number(stamp.nomal) + Number((stamp.double*2)))>=max ? "disabled" : "" } >{stamp.coalesce}</option>
+                                <option key={stamp.coalesce} value={presetCoalesce ? presetCoalesce : stamp.coalesce} disabled={getFilledCount(stamp)>=max ? "disabled" : "" } >{presetCoalesce ? presetCoalesce : stamp.coalesce}</option>
                             )
                         })}
                         
@@ -201,7 +204,7 @@ const MyStampAdd = () =>{
 
         saveStamp(playNum, stampCnt, double2, data);
         window.alert("저장되었습니다");
-        window.location.replace("/myhome/stamp");
+        window.location.replace("#/myhome/stamp");
         // await axios({
         //     url:"/api/myhome/stamp/add",
         //     method:"POST",
@@ -306,9 +309,8 @@ const MyStampAdd = () =>{
                                         }}
                                         >
                                         <div
-                                            className="btn_month btn_month-prev"
-                                            onClick={decreaseMonth}
-                                            disabled={prevMonthButtonDisabled}
+                                            className={`btn_month btn_month-prev${prevMonthButtonDisabled ? ' disabled' : ''}`}
+                                            onClick={prevMonthButtonDisabled ? undefined : decreaseMonth}
                                             >
                                             &lt;
                                             {/* <img src="/static/images/arrow-black-left.png" /> */}
@@ -316,11 +318,10 @@ const MyStampAdd = () =>{
                                         <div className="month-day">
                                             {getYear(date)}년 {months[date.getMonth()]}월
                                         </div>
-                                    
+
                                         <div
-                                            className="btn_month btn_month-next"
-                                            onClick={increaseMonth}
-                                            disabled={nextMonthButtonDisabled}
+                                            className={`btn_month btn_month-next${nextMonthButtonDisabled ? ' disabled' : ''}`}
+                                            onClick={nextMonthButtonDisabled ? undefined : increaseMonth}
                                             >
                                             &gt;
                                             {/* <img src="/static/images/arrow-black-right.png" /> */}
@@ -379,6 +380,15 @@ const MyStampAdd = () =>{
                                             onChange={(e) => setDouble(e.target.checked ? 3 : 1)}
                                         />
                                         트리플적립
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="stampCount"
+                                            checked={double === 4}
+                                            onChange={(e) => setDouble(e.target.checked ? 4 : 1)}
+                                        />
+                                        쿼드적립
                                     </label>
                                 </div>
                             </div>

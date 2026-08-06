@@ -1,16 +1,7 @@
 const STAMPS_KEY = 'myStamps';
 
-const countStamps = (records) => {
-    let nomal = 0;
-    let double = 0;
-    records.forEach((r) => {
-        if (Number(r.doubleStamp) === 1) {
-            nomal += 1;
-        } else {
-            double += 1;
-        }
-    });
-    return { nomal, double };
+export const getFilledCount = (card) => {
+    return (card.records || []).reduce((sum, r) => sum + (Number(r.doubleStamp) || 1), 0);
 };
 
 export const loadAllStamps = () => {
@@ -38,16 +29,11 @@ export const saveStamp = (playNum, coalesce, doubleWeight, record) => {
     const cards = all[playNum] ? [...all[playNum]] : [];
     let card = cards.find((c) => Number(c.coalesce) === Number(coalesce));
     if (!card) {
-        card = { coalesce: Number(coalesce), nomal: 0, double: 0, records: [] };
+        card = { coalesce: Number(coalesce), records: [] };
         cards.push(card);
     }
     if (!card.records) {
         card.records = [];
-    }
-    if (doubleWeight === 1) {
-        card.nomal = Number(card.nomal) + 1;
-    } else {
-        card.double = Number(card.double) + 1;
     }
     card.records.push(record);
     all[playNum] = cards;
@@ -63,7 +49,7 @@ export const updateStamp = (playNum, coalesce, recordIndex, record) => {
     }
     const records = [...cards[cardIndex].records];
     records[recordIndex] = record;
-    cards[cardIndex] = { ...cards[cardIndex], records, ...countStamps(records) };
+    cards[cardIndex] = { ...cards[cardIndex], records };
     all[playNum] = cards;
     localStorage.setItem(STAMPS_KEY, JSON.stringify(all));
 };
@@ -79,7 +65,7 @@ export const removeStamp = (playNum, coalesce, recordIndex) => {
     if (records.length === 0) {
         cards.splice(cardIndex, 1);
     } else {
-        cards[cardIndex] = { ...cards[cardIndex], records, ...countStamps(records) };
+        cards[cardIndex] = { ...cards[cardIndex], records };
     }
     all[playNum] = cards;
     localStorage.setItem(STAMPS_KEY, JSON.stringify(all));

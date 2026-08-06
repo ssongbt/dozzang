@@ -70,7 +70,7 @@ const MyStampDetail = () => {
     },[])
 
     const editStamp = (num) =>{
-        window.location.href=`/myhome/stamp/edit/${num}`;
+        window.location.href=`#/myhome/stamp/edit/${num}`;
     }
 
     const delStamp = (num) => {

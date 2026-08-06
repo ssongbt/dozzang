@@ -50,7 +50,7 @@ const SearchList = () => {
 
     // console.log(resultPlayList);
     const viewDetail = (num) =>[
-        window.location.href = `/home/search/play/${num}`
+        window.location.href = `#/home/search/play/${num}`
     ]
  
     const noResult = () => {

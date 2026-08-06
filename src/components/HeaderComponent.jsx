@@ -154,7 +154,7 @@ const HeaderComponent = () => {
                         <div className="title">
                             <div className="title-gap">
                                 <div className="title-wrap">
-                                    <p><a href="/home"><img className="logo" src={Logo} alt="dozzang"></img></a></p>
+                                    <p><Link to="/home"><img className="logo" src={Logo} alt="dozzang"></img></Link></p>
                                 </div>
                             </div>
                         </div>

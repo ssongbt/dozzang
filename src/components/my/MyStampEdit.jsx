@@ -8,7 +8,7 @@ import getYear from "date-fns/getYear";
 import styled from 'styled-components';
 import { Files, Trash3 } from "react-bootstrap-icons";
 import searchPlayList from "../../data/searchPlayList.json";
-import { loadAllStamps, saveStamp, updateStamp, removeStamp } from "../../utils/stampStorage";
+import { loadAllStamps, saveStamp, updateStamp, removeStamp, getFilledCount } from "../../utils/stampStorage";
 
 const MyStampEdit = () => {
 
@@ -85,7 +85,7 @@ const MyStampEdit = () => {
                     <select value={stampCnt || ''} name="stampCnt" onChange={(e) => setStampCnt(e.target.value)}>
                         {stamps.map(stamp=>{
                             const isOwnCard = Number(stamp.coalesce) === Number(coalesce);
-                            const isFull = (Number(stamp.nomal) + Number((stamp.double*2)))>=max;
+                            const isFull = getFilledCount(stamp)>=max;
                             return(
                                 <option key={stamp.coalesce} value={stamp.coalesce} disabled={!isOwnCard && isFull}>{stamp.coalesce}</option>
                             )
@@ -128,7 +128,7 @@ const MyStampEdit = () => {
         }
 
         window.alert("저장되었습니다");
-        window.location.href = "/myhome/stamp";
+        window.location.href = "#/myhome/stamp";
     }
 
     const months = [
@@ -168,7 +168,7 @@ const MyStampEdit = () => {
         if(window.confirm("정말 삭제하시겠습니까?")){
             removeStamp(playNum, coalesce, recordIndex);
             window.alert("삭제되었습니다.");
-            window.location.href = "/myhome/stamp";
+            window.location.href = "#/myhome/stamp";
         }
     }
 
@@ -198,7 +198,7 @@ const MyStampEdit = () => {
         saveStamp(playNum, stampCnt, double, record);
 
         window.alert("복사되었습니다");
-        window.location.href = "/myhome/stamp";
+        window.location.href = "#/myhome/stamp";
     }
 
 
@@ -260,9 +260,8 @@ const MyStampEdit = () => {
                                         }}
                                         >
                                         <div
-                                            className="btn_month btn_month-prev"
-                                            onClick={decreaseMonth}
-                                            disabled={prevMonthButtonDisabled}
+                                            className={`btn_month btn_month-prev${prevMonthButtonDisabled ? ' disabled' : ''}`}
+                                            onClick={prevMonthButtonDisabled ? undefined : decreaseMonth}
                                             >
                                             &lt;
                                         </div>
@@ -271,9 +270,8 @@ const MyStampEdit = () => {
                                         </div>
 
                                         <div
-                                            className="btn_month btn_month-next"
-                                            onClick={increaseMonth}
-                                            disabled={nextMonthButtonDisabled}
+                                            className={`btn_month btn_month-next${nextMonthButtonDisabled ? ' disabled' : ''}`}
+                                            onClick={nextMonthButtonDisabled ? undefined : increaseMonth}
                                             >
                                             &gt;
                                         </div>
@@ -321,6 +319,15 @@ const MyStampEdit = () => {
                                             onChange={(e) => setDouble(e.target.checked ? 3 : 1)}
                                         />
                                         트리플적립
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="stampCount"
+                                            checked={double === 4}
+                                            onChange={(e) => setDouble(e.target.checked ? 4 : 1)}
+                                        />
+                                        쿼드적립
                                     </label>
                                 </div>
                             </div>

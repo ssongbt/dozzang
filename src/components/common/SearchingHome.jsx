@@ -60,13 +60,13 @@ const SearchingHome = () => {
         const keyword = searchItem;
         // console.log(encodeURIComponent(keyword));
         
-        window.location.href = `/home/search/${encodeURIComponent(keyword)}`
+        window.location.href = `#/home/search/${encodeURIComponent(keyword)}`
         
     }
 
     const searchPlay = (e) =>{
         const playnum =  e;
-        window.location.href = `/home/search/play/${playnum}`;
+        window.location.href = `#/home/search/play/${playnum}`;
     }
 
     const handleOnkeyPress = (e) =>{

@@ -1062,5 +1062,33 @@
     "stamp_usestartdate": "",
     "stamp_useenddate": "",
     "stamp_memo": ""
+  },
+  {
+    "stamp_num": 171,
+    "stamp_play_num": 36,
+    "stamp_play_name": "난세",
+    "stamp_benefit_num": 3,
+    "stamp_benefit": "40% 할인권 2매",
+    "stamp_benefit_emoji": "🎟️",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": "",
+    "stamp_usestartdate": "",
+    "stamp_useenddate": "",
+    "stamp_memo": ""
+  },
+  {
+    "stamp_num": 172,
+    "stamp_play_num": 36,
+    "stamp_play_name": "난세",
+    "stamp_benefit_num": 6,
+    "stamp_benefit": "폴라로이드 1매",
+    "stamp_benefit_emoji": "📸",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": "",
+    "stamp_usestartdate": "",
+    "stamp_useenddate": "",
+    "stamp_memo": "당일 캐스트 지정"
   }
 ]
