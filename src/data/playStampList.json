@@ -1216,16 +1216,32 @@
     "stamp_num": 179,
     "stamp_play_num": 40,
     "stamp_play_name": "아나키스트",
-    "stamp_benefit_num": 3,
-    "stamp_benefit": "40% 할인권 2매",
+    "stamp_benefit_num": 6,
+    "stamp_benefit": "지정 폴라로이드 1매",
     "stamp_and_benefit":"",
     "stamp_or_benefit":"",
-    "stamp_benefit_emoji": "🎟️",
+    "stamp_benefit_emoji": "📸",
     "stamp_url": "",
     "stamp_getstartdate": "",
     "stamp_getenddate": "",
-    "stamp_usestartdate": "2026-09-22",
-    "stamp_useenddate": "2026-12-06",
-    "stamp_memo": "매진 시 사용 불가"
+    "stamp_usestartdate": "",
+    "stamp_useenddate": "",
+    "stamp_memo": ""
+  },
+  {
+    "stamp_num": 179,
+    "stamp_play_num": 40,
+    "stamp_play_name": "아나키스트",
+    "stamp_benefit_num": 9,
+    "stamp_benefit": "전캐스트 실황 OST",
+    "stamp_and_benefit":"",
+    "stamp_or_benefit":"",
+    "stamp_benefit_emoji": "💿",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": "",
+    "stamp_usestartdate": "",
+    "stamp_useenddate": "",
+    "stamp_memo": ""
   }
 ]
