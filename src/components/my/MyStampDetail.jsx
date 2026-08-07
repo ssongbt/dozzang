@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from 'react-router-dom';
 import { parseISO, format } from "date-fns";
-import { PencilSquare, Trash3 } from "react-bootstrap-icons";
+import { PencilSquare, Trash3, EyeSlash, Eye } from "react-bootstrap-icons";
 import BenefitCheck from "./BenefitCheck";
 import Linkimg from "../../assets/free-icon-link-2089782.png";
 import searchPlayList from "../../data/searchPlayList.json";
 import playStampList from "../../data/playStampList.json";
-import { loadAllStamps, removeStamp, getFilledCount, getCardAlias, setCardAlias } from "../../utils/stampStorage";
+import { loadAllStamps, removeStamp, getFilledCount, getCardAlias, setCardAlias, isCardHidden, setCardHidden } from "../../utils/stampStorage";
 import { getBenefitDisplayText } from "../../utils/benefitDisplay";
 
 const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
@@ -36,6 +36,7 @@ const MyStampDetail = () => {
     const [detailList, setDetailList] = useState();
     const [mySum, setMySum] = useState(0);
     const [alias, setAlias] = useState('');
+    const [hidden, setHidden] = useState(false);
 
     const getDetail = () =>{
         const play = searchPlayList.find((p) => p.play_num === Number(playNum));
@@ -56,6 +57,7 @@ const MyStampDetail = () => {
 
         setMySum(card ? getFilledCount(card) : 0);
         setAlias(getCardAlias(playNum, stampNum));
+        setHidden(isCardHidden(playNum, stampNum));
 
         let sum = 0;
         const rows = records.map((record, index) => {
@@ -104,6 +106,12 @@ const MyStampDetail = () => {
         }
         setCardAlias(playNum, stampNum, next.trim());
         setAlias(next.trim());
+    }
+
+    const toggleHidden = () => {
+        const next = !hidden;
+        setCardHidden(playNum, stampNum, next);
+        setHidden(next);
     }
 
     const today = format(new Date(),'yyyy-MM-dd');
@@ -191,6 +199,10 @@ const MyStampDetail = () => {
                                     <span className="stampCoalesce">도장판{stampNum}</span>
                                     {alias ? <span className="stampAlias">{alias}</span> : ''}
                                     <button type="button" className="icon-btn" title="별칭 수정" aria-label="별칭 수정" onClick={editAlias}><PencilSquare size={12}/></button>
+                                    <button type="button" className="icon-btn" title={hidden ? "숨기기 해제" : "숨기기"} aria-label={hidden ? "숨기기 해제" : "숨기기"} onClick={toggleHidden}>
+                                        {hidden ? <EyeSlash size={12}/> : <Eye size={12}/>}
+                                    </button>
+                                    {hidden ? <span className="hiddenLabel">숨김</span> : ''}
                                 </div>
                                 <span className="count"><span className="mymax">{mySum}</span><span className="max"> / {max}</span></span>
                             </div>

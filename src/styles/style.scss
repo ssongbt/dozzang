@@ -1558,6 +1558,13 @@ input, select, textarea {
                             .num { font-size: 20px; font-weight: 700; color: var(--color-ink); margin-top: var(--space-1); }
                             .active .num { color: var(--color-primary); }
                         }
+
+                        .stateDesc {
+                            margin-top: var(--space-2);
+                            font-size: 11px;
+                            color: var(--color-ink-soft);
+                            text-align: center;
+                        }
                     }
 
                     .myStampList {
@@ -1649,6 +1656,22 @@ input, select, textarea {
                                             color: var(--color-primary);
                                             font-weight: 700;
                                             &::before { content: '· '; color: var(--color-ink-soft); font-weight: 500; }
+                                        }
+
+                                        .hiddenLabel {
+                                            font-size: 10px;
+                                            color: var(--color-ink-soft);
+                                            background: rgba(0,0,0,0.06);
+                                            border-radius: 4px;
+                                            padding: 1px 6px;
+                                        }
+
+                                        .endedLabel {
+                                            font-size: 10px;
+                                            color: var(--color-muted);
+                                            background: var(--color-border);
+                                            border-radius: 4px;
+                                            padding: 1px 6px;
                                         }
 
                                         .alias-edit-btn {
@@ -1778,6 +1801,13 @@ input, select, textarea {
                                     background: transparent;
                                     opacity: 0.5;
                                     &:hover { opacity: 1; background: rgba(255,255,255,0.6); }
+                                }
+                                .hiddenLabel {
+                                    font-size: 11px;
+                                    color: var(--color-ink-soft);
+                                    background: rgba(0,0,0,0.06);
+                                    border-radius: 4px;
+                                    padding: 1px 6px;
                                 }
                             }
 

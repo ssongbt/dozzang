@@ -3,7 +3,7 @@ import { format, parseISO } from 'date-fns';
 import { PencilSquare } from "react-bootstrap-icons";
 import searchPlayList from "../../data/searchPlayList.json";
 import playStampList from "../../data/playStampList.json";
-import { loadAllStamps, getFilledCount, getCardAlias, setCardAlias } from "../../utils/stampStorage";
+import { loadAllStamps, getFilledCount, getCardAlias, setCardAlias, isCardHidden } from "../../utils/stampStorage";
 
 const formatDotLabel = (date, time) => {
     if(!date){
@@ -117,6 +117,7 @@ const MyStamp = () => {
                 return;
             }
             all[playNum].forEach((card) => {
+                const ended = Boolean(play.play_end && play.play_end < today);
                 const row = {
                     stamp_play_num: play.play_num,
                     play_name: play.play_name,
@@ -126,10 +127,14 @@ const MyStamp = () => {
                     max: play.play_stamp,
                     records: card.records || [],
                     alias: getCardAlias(play.play_num, card.coalesce),
+                    hidden: isCardHidden(play.play_num, card.coalesce),
+                    ended,
                 };
                 total.push(row);
-                if(!play.play_end || play.play_end >= today){
-                    now.push(row);
+                if(!ended){
+                    if(!row.hidden){
+                        now.push(row);
+                    }
                 }else{
                     end.push(row);
                 }
@@ -202,7 +207,10 @@ const MyStamp = () => {
         return Array.from(seen.values());
     }, [currentList]);
 
-    const filteredList = selectedPlayNum ? currentList.filter((row) => row.stamp_play_num === selectedPlayNum) : currentList;
+    const baseList = selectedPlayNum ? currentList.filter((row) => row.stamp_play_num === selectedPlayNum) : currentList;
+    const filteredList = stampState === 'total'
+        ? [...baseList].sort((a, b) => Number(a.ended) - Number(b.ended))
+        : baseList;
 
     const stampChoice = () => {
         if(currentList.length === 0){
@@ -266,6 +274,8 @@ const MyStamp = () => {
                         <span className="stampCoalesce">
                             도장판{list.coalesce}
                             {list.alias ? <span className="stampAlias">{list.alias}</span> : ''}
+                            {stampState === 'total' && list.ended ? <span className="endedLabel">종료</span> : ''}
+                            {list.hidden ? <span className="hiddenLabel">숨김</span> : ''}
                         </span>
                     </div>
                     <div className="stampCount">
@@ -301,6 +311,11 @@ const MyStamp = () => {
                                 </div>
 
                             </div>
+                            <p className="stateDesc">
+                                {stampState === 'now' && '현재 진행중인 공연의 도장판(숨김으로 설정한 도장판은 보이지않습니다)'}
+                                {stampState === 'end' && '종료된 공연의 도장판'}
+                                {stampState === 'total' && '전체 도장판(숨김으로 설정한 도장판도 확인가능합니다)'}
+                            </p>
                         </div>
                         <div className="myStampList">
                             {stampChoice()}

@@ -1,6 +1,7 @@
 const STAMPS_KEY = 'myStamps';
 const BENEFITS_KEY = 'myBenefits';
 const ALIASES_KEY = 'myStampAliases';
+const HIDDEN_KEY = 'myStampHidden';
 
 export const getFilledCount = (card) => {
     return (card.records || []).reduce((sum, r) => sum + (Number(r.doubleStamp) || 1), 0);
@@ -19,6 +20,7 @@ export const exportStampsBackup = () => {
         stamps: loadAllStamps(),
         benefits: loadBenefitStatus(),
         aliases: loadCardAliases(),
+        hidden: loadCardHidden(),
     };
     return JSON.stringify(backup, null, 2);
 };
@@ -41,6 +43,9 @@ export const restoreStampsBackup = (jsonString) => {
         }
         if (parsed.aliases && typeof parsed.aliases === 'object') {
             localStorage.setItem(ALIASES_KEY, JSON.stringify(parsed.aliases));
+        }
+        if (parsed.hidden && typeof parsed.hidden === 'object') {
+            localStorage.setItem(HIDDEN_KEY, JSON.stringify(parsed.hidden));
         }
     }
 };
@@ -143,6 +148,32 @@ export const setCardAlias = (playNum, coalesce, alias) => {
         delete all[key];
     }
     localStorage.setItem(ALIASES_KEY, JSON.stringify(all));
+};
+
+const hiddenKey = (playNum, coalesce) => `${playNum}-${coalesce}`;
+
+export const loadCardHidden = () => {
+    try {
+        return JSON.parse(localStorage.getItem(HIDDEN_KEY)) || {};
+    } catch (e) {
+        return {};
+    }
+};
+
+export const isCardHidden = (playNum, coalesce) => {
+    const all = loadCardHidden();
+    return !!all[hiddenKey(playNum, coalesce)];
+};
+
+export const setCardHidden = (playNum, coalesce, hidden) => {
+    const all = loadCardHidden();
+    const key = hiddenKey(playNum, coalesce);
+    if (hidden) {
+        all[key] = true;
+    } else {
+        delete all[key];
+    }
+    localStorage.setItem(HIDDEN_KEY, JSON.stringify(all));
 };
 
 export const removeStamp = (playNum, coalesce, recordIndex) => {
