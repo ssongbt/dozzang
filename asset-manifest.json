@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dozzang/static/css/main.9d566724.css",
-    "main.js": "/dozzang/static/js/main.acfe85ce.js",
+    "main.css": "/dozzang/static/css/main.dba34960.css",
+    "main.js": "/dozzang/static/js/main.207c110d.js",
     "static/media/dozzang_logo.png": "/dozzang/static/media/dozzang_logo.df41935269a8790aa77d.png",
     "static/media/ticketlink.png": "/dozzang/static/media/ticketlink.f5a5ad48518350c6881a.png",
     "static/media/yes24.png": "/dozzang/static/media/yes24.ec113ab6a1ad0803a4c4.png",
@@ -9,11 +9,11 @@
     "static/media/stampplus.png": "/dozzang/static/media/stampplus.da7fc02fca689be3fa4a.png",
     "static/media/my.png": "/dozzang/static/media/my.ffb60b990a479b07bce9.png",
     "index.html": "/dozzang/index.html",
-    "main.9d566724.css.map": "/dozzang/static/css/main.9d566724.css.map",
-    "main.acfe85ce.js.map": "/dozzang/static/js/main.acfe85ce.js.map"
+    "main.dba34960.css.map": "/dozzang/static/css/main.dba34960.css.map",
+    "main.207c110d.js.map": "/dozzang/static/js/main.207c110d.js.map"
   },
   "entrypoints": [
-    "static/css/main.9d566724.css",
-    "static/js/main.acfe85ce.js"
+    "static/css/main.dba34960.css",
+    "static/js/main.207c110d.js"
   ]
 }
