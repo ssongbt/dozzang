@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/dozzang/static/css/main.097ee7a2.css",
-    "main.js": "/dozzang/static/js/main.d10065cc.js",
+    "main.js": "/dozzang/static/js/main.b9e28ed2.js",
     "static/media/dozzang_logo.png": "/dozzang/static/media/dozzang_logo.df41935269a8790aa77d.png",
     "static/media/ticketlink.png": "/dozzang/static/media/ticketlink.f5a5ad48518350c6881a.png",
     "static/media/yes24.png": "/dozzang/static/media/yes24.ec113ab6a1ad0803a4c4.png",
@@ -10,10 +10,10 @@
     "static/media/my.png": "/dozzang/static/media/my.ffb60b990a479b07bce9.png",
     "index.html": "/dozzang/index.html",
     "main.097ee7a2.css.map": "/dozzang/static/css/main.097ee7a2.css.map",
-    "main.d10065cc.js.map": "/dozzang/static/js/main.d10065cc.js.map"
+    "main.b9e28ed2.js.map": "/dozzang/static/js/main.b9e28ed2.js.map"
   },
   "entrypoints": [
     "static/css/main.097ee7a2.css",
-    "static/js/main.d10065cc.js"
+    "static/js/main.b9e28ed2.js"
   ]
 }
