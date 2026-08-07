@@ -1318,6 +1318,7 @@ input, select, textarea {
                                         &:hover { opacity: 1; }
                                     }
                                 }
+                                .getDate { color: var(--color-ink-soft); font-size: 13px; margin-bottom: var(--space-1); }
                                 .useDate { color: var(--color-ink-soft); font-size: 13px; margin-bottom: var(--space-1); }
                                 .memo { font-size: 11px; color: var(--color-muted); }
                             }

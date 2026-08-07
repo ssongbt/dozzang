@@ -207,7 +207,21 @@ const MyStamp = () => {
     const stampChoice = () => {
         if(currentList.length === 0){
             return(
-                <p className="no-stamp">도장판이 없습니다</p>
+                <p
+                    className="no-stamp"
+                    style={{
+                        textAlign: 'center',
+                        minHeight: '50vh',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        lineHeight: '1.8',
+                    }}
+                >
+                    도장판이 없습니다.<br />
+                    도장을 추가해주세요.
+                </p>
             )
         }
         return(
