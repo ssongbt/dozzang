@@ -365,7 +365,7 @@
   },
   {
     "play_num": 27,
-    "play_name": "더 컵업펀스",
+    "play_name": "더 컴업펀스",
     "play_genre": "연극",
     "play_start": "2026-07-11",
     "play_end": "2026-08-30",
@@ -532,20 +532,6 @@
     "play_emoji" : "🔫"
   },
   {
-    "play_num": 38,
-    "play_name": "곤 투모로우",
-    "play_genre": "뮤지컬",
-    "play_start": "2026-09-15",
-    "play_end": "2026-11-29",
-    "play_cast": "강필석, 최재웅, 김경수, 송원근, 고훈정, 손동운, 김재범, 신성민, 백형훈, 윤소호, 원태민, 문유강, 고영빈, 박영수, 김준수, 김태한, 지현준, 신재희",
-    "play_stamp": 5,
-    "play_url_t": "https://www.ticketlink.co.kr/product/64817",
-    "play_url_y" : "https://ticket.yes24.com/Perf/59596?Gcode=009_217_001",
-    "play_url_n" : "https://tickets.interpark.com/goods/26011520",
-    "play_firststamp": 5,
-    "play_emoji" : "🔫"
-  },
-  {
     "play_num": 39,
     "play_name": "오셀로와 이아고",
     "play_genre": "뮤지컬",
@@ -571,6 +557,20 @@
     "play_url_y" : null,
     "play_url_n" : "",
     "play_firststamp": 1,
-    "play_emoji" : "🚲 "
+    "play_emoji" : "🚲"
+  },
+  {
+    "play_num": 41,
+    "play_name": "사의찬미 2026 2ND STAGE",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-09-08",
+    "play_end": "2026-10-25",
+    "play_cast": "김종구, 주민진, 홍승안, 최수진, 김려원, 이정화, 최재웅, 김재범, 정민, 유승현",
+    "play_stamp": 5,
+    "play_url_t": "",
+    "play_url_y" : null,
+    "play_url_n" : "",
+    "play_firststamp": 1,
+    "play_emoji" : "🛳️"
   }
 ]
