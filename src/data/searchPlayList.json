@@ -585,6 +585,34 @@
     "play_url_y" : "https://ticket.yes24.com/Perf/59852",
     "play_url_n" : "https://nol.yanolja.com/ticket/products/26012259",
     "play_firststamp": 5,
-    "play_emoji" : "🛳️"
+    "play_emoji" : "🚀"
+  },
+  {
+    "play_num": 43,
+    "play_name": "연의 편지",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-09-16",
+    "play_end": "2026-11-29",
+    "play_cast": "전혜주, 이아진, 김단이, 정욱진, 이진우, 류찬열, 이동수, 김준식, 박상혁, 정백선, 이주찬, 최기정",
+    "play_stamp": 7,
+    "play_url_t": null,
+    "play_url_y" : "https://ticket.yes24.com/Perf/59639",
+    "play_url_n" : "https://nol.yanolja.com/ticket/products/26011553",
+    "play_firststamp": 1,
+    "play_emoji" : "✉️"
+  },
+  {
+    "play_num": 44,
+    "play_name": "스타크로스드",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-09-22",
+    "play_end": "2026-12-13",
+    "play_cast": "정상윤, 김경수, 김찬호, 정동화, 조성윤, 양지원, 신주협",
+    "play_stamp": 6,
+    "play_url_t": null,
+    "play_url_y" : "https://ticket.yes24.com/Perf/59650",
+    "play_url_n" : null,
+    "play_firststamp": 0,
+    "play_emoji" : "⚔️"
   }
 ]
