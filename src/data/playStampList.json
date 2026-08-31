@@ -1323,5 +1323,53 @@
     "stamp_usestartdate": "",
     "stamp_useenddate": "",
     "stamp_memo": ""
+  },
+  {
+    "stamp_num": 193,
+    "stamp_play_num": 45,
+    "stamp_play_name": "이끼숲",
+    "stamp_benefit_num": 4,
+    "stamp_benefit": "40% 할인권 1매",
+    "stamp_and_benefit":"",
+    "stamp_or_benefit":"",
+    "stamp_benefit_emoji": "🎟️",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": "",
+    "stamp_usestartdate": "",
+    "stamp_useenddate": "2026-12-11",
+    "stamp_memo": ""
+  },
+  {
+    "stamp_num": 194,
+    "stamp_play_num": 45,
+    "stamp_play_name": "이끼숲",
+    "stamp_benefit_num": 6,
+    "stamp_benefit": "50% 할인권 1매",
+    "stamp_and_benefit":"",
+    "stamp_or_benefit":"",
+    "stamp_benefit_emoji": "🎟️",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": "",
+    "stamp_usestartdate": "",
+    "stamp_useenddate": "2026-12-11",
+    "stamp_memo": ""
+  },
+  {
+    "stamp_num": 195,
+    "stamp_play_num": 45,
+    "stamp_play_name": "이끼숲",
+    "stamp_benefit_num": 8,
+    "stamp_benefit": "지정 폴라로이드 1매",
+    "stamp_and_benefit":"",
+    "stamp_or_benefit":"",
+    "stamp_benefit_emoji": "📸",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": "",
+    "stamp_usestartdate": "",
+    "stamp_useenddate": "",
+    "stamp_memo": ""
   }
 ]
