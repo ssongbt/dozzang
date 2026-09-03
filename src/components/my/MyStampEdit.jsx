@@ -313,7 +313,7 @@ const MyStampEdit = () => {
                                             checked={double === 2}
                                             onChange={(e) => setDouble(e.target.checked ? 2 : 1)}
                                         />
-                                        더블적립
+                                        x2
                                     </label>
                                     <label>
                                         <input
@@ -322,7 +322,7 @@ const MyStampEdit = () => {
                                             checked={double === 3}
                                             onChange={(e) => setDouble(e.target.checked ? 3 : 1)}
                                         />
-                                        트리플적립
+                                        x3
                                     </label>
                                     <label>
                                         <input
@@ -331,7 +331,7 @@ const MyStampEdit = () => {
                                             checked={double === 4}
                                             onChange={(e) => setDouble(e.target.checked ? 4 : 1)}
                                         />
-                                        쿼드적립
+                                        x4
                                     </label>
                                 </div>
                             </div>

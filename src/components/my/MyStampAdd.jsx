@@ -35,7 +35,7 @@ const MyStampAdd = () =>{
     //     // stampCnt:'',
     //     stampMemo:''
     // })
-console.log("dja마아"+presetCoalesce);
+
     const [stampCnt, setStampCnt] = useState();
 
     function getPlayNum(e) {
@@ -153,12 +153,11 @@ console.log("dja마아"+presetCoalesce);
 
             return(
                 <div className="stamp">
-                    <select defaultValue={stampCnt} name="stampCnt" onChange={(e) => setStampCnt(e.target.value)}>
+                    <select value={stampCnt || ''} name="stampCnt" onChange={(e) => setStampCnt(e.target.value)}>
                         {stamps && stamps.map(stamp=>{
-                            const coalesceLabel = presetCoalesce ? presetCoalesce : stamp.coalesce;
                             const alias = getCardAlias(playNum, stamp.coalesce);
                             return(
-                                <option key={stamp.coalesce} value={presetCoalesce ? presetCoalesce : stamp.coalesce} disabled={getFilledCount(stamp)>=max ? "disabled" : "" } >{coalesceLabel}{alias ? ` (${alias})` : ''}</option>
+                                <option key={stamp.coalesce} value={stamp.coalesce} disabled={getFilledCount(stamp)>=max ? "disabled" : "" } >{stamp.coalesce}{alias ? ` (${alias})` : ''}</option>
                             )
                         })}
                         
@@ -366,7 +365,7 @@ console.log("dja마아"+presetCoalesce);
                                 {max !== 0 ? StampList() : ''}
                             </div>
                             <div className="stampCount">
-                                <label htmlFor="countCheck">적립체크</label>
+                                <label htmlFor="countCheck">중복적립 체크</label>
                                 <div className="stampCount-options">
                                     <label>
                                         <input
@@ -376,7 +375,7 @@ console.log("dja마아"+presetCoalesce);
                                             checked={double === 2}
                                             onChange={(e) => setDouble(e.target.checked ? 2 : 1)}
                                         />
-                                        더블적립
+                                        x2
                                     </label>
                                     <label>
                                         <input
@@ -385,7 +384,7 @@ console.log("dja마아"+presetCoalesce);
                                             checked={double === 3}
                                             onChange={(e) => setDouble(e.target.checked ? 3 : 1)}
                                         />
-                                        트리플적립
+                                        x3
                                     </label>
                                     <label>
                                         <input
@@ -394,7 +393,7 @@ console.log("dja마아"+presetCoalesce);
                                             checked={double === 4}
                                             onChange={(e) => setDouble(e.target.checked ? 4 : 1)}
                                         />
-                                        쿼드적립
+                                        x4
                                     </label>
                                 </div>
                             </div>

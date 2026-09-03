@@ -1439,6 +1439,8 @@ input, select, textarea {
                                 height: 36px;
                                 border-radius: var(--radius-md);
                                 appearance: none;
+                                background-color: var(--color-surface);
+                                color: var(--color-ink);
                             }
                             select::-ms-expand { display: none; }
                             select option:disabled { color: var(--color-muted); }
