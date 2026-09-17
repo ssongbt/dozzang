@@ -1238,6 +1238,11 @@ input, select, textarea {
                     @extend %play-card;
                     position: relative;
 
+                    &:hover {
+                        box-shadow: var(--shadow-sm);
+                        transform: none;
+                    }
+
                     .addStampBtn {
                         position: absolute;
                         top: var(--space-4);
@@ -1245,17 +1250,32 @@ input, select, textarea {
                         z-index: 1;
                         display: inline-flex;
                         align-items: center;
-                        gap: 4px;
-                        background: var(--color-primary);
-                        color: #fff;
+                        gap: 1px;
+                        background: #fff;
+                        color: #1a237e;
                         font-size: 12px;
                         font-weight: 700;
+                        border: 1px solid var(--color-bg);
                         border-radius: var(--radius-pill);
                         padding: 6px 12px;
                         box-shadow: var(--shadow-sm);
                         transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
 
-                        &:hover { background: var(--color-primary-dark); box-shadow: var(--shadow-md); }
+                        .stampIcon {
+                            width: 22px;
+                            height: 22px;
+                            display: inline-block;
+                            background-color: #1a237e;
+                            -webkit-mask-size: contain;
+                            mask-size: contain;
+                            -webkit-mask-repeat: no-repeat;
+                            mask-repeat: no-repeat;
+                            -webkit-mask-position: center;
+                            mask-position: center;
+                        }
+
+                        &:hover { background: #f0f1fa; box-shadow: var(--shadow-md); }
+                        &:active { transform: scale(0.97); }
                         &:active { transform: scale(0.97); }
                     }
 
