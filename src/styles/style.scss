@@ -1251,15 +1251,13 @@ input, select, textarea {
                         display: inline-flex;
                         align-items: center;
                         gap: 1px;
-                        background: #fff;
+                        background: transparent;
                         color: #1a237e;
                         font-size: 12px;
                         font-weight: 700;
-                        border: 1px solid var(--color-bg);
                         border-radius: var(--radius-pill);
                         padding: 6px 12px;
-                        box-shadow: var(--shadow-sm);
-                        transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+                        transition: transform var(--transition);
 
                         .stampIcon {
                             width: 22px;
@@ -1272,9 +1270,10 @@ input, select, textarea {
                             mask-repeat: no-repeat;
                             -webkit-mask-position: center;
                             mask-position: center;
+                            filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.6));
                         }
 
-                        &:hover { background: #f0f1fa; box-shadow: var(--shadow-md); }
+                        &:hover { opacity: 0.85; }
                         &:active { transform: scale(0.97); }
                         &:active { transform: scale(0.97); }
                     }
