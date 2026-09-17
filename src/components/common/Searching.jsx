@@ -78,7 +78,8 @@ const Searching = (props) => {
                             const startDate = play.play_start ? format(parseISO(play.play_start),'yyyy') : null;
                             const endDate = play.play_end ? format(parseISO(play.play_end), 'yyyy') : null;
                             const year = !startDate || !endDate ? '미정' : startDate === endDate ? startDate : `${startDate}-${endDate}`;
-                            return( 
+                            const isEnded = play.play_end ? parseISO(play.play_end) < new Date() : false;
+                            return(
                                 <DropDownItem
                                 key={index}
                                 onClick={() => {clickDropDownItem(play.play_name); props.getPlayNum(play.play_num);}}
@@ -87,7 +88,7 @@ const Searching = (props) => {
                                     choiceIndex === index ? 'selected' : ''
                                 }
                                 >
-                                <GenreBadge>{play.play_genre}</GenreBadge>{play.play_name} ({year})
+                                <GenreBadge>{play.play_genre}</GenreBadge>{play.play_name} ({year}){isEnded ? <EndedBadge>종료</EndedBadge> : ''}
                             </DropDownItem>
                         )
                     } )}
@@ -189,6 +190,20 @@ const GenreBadge = styled.span`
   padding: 2px 8px;
   border-radius: var(--radius-pill);
   margin-right: 6px;
+`
+
+const EndedBadge = styled.span`
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-border);
+  color: var(--color-ink-soft);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  margin-left: 6px;
 `
 
 const SearchBox = styled.div`

@@ -73,6 +73,7 @@ const SearchList = () => {
 
         const startDate = list.play_start ? format(parseISO(list.play_start),'yyyy-MM-dd') : "미정";
         const endDate = list.play_end ? format(parseISO(list.play_end),'yyyy-MM-dd') : "미정";
+        const isEnded = list.play_end ? parseISO(list.play_end) < new Date() : false;
 
             return(
                 <div className="list" key={list.play_num} onClick={() => viewDetail(list.play_num)}>
@@ -80,6 +81,7 @@ const SearchList = () => {
                         <div className="playName">
                             <span className="genreBadge">{list.play_genre}</span>
                             <span className="title">{list.play_name.trim()}</span>
+                            {isEnded ? <span className="endedBadge">종료</span> : ''}
                             {/* {list.play_stamp ?
                                 <img className="stampImg" src={Stampimg} alt="stamp" />
                             :''} */}

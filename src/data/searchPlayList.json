@@ -628,5 +628,47 @@
     "play_url_n" : null,
     "play_firststamp": 1,
     "play_emoji" : "🌿"
+  },
+  {
+    "play_num": 46,
+    "play_name": "하트비트:심폐소생일지",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-10-20",
+    "play_end": "2027-01-03",
+    "play_cast": "정우연, 이한별, 김이후, 최수진, 한재아, 효은, 임예진, 전민지, 이채원",
+    "play_stamp": 7,
+    "play_url_t": "https://www.ticketlink.co.kr/product/65738",
+    "play_url_y" : null,
+    "play_url_n" : null,
+    "play_firststamp": 1,
+    "play_emoji" : "❤️‍🩹"
+  },
+  {
+    "play_num": 47,
+    "play_name": "잔혹동화 생존기",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-09-08",
+    "play_end": "2026-11-29",
+    "play_cast": "신의정, 주다온, 선유하, 김초하, 곽나윤, 표바하, 한보라, 신진경, 류비, 서동진, 김이담, 선한국, 박세훈, 최반석, 김현기, 신준석",
+    "play_stamp": 7,
+    "play_url_t": "https://www.ticketlink.co.kr/product/64707",
+    "play_url_y" : "https://ticket.yes24.com/Perf/59488?Gcode=009_217_001",
+    "play_url_n" : null,
+    "play_firststamp": 1,
+    "play_emoji" : "👑"
+  },
+  {
+    "play_num": 48,
+    "play_name": "미드나잇:액터뮤지션",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-08-11",
+    "play_end": "2026-11-29",
+    "play_cast": "임강성, 랑연, 여은, 김대현, 장보람, 바슬기, 조현우, 한재원, 김태형, 서재이, 이상아, 박혜민, 김솔, 양정현, 김소진, 정우림, 강현동, 박영훈, 김준, 신은규, 조재철, 임지은, 전현우",
+    "play_stamp": 5,
+    "play_url_t": "https://www.ticketlink.co.kr/product/64370",
+    "play_url_y" : "",
+    "play_url_n" : null,
+    "play_firststamp": 5,
+    "play_emoji" : "🚪"
   }
 ]
