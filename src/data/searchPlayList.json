@@ -608,11 +608,11 @@
     "play_start": "2026-09-22",
     "play_end": "2026-12-13",
     "play_cast": "정상윤, 김경수, 김찬호, 정동화, 조성윤, 양지원, 신주협",
-    "play_stamp": 6,
+    "play_stamp": 9,
     "play_url_t": null,
     "play_url_y" : "https://ticket.yes24.com/Perf/59650",
     "play_url_n" : null,
-    "play_firststamp": 0,
+    "play_firststamp": 1,
     "play_emoji" : "⚔️"
   },
   {
@@ -684,5 +684,61 @@
     "play_url_n" : null,
     "play_firststamp": 2,
     "play_emoji" : "⚔️"
+  },
+  {
+    "play_num": 50,
+    "play_name": "VL",
+    "play_genre": "연극",
+    "play_start": "2026-09-01",
+    "play_end": "2026-11-29",
+    "play_cast": "허영손, 임태현, 홍성원, 조현우, 송유택, 안지환, 최정우",
+    "play_stamp": 7,
+    "play_url_t": "https://www.ticketlink.co.kr/product/64649",
+    "play_url_y" : "",
+    "play_url_n" : null,
+    "play_firststamp": 1,
+    "play_emoji" : "🫦"
+  },
+  {
+    "play_num": 51,
+    "play_name": "더 라스트 카고",
+    "play_genre": "연극",
+    "play_start": "2026-11-06",
+    "play_end": "2026-12-13",
+    "play_cast": "진세휘, 서윤지, 홍유준, 김정하, 신정유, 김준우, 김지호, 지상윤, 정이운, 정아정, 이한울, 김송민, 장수지, 권도영, 이하현",
+    "play_stamp": 5,
+    "play_url_t": "https://www.ticketlink.co.kr/product/65904",
+    "play_url_y" : "",
+    "play_url_n" : null,
+    "play_firststamp": 1,
+    "play_emoji" : "🐎"
+  },
+  {
+    "play_num": 52,
+    "play_name": "마제스티",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-10-25",
+    "play_end": "2026-11-15",
+    "play_cast": "엄기준, 박재윤, 박정원, 김우석, 이정화, 허윤슬, 양승리, 우재하, 이승현, 이경욱, 강하나, 허순미, 홍산하, 송상훈, 김효성, 박채원, 강성진, 김수로",
+    "play_stamp": 5,
+    "play_url_t": "https://www.ticketlink.co.kr/product/65909",
+    "play_url_y" : "",
+    "play_url_n" : "https://nol.yanolja.com/ticket/products/26013853",
+    "play_firststamp": 1,
+    "play_emoji" : "💵"
+  },
+  {
+    "play_num": 53,
+    "play_name": "포쉬",
+    "play_genre": "연극",
+    "play_start": "2026-11-03",
+    "play_end": "2027-01-24",
+    "play_cast": "김평조, 송희정, 차현성, 박서후, 이소영, 박좌헌, 김아론, 이정민, 김리현, 김경록, 이상경, 김준식, 강은빈, 이재은, 장원혁, 지병현, 조영화, 조성필, 정지우, 이사계, 민호준, 루카스, 이채원, 김우진, 이튼, 박지예, 김이준, 윤여백, 류한나, 김한빈, 홍순기, 표바하, 권승아, 김한빈, 이재은, 문수빈, 공성민, 문수빈",
+    "play_stamp": 7,
+    "play_url_t": "https://www.ticketlink.co.kr/product/66150",
+    "play_url_y" : "",
+    "play_url_n" : null,
+    "play_firststamp": 1,
+    "play_emoji" : "🥂"
   }
 ]
