@@ -1675,5 +1675,37 @@
     "stamp_usestartdate": "",
     "stamp_useenddate": "",
     "stamp_memo": ""
+  },
+  {
+    "stamp_num": 215,
+    "stamp_play_num": 53,
+    "stamp_play_name": "포쉬",
+    "stamp_benefit_num": 3,
+    "stamp_benefit": "일반석 40% 할인권 2매",
+    "stamp_and_benefit":"",
+    "stamp_or_benefit":"",
+    "stamp_benefit_emoji": "🎟️",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": "2027-01-17",
+    "stamp_usestartdate": "",
+    "stamp_useenddate": "2027-01-17",
+    "stamp_memo": ""
+  },
+  {
+    "stamp_num": 215,
+    "stamp_play_num": 53,
+    "stamp_play_name": "포쉬",
+    "stamp_benefit_num": 7,
+    "stamp_benefit": "배우 지정 폴라로이드 1매",
+    "stamp_and_benefit":"",
+    "stamp_or_benefit":"",
+    "stamp_benefit_emoji": "📸",
+    "stamp_url": "",
+    "stamp_getstartdate": "",
+    "stamp_getenddate": "",
+    "stamp_usestartdate": "",
+    "stamp_useenddate": "",
+    "stamp_memo": ""
   }
 ]
