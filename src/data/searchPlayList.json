@@ -740,5 +740,33 @@
     "play_url_n" : null,
     "play_firststamp": 1,
     "play_emoji" : "🥂"
+  },
+  {
+    "play_num": 54,
+    "play_name": "얼음나무 숲",
+    "play_genre": "연극",
+    "play_start": "2026-12-23",
+    "play_end": "2027-03-14",
+    "play_cast": "김종구, 기세중, 홍승안, 정민, 박선영, 박정혁, 노희찬, 권태하, 이현, 장유정, 제진빈, 장준환, 장준우, 이홍섭, 김지호",
+    "play_stamp": 7,
+    "play_url_t": "",
+    "play_url_y" : "",
+    "play_url_n" : null,
+    "play_firststamp": 1,
+    "play_emoji" : "❄"
+  },
+  {
+    "play_num": 55,
+    "play_name": "아가사",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-12-09",
+    "play_end": "2027-02-28",
+    "play_cast": "최수진, 백은혜, 이정화, 김재범, 고상호, 윤소호, 원태민, 홍나현, 정지우, 홍기범, 정평, 김대식, 안두호, 박상준, 무현, 최반석, 한세라, 하미미, 정다예, 김초하, 강인대, 이찬렬",
+    "play_stamp": 7,
+    "play_url_t": null,
+    "play_url_y" : "https://ticket.yes24.com/Perf/60940",
+    "play_url_n" : "https://nol.yanolja.com/ticket/products/26015729",
+    "play_firststamp": 1,
+    "play_emoji" : "🧶"
   }
 ]
