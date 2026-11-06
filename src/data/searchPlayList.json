@@ -768,5 +768,47 @@
     "play_url_n" : "https://nol.yanolja.com/ticket/products/26015729",
     "play_firststamp": 1,
     "play_emoji" : "🧶"
+  },
+  {
+    "play_num": 56,
+    "play_name": "언더 문보우",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-12-12",
+    "play_end": "2027-02-28",
+    "play_cast": "윤지성, 차서원, 이주순, 김우석, 이시강, 강찬, 이진혁, 김우진, 안유진, 홍륜희, 조현우, 김태오, 김병영, 서예준, 박혜원, 유지윤",
+    "play_stamp": 7,
+    "play_url_t": "https://www.ticketlink.co.kr/product/66810",
+    "play_url_y" : null,
+    "play_url_n" : "https://nol.yanolja.com/ticket/products/26015902",
+    "play_firststamp": 1,
+    "play_emoji" : "🫍"
+  },
+  {
+    "play_num": 57,
+    "play_name": "두 번째 아이",
+    "play_genre": "연극",
+    "play_start": "2026-12-08",
+    "play_end": "2027-03-28",
+    "play_cast": "김지온, 손우현, 정택운, 주민진, 전성우, 정휘",
+    "play_stamp": 8,
+    "play_url_t": "https://www.ticketlink.co.kr/product/66689",
+    "play_url_y" : "https://ticket.yes24.com/Perf/60928?Gcode=009_217_001",
+    "play_url_n" : "https://nol.yanolja.com/ticket/products/L0000154",
+    "play_firststamp": 1,
+    "play_emoji" : "👦"
+  },
+  {
+    "play_num": 58,
+    "play_name": "샤이닝",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-12-16",
+    "play_end": "2027-03-07",
+    "play_cast": "최호승, 양지원, 유태율, 이한솔, 김서환, 김경록",
+    "play_stamp": 7,
+    "play_url_t": "",
+    "play_url_y" : "",
+    "play_url_n" : null,
+    "play_firststamp": 1,
+    "play_emoji" : "👤"
   }
 ]

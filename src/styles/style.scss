@@ -1180,6 +1180,7 @@ input, select, textarea {
 
                         .stamp {
                             padding: 0 var(--space-5) var(--space-5);
+                            &:not(:empty) { padding-top: var(--space-4); }
 
                             .stamplist {
                                 display: flex;
