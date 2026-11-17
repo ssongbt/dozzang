@@ -805,10 +805,38 @@
     "play_end": "2027-03-07",
     "play_cast": "최호승, 양지원, 유태율, 이한솔, 김서환, 김경록",
     "play_stamp": 7,
-    "play_url_t": "",
-    "play_url_y" : "",
+    "play_url_t": "https://www.ticketlink.co.kr/product/66907",
+    "play_url_y" : "https://ticket.yes24.com/Perf/61103&Gcode=009_203",
     "play_url_n" : null,
     "play_firststamp": 1,
     "play_emoji" : "👤"
+  },
+  {
+    "play_num": 59,
+    "play_name": "리플리",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-12-23",
+    "play_end": "2027-03-01",
+    "play_cast": "현석준, 안지환, 이준우, 한상훈, 황휘, 김수호",
+    "play_stamp": 7,
+    "play_url_t": "https://www.ticketlink.co.kr/product/67069",
+    "play_url_y" : null,
+    "play_url_n" : null,
+    "play_firststamp": 1,
+    "play_emoji" : "✒"
+  },
+  {
+    "play_num": 60,
+    "play_name": "인간실격:사양 편",
+    "play_genre": "뮤지컬",
+    "play_start": "2026-12-11",
+    "play_end": "2027-03-07",
+    "play_cast": "안재영, 박정원, 정재환, 김주연, 한수아, 박새힘, 강정우, 손유동, 반정모",
+    "play_stamp": 7,
+    "play_url_t": "https://www.ticketlink.co.kr/product/66527",
+    "play_url_y" : "https://ticket.yes24.com/Perf/60772",
+    "play_url_n" : null,
+    "play_firststamp": 2,
+    "play_emoji" : "☀️"
   }
 ]
